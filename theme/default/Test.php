@@ -1,8 +1,9 @@
 <?php !defined("FCPATH") && exit("Access Denied!"); ?>
 
 <!--{execute}-->
+error_reporting(0);
 header("Content-type: text/plain");
-<!--{execute}-->
+<!--{/execute}-->
 
 输出SiteUrl：
 
