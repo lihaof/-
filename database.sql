@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `bms_time_list` (
   `end` datetime NOT NULL COMMENT '结束时间，时间格式：2016:02:29 14:59:03',
   `price` decimal(10,2) unsigned NOT NULL COMMENT '预约价格',
   `time` int(10) unsigned NOT NULL COMMENT '预约时间戳',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态，1：未被预约，2：已被预约',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态，1：未被预约，2：已被预约,3：管理员锁定此时段不开放预约',
   PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每一天自动生成的预订表，需要生成的时段从bms_open_time读取';
 
