@@ -1,5 +1,5 @@
---- 大家把建表的信息都写在这个文件里
---- 每个字段后面都要用 COMMENT '注释'
+-- 大家把建表的信息都写在这个文件里
+-- 每个字段后面都要用 COMMENT '注释'
 
 
 -- 导出  表 bms.bms_open_time 结构
@@ -36,4 +36,16 @@ CREATE TABLE IF NOT EXISTS `bms_user_order` (
   PRIMARY KEY (`order_id`),
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户预约申请记录';
+
+-- 导出  表 bms.bms_goods 结构
+CREATE TABLE IF NOT EXISTS `bms_goods`(
+  `goods_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `goods_name` varchar(200) NOT NULL COMMENT '商品名称',
+  `goods_desc`  mediumtext COMMENT '商品详情',
+  `goods_picture` varchar(40) NOT NULL COMMENT '图片id',  
+  `goods_value` int(8) unsigned NOT NULL COMMENT '商品价值',
+  `goods_status` int(8) unsigned COMMENT '是否在售',
+  PRIMARY KEY (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
