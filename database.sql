@@ -48,22 +48,19 @@ CREATE TABLE IF NOT EXISTS `bms_goods`(
   PRIMARY KEY (`goods_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 导出  表 bms.bms_team 结构
-CREATE TABLE IF NOT EXISTS `bms_team`(
-  `team_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `team_name` varchar(200) NOT NULL COMMENT '球队名称',
-  `team_leader` int(8) unsigned COMMENT '队长id',
-  `team_memmber_id` int(8) unsigned COMMENT '成员列表',
-  `team_slogan` mediumtext COMMENT '球队口号',
-  `team_picture` varchar(40) COMMENT '球队宣传照片',
-  `team_status` int(8) COMMENT '是否通过审核',
-  PRIMARY KEY (`team_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 导出  表 bms.bms_module_permissions 结构
+CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
+  `mid` int (10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增的模块id',
+  `module_name` varchar(40) NOT NULL COMMENT '模块的名称',
+  `identity` varchar(20) NOT NULL COMMENT '该模块对应的类或方法',
+  `display_order` int(3) unsigned NOT NULL COMMENT '模块显示的顺序',
+  `level1` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level2` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level3` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level4` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level5` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level6` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  `level7` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
+  PRIMARY KEY (`mid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '模块和权限的对应表';
 
--- 导出  表 bms.bms_team_memmber 结构
-CREATE TABLE IF NOT EXISTS `bms_team_memmber`(
-  `team_memmber_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `team_id` int(8) unsigned NOT NULL COMMENT '所属球队',
-  `uid` int(8) unsigned COMMENT '球队成员id',
-  PRIMARY KEY (`team_memmber_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
