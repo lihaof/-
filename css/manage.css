@@ -29,3 +29,6 @@
 .module:hover{ padding-right: 10px; background: #fff; }
 
 .module2{ padding: 2px 10px 2px 20px; background: #fff; border-bottom: none; border-top: none; }
+
+/*操作区域*/
+.operate{ width: 800px; height: 700px; float: left; }

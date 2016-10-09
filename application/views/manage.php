@@ -39,15 +39,16 @@
 
     <!--操作区域-->
     <div class="operate" id="operate">
-        <iframe src="iframe/iframe_home.php" id="iframeSlect" width="" height="100%" frameborder="0" scrolling="no"></iframe>
+        <iframe src="iframe/iframe_home" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
     </div>
 
 
     <script>
         //修改iframe宽度
         function apdateIframe() {
-            $('#operate').width($(window).width() - $('#nav').width());
+            $('#operate').width($(window).width() - $('#nav').width()) - 100;
             $('#iframeSlect').width($('#operate').width());
+            console.log("111");
         }
 
         $(window).load(function(){
