@@ -3,103 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>管理页面</title>
-    <link rel="stylesheet" type="text/css" href="css/manage.css">
-    <script type="text/javascript" src="../js/jquery-1.11.1.min.js"></script>
-    <style>
-        #tab{
-            width: 100%;
-            height: 54px;
-            background-color: #f8f8f8;
-            line-height: 50px;
-            font-size: 18px;
-            color: #303030;
-            letter-spacing: 5px;
-        }
-
-        #tab ul{
-            margin-left: 200px;
-        }
-
-        .tab-li{
-            float: left;
-            list-style: none;
-            padding: 0 20px;
-            cursor: pointer;
-        }
-
-        #tab li:hover{
-            background-color: #f4f4f4;
-        }
-
-        .tab-li2{
-            float: left;
-            list-style: none;
-            padding: 0 20px;
-            cursor: pointer;
-            color: #ff9900;
-            border-bottom: 4px solid #ff9900;
-        }
-
-        #nav{
-            width: 200px;
-            height: 700px;
-            float: left;
-            background-color: #fbfafa;
-            box-shadow: 0 0 5px #ddd;
-        }
-
-        .module{
-            width: 170px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 16px;
-            color: #696969;
-            background: linear-gradient(#ffffff, #f4f4f4); /* 标准的语法 */
-            background: -webkit-linear-gradient(#ffffff, #f4f4f4); /* Safari 5.1 - 6.0 */
-            background: -o-linear-gradient(#ffffff, #f4f4f4); /* Opera 11.1 - 12.0 */
-            background: -moz-linear-gradient(#ffffff, #f4f4f4); /* Firefox 3.6 - 15 */
-            padding: 1px 10px 1px 20px;
-            border-top: 1px solid #f6f6f6;;
-            border-bottom: 1px solid #e8e8e8;
-            list-style: none;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .arrow{
-            float: right;
-            color: #b5b5b5;
-        }
-
-        .module:hover{
-            padding-right: 10px;
-            background: #fff;
-        }
-
-        .module2{
-            padding: 2px 10px 2px 20px;
-            background: #fff;
-            border-bottom: none;
-            border-top: none;
-        }
-
-
-
-
-
-        /*操作区域*/
-        .operate{
-            height: 700px;
-            float: left;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/manage.css'); ?>">
+    <script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
 </head>
 
 
 <body>
     <!--首部-->
     <div id="head">
-        <img src="img/logo.png" class="logo">
+        <img src="<?php echo base_url('image/logo.png'); ?>" class="logo">
         <div class="title">
             <div class="title-big">篮球场智能管理系统</div><br>
             <div class="title-small">BASKETBALL MANAGEMENT SYSTEM</div>
@@ -127,7 +39,7 @@
 
     <!--操作区域-->
     <div class="operate" id="operate">
-        <iframe src="iframe/iframe_home.html" id="iframeSlect" width="" height="100%" frameborder="0" scrolling="no"></iframe>
+        <iframe src="iframe/iframe_home.php" id="iframeSlect" width="" height="100%" frameborder="0" scrolling="no"></iframe>
     </div>
 
 
