@@ -1,7 +1,5 @@
 -- 大家把建表的信息都写在这个文件里
 -- 每个字段后面都要用 COMMENT '注释'
-
-
 -- 导出  表 bms.bms_open_time 结构
 CREATE TABLE IF NOT EXISTS `bms_open_time` (
   `time_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增time_id',
@@ -12,7 +10,6 @@ CREATE TABLE IF NOT EXISTS `bms_open_time` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '开放状态,1开放,2不开放',
   PRIMARY KEY (`time_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台设置开放时间段的数据表';
-
 -- 导出  表 bms.bms_time_list 结构
 CREATE TABLE IF NOT EXISTS `bms_time_list` (
   `list_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增list_id',
@@ -25,7 +22,6 @@ CREATE TABLE IF NOT EXISTS `bms_time_list` (
   PRIMARY KEY (`list_id`),
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每一天自动生成的预订表,需要生成的时段从bms_open_time读取';
-
 -- 导出  表 bms.bms_user_order 结构
 CREATE TABLE IF NOT EXISTS `bms_user_order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增order_id',
@@ -36,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `bms_user_order` (
   PRIMARY KEY (`order_id`),
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户预约申请记录';
-
 -- 导出  表 bms.bms_goods 结构
 CREATE TABLE IF NOT EXISTS `bms_goods`(
   `goods_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
@@ -46,6 +41,24 @@ CREATE TABLE IF NOT EXISTS `bms_goods`(
   `goods_value` int(8) unsigned NOT NULL COMMENT '商品价值',
   `goods_status` int(8) unsigned COMMENT '是否在售',
   PRIMARY KEY (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 导出  表 bms.bms_team 结构
+CREATE TABLE IF NOT EXISTS `bms_team`(
+  `team_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(200) NOT NULL COMMENT '球队名称',
+  `team_leader` int(8) unsigned COMMENT '队长id',
+  `team_memmber_id` int(8) unsigned COMMENT '成员列表',
+  `team_slogan` mediumtext COMMENT '球队口号',
+  `team_picture` varchar(40) COMMENT '球队宣传照片',
+  `team_status` int(8) COMMENT '是否通过审核',
+  PRIMARY KEY (`team_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 导出  表 bms.bms_team_memmber 结构
+CREATE TABLE IF NOT EXISTS `bms_team_memmber`(
+  `team_memmber_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `team_id` int(8) unsigned NOT NULL COMMENT '所属球队',
+  `uid` int(8) unsigned COMMENT '球队成员id',
+  PRIMARY KEY (`team_memmber_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 导出  表 bms.bms_module_permissions 结构
