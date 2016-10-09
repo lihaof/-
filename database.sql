@@ -60,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `bms_team_memmber`(
   `uid` int(8) unsigned COMMENT '球队成员id',
   PRIMARY KEY (`team_memmber_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 -- 导出  表 bms.bms_module_permissions 结构
 CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
   `mid` int (10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增的模块id',
@@ -75,5 +74,5 @@ CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
   `level6` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
   `level7` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '模块和权限的对应表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块和权限的对应表';
 
