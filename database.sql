@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS `bms_team`(
   `team_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
   `team_name` varchar(200) NOT NULL COMMENT '球队名称',
   `team_leader` int(8) unsigned COMMENT '队长id',
-  `team_memmber_id` int(8) unsigned COMMENT '成员列表',
   `team_slogan` mediumtext COMMENT '球队口号',
   `team_picture` varchar(40) COMMENT '球队宣传照片',
   `team_status` int(8) DEFAULT '0' COMMENT '是否通过审核',
@@ -62,8 +61,10 @@ CREATE TABLE IF NOT EXISTS `bms_team`(
 
 -- 导出  表 bms.bms_team_memmber 结构
 CREATE TABLE IF NOT EXISTS `bms_team_memmber`(
-  `team_memmber_id` int(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '所属球队',
+  `team_memmber_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `team_id` int(8) unsigned COMMENT '所属球队',
   `uid` int(8) unsigned COMMENT '球队成员id',
+  `team_memmber_status` int(8) unsigned DEFAULT '0' COMMENT '是否通过队长审核',
   PRIMARY KEY (`team_memmber_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
