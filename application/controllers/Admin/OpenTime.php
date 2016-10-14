@@ -1,5 +1,6 @@
 <?php
 class OpenTime extends CI_Controller {
+    
     public function __construct() {
         parent::__construct();
         $this->load->model("initor");
@@ -82,8 +83,8 @@ class OpenTime extends CI_Controller {
         $this->ui->load("Admin/OpenTime_change",$data);
     }
 
-    //不存在返回false,存在返回该条记录
-    private function timeIdIsExist($timeId) {
+    //不存在返回false,存在返回该条记录的指定内容
+    private function timeIdIsExist($timeId = 0) {
         $timeId = (int)$timeId;
         $sql = "SELECT time_id,start,end,price,status FROM bms_open_time WHERE time_id='{$timeId}'";
         $query = $this->db->query($sql);
@@ -103,18 +104,38 @@ class OpenTime extends CI_Controller {
                 showNotice("删除成功",site_url("Admin/OpenTime/index"));
             }
         }
-        // $this->ui->load("OpenTime");
     }
 
-    public function test($timeId = 1) {
-        $timeId = (int)$timeId;
-        $sql = "SELECT time_id,start,end,price,status FROM bms_open_time WHERE time_id='{$timeId}'";
-        $query = $this->db->query($sql);
-        $list = $query->result_array();
-        var_dump($list);
-        if(empty($list)) {
-            echo '00000000000000';
+    public function lock($timeId = 1) {
+        $data = $this->timeIdIsExist($timeId);
+        if($data) {
+            $data["status"] = 2;
+            $this->db->where("time_id", $timeId);
+            $this->db->update("bms_open_time", $data);
+            if($this->db->affected_rows()){
+                showNotice("停用成功",site_url("Admin/OpenTime/index"));
+            } else {
+                showNotice("停用失败,请重新尝试",site_url("Admin/OpenTime/index"));
+            }
+        } else {
+            showNotice("停用失败,请重新尝试",site_url("Admin/OpenTime/index"));
         }
     }
 
+    public function unlock($timeId = 1) {
+        $data = $this->timeIdIsExist($timeId);
+        if($data) {
+            $data["status"] = 1;
+            $this->db->where("time_id", $timeId);
+            $this->db->update("bms_open_time", $data);
+            if($this->db->affected_rows()){
+                showNotice("启用成功",site_url("Admin/OpenTime/index"));
+            } else {
+                showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
+            }
+        } else {
+            showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
+        }
+    }
+    
 }
