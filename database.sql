@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
   `module_name` varchar(40) NOT NULL COMMENT '模块的名称',
   `identity` varchar(20) NOT NULL COMMENT '该模块对应的类或方法',
   `display_order` int(3) unsigned NOT NULL COMMENT '模块显示的顺序',
+  `pmid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父模块id，默认为0',
   `level1` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
   `level2` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
   `level3` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '对该等级用户权限：1有，0无',
