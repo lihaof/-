@@ -28,14 +28,7 @@
         </ul>
     </div>
 
-    <!--侧面栏-->
-    <div id="nav">
-        <ul>
-            <li class="module">子模块1<span class="arrow">></span></li>
-            <li class="module">子模块2<span class="arrow">></span></li>
-            <li class="module">子模块3<span class="arrow">></span></li>
-        </ul>
-    </div>
+    
 
     <!--操作区域-->
     <div class="operate" id="operate">
@@ -48,7 +41,6 @@
         function apdateIframe() {
             $('#operate').width($(window).width() - $('#nav').width()) - 100;
             $('#iframeSlect').width($('#operate').width());
-            console.log("111");
         }
 
         $(window).load(function(){
@@ -59,7 +51,7 @@
                 $(this).click(function () {
                     var url = 'iframe/iframe_' + $(this).attr('id') + '.html';
                     $('#iframeSlect').fadeOut(100).attr('src',url).fadeIn(400);
-
+                    console.log(url);
                 });
 
             });
@@ -71,10 +63,6 @@
                     $(this).addClass('module2');
                 });
             });
-
-
-
-
         });
 
         //改变窗口大小时自适应
