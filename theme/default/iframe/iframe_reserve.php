@@ -20,7 +20,7 @@
         </div>
 
         <!--表格-->
-        <table id="form" class="form-style">
+        <table class="form-style">
             <tr>
                 <th>姓名</th>
                 <th>年龄</th>
