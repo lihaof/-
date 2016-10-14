@@ -106,7 +106,7 @@ class OpenTime extends CI_Controller {
         }
     }
 
-    public function lock($timeId = 1) {
+    public function lock($timeId = 0) {
         $data = $this->timeIdIsExist($timeId);
         if($data) {
             $data["status"] = 2;
@@ -122,7 +122,7 @@ class OpenTime extends CI_Controller {
         }
     }
 
-    public function unlock($timeId = 1) {
+    public function unlock($timeId = 0) {
         $data = $this->timeIdIsExist($timeId);
         if($data) {
             $data["status"] = 1;

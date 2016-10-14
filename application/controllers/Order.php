@@ -6,7 +6,7 @@ class Order extends CI_Controller {
         $this->load->helper("common_helper");
     }
 
-    public function add($listId = "0") {
+    public function add($listId = 0) {
         $listId = (int)$listId;
         $uid = 1;    //TODO:动态获取uid
         $sql = "SELECT list_id,date,start,end,price,status FROM bms_time_list WHERE list_id='{$listId}' AND status='1'";
