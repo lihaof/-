@@ -84,3 +84,45 @@ CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块和权限的对应表';
 
+
+-- 球队员请求加入球队 加入球队申请表  bms_join_info
+DROP TABLE IF EXISTS `bms_join_info`;
+CREATE TABLE IF NOT EXISTS `bms_join_info` (
+  `teamid` char(138) NOT NULL COMMENT '队伍id',
+  `member` int(8) NOT NULL COMMENT '想要加入该队伍的队员',
+  `status` int(1) NOT NULL COMMENT '0表等待队长审核，1表队长审核通过，2表队长审核失败',
+  PRIMARY KEY (`member`)
+) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT= '添加队伍信息表';
+
+-- 球队信息 表 bms_team_info
+DROP TABLE IF EXISTS `bms_team_info`;
+CREATE TABLE IF NOT EXISTS `bms_team_info` (
+  `teamid` int(5) NOT NULL AUTO_INCREMENT COMMENT '队伍id',
+  `status` int(1) NOT NULL COMMENT '队伍状态，0表待审核，1表审核通过，2表审核失败',
+  `teamname` varchar(40) NOT NULL COMMENT '队伍名称',
+  `teamleader` int(8) NOT NULL COMMENT '队长id',
+  `teamnum` int(2) NOT NULL COMMENT '队伍目前人数',
+  `member_1` int(8) NULL COMMENT '队员1号id',
+  `member_2` int(8) NULL COMMENT '队员2号id',
+  `member_3` int(8) NULL COMMENT '队员3号id',
+  `member_4` int(8) NULL COMMENT '队员4号id',
+  PRIMARY KEY (`teamid`)
+) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '队伍信息表';
+
+
+-- 用户信息表 bms_user_info
+DROP TABLE IF EXISTS `bms_user_info`;
+CREATE TABLE IF NOT EXISTS `bms_user_info` (
+  `openid` varchar(40) NOT NULL COMMENT 'openid',
+  `uid` int(8) NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `nickname` varchar(40) NOT NULL COMMENT '用户昵称',
+  `weight` varchar(3) NULL COMMENT '用户体重',
+  `position` int(1) NULL COMMENT '用户场位',
+  `point` int(7) NULL COMMENT '用户积分',
+  `teamid` int(5) NULL COMMENT '队伍id',
+  PRIMARY KEY (`uid`)
+) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户信息表';
+
