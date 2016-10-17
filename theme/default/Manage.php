@@ -49,7 +49,7 @@
             //改变iframe地址
             $('.tab-li').each(function () {
                 $(this).click(function () {
-                    var url = 'iframe/iframe_' + $(this).attr('id') + '.html';
+                    var url = 'iframe/iframe_' + $(this).attr('id');
                     $('#iframeSlect').fadeOut(100).attr('src',url).fadeIn(400);
                     console.log(url);
                 });

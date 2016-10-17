@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function(){
     //默认显示第一个表格
     $('.form-style').hide().eq(0).show();
 

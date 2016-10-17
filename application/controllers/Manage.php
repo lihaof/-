@@ -10,9 +10,6 @@ class Manage extends CI_Controller {
     }
 
     public function iframe($url){
-        if(substr($url,-4) == 'html'){
-        $url = substr($url,0,-5);
-        }
-    	$this->ui->load("iframe/".$url);
+        $this->ui->load('/iframe/'.$url);
     }
 }
