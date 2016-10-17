@@ -15,7 +15,7 @@
       <br />
       场位：<select name="position">
                    <option value="1">控球后卫PG</option>
-                   <option value="2">等分后卫SG</option>>
+                   <option value="2">得分后卫SG</option>>
                    <option value="3">小前锋SF</option>>
                    <option value="4">大前锋PF</option>>
                    <option value="5">中锋C</option>>
