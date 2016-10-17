@@ -6,7 +6,7 @@
 
 .title{ width: 360px; height: 80px; float: left; }
 
-.title-big{ font-size: 30px; color: #fff; margin-top: 10px; }
+.title-big{ font-size: 30px; color: #fff; margin-top: 10px; margin-bottom: 10px; }
 
 .title-small{ font-size: 18px; color: #fff; }
 

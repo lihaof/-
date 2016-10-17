@@ -13,7 +13,7 @@
     <div id="head">
         <img src="{:base_url('image/logo.png')}" class="logo">
         <div class="title">
-            <div class="title-big">篮球场智能管理系统</div><br>
+            <div class="title-big">篮球场智能管理系统</div>
             <div class="title-small">BASKETBALL MANAGEMENT SYSTEM</div>
         </div>
     </div>

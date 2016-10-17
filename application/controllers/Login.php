@@ -1,6 +1,6 @@
 <?php
 
-class Test extends CI_Controller {
+class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("initor");
@@ -10,6 +10,6 @@ class Test extends CI_Controller {
 		// 模板文件放在 theme/default 目录里，如 Home.php 文件采用
 		// $this->ui->load("Test") 调用
 		// $this->ui->load("Test");
-		$this->ui->load("Index");
+		$this->ui->load("login");
 	}
 }
