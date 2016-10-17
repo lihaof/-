@@ -1,6 +1,17 @@
 -- 大家把建表的信息都写在这个文件里
 -- 每个字段后面都要用 COMMENT '注释'
 
+-- 导出  表 bms.bms_time_limit 结构
+CREATE TABLE IF NOT EXISTS `bms_time_limit` (
+  `time_limit_id` tinyint(1) unsigned NOT NULL AUTO_INCREMENT,
+  `time` int(10) unsigned NOT NULL DEFAULT '604800' COMMENT '时间,单位:秒(7天=604800秒)',
+  PRIMARY KEY (`time_limit_id`),
+  KEY `time` (`time`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='预约时间限制记录';
+
+INSERT IGNORE INTO `bms_time_limit` (`time_limit_id`, `time`) VALUES
+  (1, 604800);
+
 -- 导出  表 bms.bms_open_time 结构
 CREATE TABLE IF NOT EXISTS `bms_open_time` (
   `time_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增time_id',
