@@ -139,3 +139,13 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户信息表';
 
+-- 管理员信息表 bms_administrator
+CREATE TABLE IF NOT EXISTS `bms_administrator` (
+  `aid` int(10) NOT NULL AUTO_INCREMENT COMMENT '管理员自增id',
+  `user` varchar(40) NOT NULL COMMENT '管理员账号',
+  `password` varchar(50) NOT NULL COMMENT '管理员密码',
+  `level` tinyint(1) NOT NULL DEFAULT '4' COMMENT '权限等级，管理员从4至7，默认为4',
+  PRIMARY KEY (`aid`)
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '管理员信息表';
+
