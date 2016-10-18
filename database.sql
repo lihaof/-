@@ -133,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
   `height` int(3) NULL COMMENT '用户身高',
   `position` int(1) NULL COMMENT '用户场位',
   `point` int(7) NULL COMMENT '用户积分',
+  `user_level` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '用户权限等级',
   `teamid` int(5) NULL COMMENT '队伍id',
   PRIMARY KEY (`uid`)
 ) 
