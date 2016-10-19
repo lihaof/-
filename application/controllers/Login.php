@@ -4,6 +4,8 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("initor");
+		$this->load->model("AdministratorModel");
+		$this->load->helper("form");
 	}
 
 	public function index() {
@@ -11,5 +13,16 @@ class Login extends CI_Controller {
 		// $this->ui->load("Test") 调用
 		// $this->ui->load("Test");
 		$this->ui->load("login");
+	}
+	
+    public function login_process() {
+		$user = $_POST['user'];
+		$password = $_POST['password'];
+		$result = $this->AdministratorModel->checkAdministrator($user, $password);
+		if ($result) {
+			echo "<script>window.location.href='".site_url("manage/")."'</script>";
+		}else{
+			echo "<script>window.location.href='".site_url("login/")."'</script>";
+		}
 	}
 }
