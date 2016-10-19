@@ -58,4 +58,15 @@ class TimeListModel extends CI_Model {
             return 0;    //0为无限制
         }
     }
+
+    //不存在返回false,存在返回该条记录的指定内容
+    public function listIdIsExist($listId = 0) {
+        $this->db->where("list_id",$listId);
+        $listData = $this->db->get("time_list")->row_array();
+        if(empty($listData)) {
+            return false;
+        }
+        return $listData;
+    }
+
 }

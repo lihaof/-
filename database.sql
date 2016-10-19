@@ -20,21 +20,21 @@ CREATE TABLE IF NOT EXISTS `bms_open_time` (
   `price` decimal(10,2) unsigned NOT NULL COMMENT '预订价格',
   `time` int(10) unsigned NOT NULL COMMENT '修改时间',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '开放状态,1启用,2停用',
+  `court_num` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '开放球场数量',
   PRIMARY KEY (`time_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台设置开放时间段的数据表';
 
 -- 导出  表 bms.bms_time_list 结构
 CREATE TABLE IF NOT EXISTS `bms_time_list` (
   `list_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增list_id',
-  `uid` int(8) unsigned NOT NULL COMMENT '预约人uid,未预约为空,已预约则为预约者uid',
   `date` date NOT NULL COMMENT '日期,日期格式: 2016-02-29',
   `start` time NOT NULL COMMENT '开始时间,时间格式: 14:59:03',
   `end` time NOT NULL COMMENT '结束时间,时间格式:  14:59:03',
   `price` decimal(10,2) unsigned NOT NULL COMMENT '预约价格,价格格式: 123.00',
-  `time` int(10) unsigned NOT NULL COMMENT '预约时间戳',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态,1:未被预约,2:已被预约,3:管理员锁定此时段不开放预约',
-  PRIMARY KEY (`list_id`),
-  KEY `uid` (`uid`)
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态,1:开放预约,2...,3:管理员锁定此时段不开放预约',
+  `court_num` tinyint(3) unsigned NOT NULL COMMENT '开放球场数量',
+  `surplus_num` tinyint(3) unsigned NOT NULL COMMENT '球场剩余数量',
+  PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每一天自动生成的预订表,需要生成的时段从bms_open_time读取';
 
 -- 导出  表 bms.bms_user_order 结构

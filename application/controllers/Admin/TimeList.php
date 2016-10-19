@@ -1,4 +1,11 @@
 <?php
+/**
+ *  Basketball Management System 1.0
+ *
+ *  @Id:        TimeList.php
+ *  @Author:    Weafung
+ *  @Generate:  2016/10/19
+ */
 class TimeList extends CI_Controller {
     public function __construct() {
         parent::__construct();
@@ -15,8 +22,8 @@ class TimeList extends CI_Controller {
     }
 
     public function lock($listId = 0) {
-        $listId = (int)$listId;
-        $this->db->update("bms_time_list", array("status" => 3), array("list_id" => $listId, "status" => 1));
+        $this->db->where( array("list_id" => $listId, "status" => 1) );
+        $this->db->update("time_list", array("status" => 3), );
         if($this->db->affected_rows()==1){
             showNotice("关闭预约成功",site_url("Admin/TimeList"));      
         } else {
@@ -25,9 +32,9 @@ class TimeList extends CI_Controller {
     }
     
     public function unlock($listId = 0) {
-        $listId = (int)$listId;
-        $this->db->update("bms_time_list", array("status" => 1), array("list_id" => $listId, "status" => 3));
-        if($this->db->affected_rows()==1){
+        $this->db->where( array("list_id" => $listId, "status" => 3) );
+        $this->db->update("time_list", array("status" => 1));
+        if($this->db->affected_rows() == 1){
             showNotice("开放预约成功",site_url("Admin/TimeList"));      
         } else {
             showNotice("开放预约失败,请返回重试",site_url("Admin/TimeList"));
@@ -37,16 +44,18 @@ class TimeList extends CI_Controller {
     public function cancelOrder($listId = 0, $uid = 0) {
         $listId = (int)$listId;
         $uid = (int)$uid;    //TODO:动态获取uid,并检查合法性
-        $listData = $this->listIdIsExist($listId);
+        $listData = $this->TimeListModel->listIdIsExist($listId);
         $orderData = $this->userIsOrder($listId, $uid);
         if(!$listData || !$orderData || $orderData["status"] == 2) {
             showNotice("该记录不存在,撤销预约失败",site_url("Admin/TimeList/index"));
         } else {
             $this->db->trans_start();
             //将此时段剩余场数+1
-            $this->db->update('bms_time_list', array("surplus_num"=>$listData["surplus_num"]+1), array("list_id"=>$listId));
+            $this->db->where( array("list_id" => $listId) );
+            $this->db->update('bms_time_list', array("surplus_num"=>$listData["surplus_num"]+1));
             //将此用户的订单设置为撤销 
-            $this->db->update('bms_user_order', array("status"=>2), array("uid"=>$uid, "list_id"=>$listId));    
+            $this->db->where( array("uid"=>$uid, "list_id"=>$listId));
+            $this->db->update('bms_user_order', array("status"=>2));    
             $this->db->trans_complete();
             if ($this->db->trans_status() === TRUE) {
                 showNotice("撤销成功",site_url("Admin/TimeList/index"));      
@@ -56,25 +65,13 @@ class TimeList extends CI_Controller {
         }
     }
 
-    //不存在返回false,存在返回该条记录的指定内容
-    private function listIdIsExist($listId = 0) {
-        $listId = (int)$listId;
-        $sql = "SELECT * FROM bms_time_list WHERE list_id='{$listId}'";
-        $query = $this->db->query($sql);
-        $list = $query->result_array();
-        if(empty($list)) {
-            return false;
-        }
-        return $list[0];
-    }
 
     //不存在返回false,存在返回该条记录的指定内容
     private function userIsOrder($listId = 0, $uid = 0) {
         $listId = (int)$listId;
         $uid = (int)$uid;    //TODO:动态获取uid,并检查合法性
-        $sql = "SELECT * FROM bms_user_order WHERE list_id='{$listId}' AND uid='{$uid}'";
-        $query = $this->db->query($sql);
-        $list = $query->result_array();
+        $this->db->where(array("list_id" => $listId, "uid" => $uid));
+        $list = $this->db->get("user_order")->result_array();
         if(empty($list)) {
             return false;
         }
@@ -83,12 +80,10 @@ class TimeList extends CI_Controller {
 
     public function showOrderUser($listId = 0) {
         $listId = (int)$listId;
-        $sql = "SELECT * FROM bms_user_order WHERE list_id='{$listId}' AND status='1'";
-        $query = $this->db->query($sql);
-        $list = $query->result_array();
+        $this->db->where(array("list_id" => $listId,"status" => 1));
+        $list = $this->db->get("user_order")->result_array();
         $data["list"] = $list;
         $this->ui->load("Admin/TimeList_showOrderUser",$data);
-
-
     }
+
 }
