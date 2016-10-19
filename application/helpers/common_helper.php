@@ -1,11 +1,11 @@
 <?php
 
 /**
- *  This is a lottery learning soft, use should be under local law terms.
- *  Don't use it as a formal soft, money trades in the platform is forbidden,
- *  or else you should bear all the consequences caused by yourself.
+ *  Basketball Management System 1.0
  *
- *  Module: common_helper
+ *  @Id:        common_help.php
+ *  @Author:    Everyone
+ *  @Generate:  2016/10/19
  */
 
 define("HISTORY_BACK", "__history_goes_back");
