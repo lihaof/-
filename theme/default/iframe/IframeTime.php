@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/manage.css')}">
-    <link rel="stylesheet" type="text/css" href="{:base_url('css/iframe_home.css')}">
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/form.css')}">
     <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
 </head>
@@ -13,9 +13,9 @@
     <!--侧面栏-->
     <div id="nav">
         <ul>
-            <li class="module module2">子模块10<img class="module-img" src="{:base_url('image/in.png')}"></li>
-            <li class="module">子模块11<img class="module-img" src="{:base_url('image/in.png')}"></li>
-            <li class="module">子模块12<img class="module-img" src="{:base_url('image/in.png')}"></li>
+            <li class="module module2">子模块4<img class="module-img" src="{:base_url('image/in.png')}"></li>
+            <li class="module">子模块5<img class="module-img" src="{:base_url('image/in.png')}"></li>
+            <li class="module">子模块6<img class="module-img" src="{:base_url('image/in.png')}"></li>
         </ul>
     </div>
 
@@ -38,6 +38,25 @@
             <td>第三场</td>
             <td>2016-11-11</td>
         </tr>
+
+        <tr>
+            <td>李明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>1000</td>
+            <td>第三场</td>
+            <td>2016-11-11</td>
+        </tr>
+
+        <tr>
+            <td>李明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>1000</td>
+            <td>第三场</td>
+            <td>2016-11-11</td>
+        </tr>
+        
     </table>
 </div>
 

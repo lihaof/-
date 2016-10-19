@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/manage.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/form.css'); ?>">
-    <script type="text/javascript" src="<?php echo base_url('js/iframe.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/manage.css')}">
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/form.css')}">
+    <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
+    <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
 </head>
 <body>
     <div class="iframe-all">
         <!--侧面栏-->
         <div id="nav">
             <ul>
-                <li class="module module2">子模块7<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
-                <li class="module">子模块8<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
-                <li class="module">子模块9<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
+                <li class="module module2">子模块7<img class="module-img" src="{:base_url('image/in.png')}"></li>
+                <li class="module">子模块8<img class="module-img" src="{:base_url('image/in.png')}"></li>
+                <li class="module">子模块9<img class="module-img" src="{:base_url('image/in.png')}"></li>
             </ul>
         </div>
 
@@ -50,6 +50,6 @@
         </table>
     </div>
     
-    <script type="text/javascript" src="<?php echo base_url('js/iframe.js'); ?>"></script>
+    <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 </body>
 </html>

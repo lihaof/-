@@ -18,9 +18,9 @@
 }
 
 .form-style th{
-    border: 1px solid #ddd;
     padding: 5px 15px;
-
+    background-color: #d8fcff;
+    border: 1px solid #ddd;
 
 }
 

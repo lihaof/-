@@ -21,10 +21,10 @@
     <!--选项卡-->
     <div id="tab">
         <ul>
-            <li class="tab-li tab-li2" id="home">首页</li>
-            <li class="tab-li" id="time">时段管理</li>
-            <li class="tab-li" id="reserve">预约管理</li>
-            <li class="tab-li" id="system">系统管理</li>
+            <li class="tab-li tab-li2" id="Home">首页</li>
+            <li class="tab-li" id="Time">时段管理</li>
+            <li class="tab-li" id="Reserve">预约管理</li>
+            <li class="tab-li" id="System">系统管理</li>
         </ul>
     </div>
 
@@ -32,7 +32,7 @@
 
     <!--操作区域-->
     <div class="operate" id="operate">
-        <iframe src="iframe/iframe_home" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+        <iframe src="iframe/IframeHome" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
     </div>
 
 
@@ -49,7 +49,7 @@
             //改变iframe地址
             $('.tab-li').each(function () {
                 $(this).click(function () {
-                    var url = 'iframe/iframe_' + $(this).attr('id');
+                    var url = 'iframe/Iframe' + $(this).attr('id');
                     $('#iframeSlect').fadeOut(100).attr('src',url).fadeIn(400);
                     console.log(url);
                 });
@@ -77,16 +77,6 @@
                 $(this).addClass('tab-li2');
             });
         });
-
-        $('home').click(function(){
-            $.get("demo_test.asp",function(data,status){
-                alert("Data: " + data + "\nStatus: " + status);
-            });
-        });
-
-
-
-
     </script>
 </body>
 </html>
