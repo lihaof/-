@@ -24,6 +24,7 @@
         </div>
         <div class="login-box">
             <div class="box-title">登录到管理台</div>
+            <?php echo form_open('login/login_process'); ?>
             <!--输入账号-->
             <div class="box-input">
                 <div class="box-input-title">账号</div>
