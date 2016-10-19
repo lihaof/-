@@ -5,8 +5,12 @@ class User extends CI_Controller {
 		$this->load->model("initor");
         $this->load->helper("common_helper");
 	}
-
+    public function test() {
+        $result = getUser('uid','1','teamid');
+        print_r($result);
+    }
 	public function index() {
+
 		$redirect_uri = "<?php echo site_url('Admin/User/index'); ?>";
         $result=$this->snsapi_userinfo($redirect_uri);
  
@@ -19,12 +23,14 @@ class User extends CI_Controller {
 
         if(empty($uid)) {
             //新用户
-            $this->db->insert('bms_user_info',$data);
-
-            //提醒完善信息
-            showNotice("注意完善个人信息！",site_url("Admin/User/showUser"));
-        }
-
+            $query = $this->db->insert('bms_user_info',$data);
+            if($query == TRUE) {
+                //提醒完善信息
+                showNotice("注意完善个人信息！",site_url("Admin/User/showUser"));
+            } else {
+                showNotice("注意完善个人信息！",site_url("Admin/User/index"));
+            }
+            
         } else {
             //非新用户
             //跳转 ？ 页面
@@ -35,37 +41,46 @@ class User extends CI_Controller {
 	}
     
     //展示用户信息
-    public function showUser(){
+    public function showUser() {
+
         $redirect_uri = "<?php echo site_url('Admin/User/showUser'); ?>";
         $result=$this->snsapi_userinfo($redirect_uri);
         $data['openid'] = $result['openid'];
-        $sql = "SELECT * FROM bms_user_info WHERE openid = ".$data['openid'];
+        $sql = "SELECT * FROM bms_user_info WHERE openid = {$data['openid']} ";
         $query = $this->db->query($sql);
         $userinfo = $query->result_array();
+        //从数据库中查询用户信息，传递给个人主页
     }
 
     //修改、添加用户信息
-    public function addUser(){
+    public function addUser() {
 
-        $redirect_uri="<?php echo site_url('Admin/User/addUser'); ?>"
-        $result=$this->snsapi_userinfo($redirect_uri);
+        $redirect_uri = "<?php echo site_url('Admin/User/addUser'); ?>";
+        $result = $this->snsapi_userinfo($redirect_uri);
 
         $data['openid'] = $result['openid'];
         $data['nickname'] = $result['neckname'];
 
-        $data['weight']=$this->input->post('weight');
-        $data['height']=$this->input->post('height');
-        $data['positon']=$this->input->post('position');
-
+        $data['weight'] = $this->input->post('weight');
+        $data['height'] = $this->input->post('height');
+        $data['positon'] = $this->input->post('position');
+        
         //更新数据
-        $this->db->replace('bms_user_info',$data);
-
+        $sql = " UPDATE bms_user_info SET weight = {$data['weight']}, height = {$data['height']}, position = {$data['position']} WHERE openid = {$data['openid']}";
+        $query = $this->db->query($sql);
+        if($query == TRUE) {
+            showNotice("完善成功！",site_url("Admin/User/showUser"));
+        } else {
+            showNotice("请重新完善！",site_url("???"));
+        }
+        
     }
 
     
     
     //用户创建球队
-    public function createTeam(){
+    public function createTeam() {
+        //$this->ui->load("");
 
 
     }
