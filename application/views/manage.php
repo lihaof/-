@@ -21,10 +21,9 @@
     <!--选项卡-->
     <div id="tab">
         <ul>
-            <li class="tab-li tab-li2" id="Home">首页</li>
-            <li class="tab-li" id="Time">时段管理</li>
-            <li class="tab-li" id="Reserve">预约管理</li>
-            <li class="tab-li" id="System">系统管理</li>
+            <?php foreach ($module1 as $row): ?>
+                <li class="tab-li" id=<?php strtolower($row['identity']) ?>><?php echo $row['module_name'] ?></li>
+            <?php endforeach; ?>
         </ul>
     </div>
 
