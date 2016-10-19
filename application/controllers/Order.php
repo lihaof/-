@@ -9,13 +9,17 @@ class Order extends CI_Controller {
     public function add($listId = 0) {
         $listId = (int)$listId;
         $uid = 1;    //TODO:动态获取uid
-        $sql = "SELECT list_id,date,start,end,price,status FROM bms_time_list WHERE list_id='{$listId}' AND status='1'";
+        $listData = $this->listIdIsExist($listId);
+        if(!$listData) {
+            showNotice("该记录不存在,请返回重试");      
+        }
+        $sql = "SELECT * FROM bms_user_order WHERE list_id='{$listId}' AND status='1' AND uid='{$uid}'";
         $query = $this->db->query($sql);
-        if($query->num_rows() == 0) {
-            showNotice("预约失败,请返回重试");      
+        if($query->num_rows() > 0) {
+            showNotice("您已预约该时段,不能重复预约");      
         }
         $this->db->trans_start();
-        $this->db->update("bms_time_list", array("uid"=>$uid, "status"=>2, "time"=>time()), array("list_id"=>$listId, "status"=>1));
+        $this->db->update("bms_time_list", array("surplus_num"=>$listData["surplus_num"]-1), array("list_id"=>$listId, "status"=>1));
         $this->db->insert("bms_user_order", array("uid"=>$uid, "list_id"=>$listId, "status"=>1, "time"=>time()));
         $this->db->trans_complete();
         if ($this->db->trans_status() === TRUE) {
@@ -26,15 +30,28 @@ class Order extends CI_Controller {
         }
     }
 
+    //不存在返回false,存在返回该条记录的指定内容
+    private function listIdIsExist($listId = 0) {
+        $listId = (int)$listId;
+        $sql = "SELECT * FROM bms_time_list WHERE list_id='{$listId}'";
+        $query = $this->db->query($sql);
+        $list = $query->result_array();
+        if(empty($list)) {
+            return false;
+        }
+        return $list[0];
+    }
+
     public function showOrderList() {
         $uid = 1;    //TODO:动态获取uid
         $sql = "SELECT * FROM bms_user_order WHERE uid={$uid} order by order_id DESC";
         $query = $this->db->query($sql);
         $list = $query->result_array();
         foreach ($list as $key => &$value) {
-            $sql = "SELECT start,end,price,date FROM bms_time_list WHERE list_id = {$value['list_id']}";
+            $sql = "SELECT * FROM bms_time_list WHERE list_id = {$value['list_id']}";
             $query = $this->db->query($sql);
             $queryResult = $query->row_array();
+            unset($queryResult["status"]);
             $value = array_merge($value,$queryResult);
         }
         unset($value);

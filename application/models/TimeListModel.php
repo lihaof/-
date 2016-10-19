@@ -20,7 +20,7 @@ class TimeListModel extends CI_Model {
         if($timeLimit != 0 && ($dateStrToTime - time() > $timeLimit || $dateStrToTime < $todayStrToTime) ) {
             showNotice('只能查询今天到未来一周之内的时间段');
         }
-        $sql = "SELECT list_id,uid,date,start,end,price,status FROM bms_time_list WHERE date = '{$date}' ORDER BY list_id ASC";
+        $sql = "SELECT * FROM bms_time_list WHERE date = '{$date}' ORDER BY list_id ASC";
         $query = $this->db->query($sql);
         if($query->num_rows() == 0) {
             $this->createDateData($date);
@@ -30,18 +30,22 @@ class TimeListModel extends CI_Model {
     }
 
     private function createDateData($date) {
-        $sql = "SELECT time_id,start,end,price FROM bms_open_time WHERE status = '1'";
+        $sql = "SELECT * FROM bms_open_time WHERE status = '1'";
         $openTime = $this->db->query($sql)->result_array();
+        $this->db->trans_start();
         foreach ($openTime as $key => $value) {
             $data = array(
                 'date' => $date,
                 'start' => $value['start'],
                 'end' => $value['end'],
                 'price' => $value['price'],
+                "court_num" => $value["court_num"],
+                "surplus_num" => $value["court_num"],
                 'status' => 1
             );
             $this->db->insert("bms_time_list",$data);
         }
+        $this->db->trans_complete();
     }
 
     private function getTimeLimit() {

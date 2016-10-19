@@ -8,7 +8,7 @@ class OpenTime extends CI_Controller {
     }
 
     public function index() {
-        $sql = "SELECT time_id,start,end,price,status FROM bms_open_time ORDER BY time_id";
+        $sql = "SELECT * FROM bms_open_time ORDER BY time_id";
         $query = $this->db->query($sql);
         $list = $query->result_array();
         $data["list"] = $list;
@@ -21,6 +21,7 @@ class OpenTime extends CI_Controller {
                 "start" => $this->input->post("start"),
                 "end" => $this->input->post("end"),
                 "price" => $this->input->post("price"),
+                "court_num" => $this->input->post("court_num"),
                 "time" => time(),
                 "status" => 1,
             );
@@ -46,6 +47,9 @@ class OpenTime extends CI_Controller {
         if(!is_numeric($data['price']) || $data['price'] < 0) {
             showNotice("收费价格错误");
         }
+        if(!is_numeric($data['court_num']) || $data['court_num'] < 0) {
+            showNotice("开放球场数量");
+        }
     }
 
     private function timeIsValid($time) {
@@ -64,6 +68,7 @@ class OpenTime extends CI_Controller {
                 "start" => $this->input->post("start"),
                 "end" => $this->input->post("end"),
                 "price" => $this->input->post("price"),
+                "court_num" => $this->input->post("court_num"),
                 "time" => time(),
                 "status" => 1,
             );
@@ -86,7 +91,7 @@ class OpenTime extends CI_Controller {
     //不存在返回false,存在返回该条记录的指定内容
     private function timeIdIsExist($timeId = 0) {
         $timeId = (int)$timeId;
-        $sql = "SELECT time_id,start,end,price,status FROM bms_open_time WHERE time_id='{$timeId}'";
+        $sql = "SELECT * FROM bms_open_time WHERE time_id='{$timeId}'";
         $query = $this->db->query($sql);
         $list = $query->result_array();
         if(empty($list)) {

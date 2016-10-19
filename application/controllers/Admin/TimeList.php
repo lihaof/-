@@ -34,16 +34,17 @@ class TimeList extends CI_Controller {
         }
     }
 
-    public function cancelOrder($listId = 0) {
+    public function cancelOrder($listId = 0, $uid = 0) {
         $listId = (int)$listId;
-        $uid = 1;    //TODO:动态获取uid
+        $uid = (int)$uid;    //TODO:动态获取uid,并检查合法性
         $listData = $this->listIdIsExist($listId);
-        if(!$listData || $listData["status"] == 1) {
+        $orderData = $this->userIsOrder($listId, $uid);
+        if(!$listData || !$orderData || $orderData["status"] == 2) {
             showNotice("该记录不存在,撤销预约失败",site_url("Admin/TimeList/index"));
         } else {
             $this->db->trans_start();
-            //将此时段设置为开放
-            $this->db->update('bms_time_list', array("uid"=>"", "status"=>1), array("list_id"=>$listId));
+            //将此时段剩余场数+1
+            $this->db->update('bms_time_list', array("surplus_num"=>$listData["surplus_num"]+1), array("list_id"=>$listId));
             //将此用户的订单设置为撤销 
             $this->db->update('bms_user_order', array("status"=>2), array("uid"=>$uid, "list_id"=>$listId));    
             $this->db->trans_complete();
@@ -65,5 +66,29 @@ class TimeList extends CI_Controller {
             return false;
         }
         return $list[0];
+    }
+
+    //不存在返回false,存在返回该条记录的指定内容
+    private function userIsOrder($listId = 0, $uid = 0) {
+        $listId = (int)$listId;
+        $uid = (int)$uid;    //TODO:动态获取uid,并检查合法性
+        $sql = "SELECT * FROM bms_user_order WHERE list_id='{$listId}' AND uid='{$uid}'";
+        $query = $this->db->query($sql);
+        $list = $query->result_array();
+        if(empty($list)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function showOrderUser($listId = 0) {
+        $listId = (int)$listId;
+        $sql = "SELECT * FROM bms_user_order WHERE list_id='{$listId}' AND status='1'";
+        $query = $this->db->query($sql);
+        $list = $query->result_array();
+        $data["list"] = $list;
+        $this->ui->load("Admin/TimeList_showOrderUser",$data);
+
+
     }
 }

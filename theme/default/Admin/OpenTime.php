@@ -11,7 +11,8 @@
 <!--{foreach $list $val}-->
 
 time:{:$val["start"]}--{:$val["end"]} <br/>
-price:{:$val["price"]} 
+price:{:$val["price"]} <br/>
+court_num:{:$val["court_num"]} <br/>
 status:
 <!--{if $val["status"]==1}-->
     启用

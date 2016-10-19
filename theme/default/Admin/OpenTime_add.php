@@ -9,6 +9,7 @@
 	开始时间：<input type="time" name="start"> <br/>
 	结束时间：<input type="time" name="end"> <br/>
 	价格：<input type="text" name="price"> <br/>
+	球场数量：<input type="text" name="court_num"> <br/>
 	<input type="submit" value="添加">
 </form>
 </body>
