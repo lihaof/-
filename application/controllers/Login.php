@@ -16,8 +16,8 @@ class Login extends CI_Controller {
 	}
 	
     public function login_process() {
-		$user = $_POST['user'];
-		$password = $_POST['password'];
+		$user = $this->input->post('user');
+		$password = $this->input->post('password');
 		$result = $this->AdministratorModel->checkAdministrator($user, $password);
 		if ($result) {
 			echo "<script>window.location.href='".site_url("manage/")."'</script>";
