@@ -68,7 +68,7 @@
             //提交表单信息
             $.ajax({
                 type: 'POST',
-                url:  'https://learning2learn.cn/speaknow/login',
+                url:  '',
                 dataType: 'json',
                 data: {
                     startTime: $('#form_datetime_s' + num).val(),
@@ -82,7 +82,7 @@
                     }
                 },
                 error: function (data) {
-                    alert('error' + data.startTime);
+//                    alert('error' + data.startTime);
                 }
             });
         });

@@ -68,14 +68,13 @@
             //提交表单信息
             $.ajax({
                 type: 'POST',
-                url:  'https://learning2learn.cn/speaknow/login',
-                dataType: 'form',
+                url:  '',
+                dataType: 'json',
                 data: {
-                    username: $('#form_datetime_s' + num).val(),
-                    password: $('#form_datetime_e' + num).val()
-//                    username: 111.
-//                    password: $('#form_datetime_e' + num).val()
-//                    password: $('#state' + num).text()
+                    startTime: $('#form_datetime_s' + num).val(),
+                    endTime: $('#form_datetime_e' + num).val(),
+                    price: $('#price' + num).val(),
+                    state: $('#state' + num).text()
                 },
                 success: function (data) {
                     if(data.success){
@@ -83,7 +82,7 @@
                     }
                 },
                 error: function (data) {
-                    alert('error' + data.startTime);
+//                    alert('error' + data.startTime);
                 }
             });
         });
