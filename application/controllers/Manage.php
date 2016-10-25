@@ -1,4 +1,11 @@
 <?php
+/**
+ *  Basketball Management System 1.0
+ *
+ *  @Id:        Manage.php
+ *  @Author:    gAnnOn
+ *  @Generate:  2016/10/25
+ */
 class Manage extends CI_Controller {
     public function __construct() {
         parent::__construct();
