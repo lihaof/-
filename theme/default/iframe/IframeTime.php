@@ -70,10 +70,11 @@
             $(this).attr('id','edit' + num);
             $(this).css('background','#51bb65').text('修改');
             $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
-            //提交表单信息
+            //提交修改后的表单信息
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
+                url: '',
                 data: {
                     start: $('#form_datetime_s' + num).val(),
                     end: $('#form_datetime_e' + num).val(),
@@ -116,6 +117,24 @@
             var text = $('#state' + stopNum).text();
             if(text == '启用'){$('#state' + stopNum).text('停用');}
             else {$('#state' + stopNum).text('启用');}
+
+            //提交状态修改后的表单信息
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '',
+                data: {
+                    status: $('#state' + num).text()
+                },
+                success: function (data) {
+                    if(data.success){
+                        alert('success' + data.status);
+                    }
+                },
+                error: function (data) {
+                    alert('error');
+                }
+            });
         });
 
         //删除时段
@@ -126,6 +145,23 @@
             if (c) {
                 $('#tab' + deleteNum).remove();
             }
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '',
+                data: {
+                    delete_form: true
+                },
+                success: function (data) {
+                    if(data.success){
+                        alert('success' + data.delete_form);
+                    }
+                },
+                error: function (data) {
+                    alert('error');
+                }
+            });
         });
 
         var id = 1;
