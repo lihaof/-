@@ -75,8 +75,9 @@ class OpenTime extends CI_Controller {
     }
 
     private function timeIsValid($time) {
-        $regex1 = "/^((0?[0-9])|([1-2][0-3])):([0-5]?[0-9]):([0-5]?[0-9])$/"; //时分秒正则,合法格式1: 13:43:59
-        $regex2 = "/^((0?[0-9])|([1-2][0-3])):([0-5]?[0-9])$/"; //时分正则,合法格式2: 13:43
+        $time = trim($time);
+        $regex1 = "/^((0?[0-9])|(1[0-9]|2[0-3])):([0-5]?[0-9]):([0-5]?[0-9])$/"; //时分秒正则,合法格式1: 13:43:59
+        $regex2 = "/^((0?[0-9])|(1[0-9]|2[0-3])):([0-5]?[0-9])$/"; //时分正则,合法格式2: 13:43
         if(preg_match($regex1, $time) || preg_match($regex2, $time)) {
             return true;
         } else {
@@ -113,21 +114,27 @@ class OpenTime extends CI_Controller {
     //不存在返回false,存在返回该条记录的指定内容
     private function timeIdIsExist($timeId = 0) {
         $timeId = (int)$timeId;
-        $this->db->where("time_id", $timeId);
-        $list = $this->db->get("open_time")->row_array();
+        $list = $this->db->where("time_id", $timeId)->get("open_time")->row_array();
         if(empty($list)) {
             return false;
         }
         return $list;
     }
 
-    public function del($time_id = 0, $submit = "no") { 
+    public function del($submit = "no") { 
         if($submit == 'yes') {
+            $time_id = $this->input->post('time_id');
             $this->db->delete("open_time", array("time_id" => $time_id));
             if(!$this->db->affected_rows()){
-                showNotice("删除失败,请重新尝试",site_url("Admin/OpenTime/index"));
+                // showNotice("删除失败,请重新尝试",site_url("Admin/OpenTime/index"));
+                $data = array('success'=>false,'message'=>'删除失败,请重新尝试');
+                echo json_encode($data);
+                exit;
             } else {
-                showNotice("删除成功",site_url("Admin/OpenTime/index"));
+                // showNotice("删除成功",site_url("Admin/OpenTime/index"));
+                $data = array('success'=>true,'message'=>'删除成功');
+                echo json_encode($data);
+                exit;
             }
         }
     }
@@ -163,5 +170,33 @@ class OpenTime extends CI_Controller {
             showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
         }
     }
+
+    public function changStatus() {
+        $time_id = $this->input->post('time_id');
+        $data = $this->timeIdIsExist($time_id);
+        if($data) {
+            $data["status"] = ($data["status"]==1) ? 2 : 1;
+            $this->db->where("time_id", $time_id)->update("bms_open_time", $data);
+            if($this->db->affected_rows()){
+                // showNotice("启用成功",site_url("Admin/OpenTime/index"));
+                $data = array('success'=>true,'message'=>'切换成功');
+                echo json_encode($data);
+                exit;
+            } else {
+                // showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
+                $data = array('success'=>false,'message'=>'切换失败,请重新尝试');
+                echo json_encode($data);
+                exit;         
+            }
+        } else {
+            // showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
+            $data = array('success'=>false,'message'=>'切换失败,请重新尝试');
+            echo json_encode($data);
+            exit;       
+        }
+    }
     
+    public function test() {
+        var_dump($this->timeIsValid('14:55'));
+    }
 }
