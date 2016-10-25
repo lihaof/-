@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/manage.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/form.css')}">
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/bootstrap.min.css')}">
     <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
 </head>

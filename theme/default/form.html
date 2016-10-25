@@ -2,115 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{:base_url('css/bootstrap.min.css.css')}">
+    <link rel="stylesheet" href="{:base_url('css/bootstrap-table.css')}">
+    <script type="text/javascript" src="{:base_url('js/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{:base_url('js/bootstrap.min.js')}"></script>
+    <script type="text/javascript" src="{:base_url('js/bootstrap-table.js')}"></script>
     <title>表格</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-        }
+    <!--<style>-->
+        <!--*{-->
+            <!--padding: 0;-->
+            <!--margin: 0;-->
+        <!--}-->
 
-        .form-style{
-            font-family: "Microsoft Yahei", sans-serif;
-            border: 1px solid #ddd;
-            border-collapse: collapse;
-            text-align: center;
-            color: #1f1f1f;
-        }
+        <!--.form-style{-->
+            <!--font-family: "Microsoft Yahei", sans-serif;-->
+            <!--border: 1px solid #ddd;-->
+            <!--border-collapse: collapse;-->
+            <!--text-align: center;-->
+            <!--color: #1f1f1f;-->
+        <!--}-->
 
-        .form-style th{
-            border: 1px solid #ddd;
-            padding: 5px 15px;
-            background-color: #ddb69a;
-        }
+        <!--.form-style th{-->
+            <!--border: 1px solid #ddd;-->
+            <!--padding: 5px 15px;-->
+            <!--background-color: #ddb69a;-->
+        <!--}-->
 
-        .form-style td{
-            border: 1px solid #ddd;
-            padding: 5px 15px;
+        <!--.form-style td{-->
+            <!--border: 1px solid #ddd;-->
+            <!--padding: 5px 15px;-->
 
-        }
+        <!--}-->
 
-        .input-style{
-            font-family: "Microsoft Yahei", sans-serif;
-            border: 0;
-            border-collapse: collapse;
-            text-align: center;
-            color: #1f1f1f;
-        }
+        <!--.input-style{-->
+            <!--font-family: "Microsoft Yahei", sans-serif;-->
+            <!--border: 0;-->
+            <!--border-collapse: collapse;-->
+            <!--text-align: center;-->
+            <!--color: #1f1f1f;-->
+        <!--}-->
 
-        .input-title{
-            padding-right: 15px;
-        }
+        <!--.input-title{-->
+            <!--padding-right: 15px;-->
+        <!--}-->
 
-        .input-frame{
-            width: 200px;
-            height: 20px;
-        }
-    </style>
+        <!--.input-frame{-->
+            <!--width: 200px;-->
+            <!--height: 20px;-->
+        <!--}-->
+    <!--</style>-->
 </head>
-<br>
-    <table class="form-style">
-        <tr>
-            <th>姓名</th>
-            <th>年龄</th>
-            <th>性别</th>
-            <th>积分</th>
-            <th>场次</th>
-            <th>时间</th>
-        </tr>
-
-        <tr>
-            <td>李明</td>
-            <td>18</td>
-            <td>男</td>
-            <td>1000</td>
-            <td>第三场</td>
-            <td>2016-11-11</td>
-        </tr>
-
-        <tr>
-            <td>李明</td>
-            <td>18</td>
-            <td>男</td>
-            <td>1000</td>
-            <td>第三场</td>
-            <td>2016-11-11</td>
-        </tr>
-
-        <tr>
-            <td>李明</td>
-            <td>18</td>
-            <td>男</td>
-            <td>1000</td>
-            <td>第三场</td>
-            <td>2016-11-11</td>
-        </tr>
-
-        <tr>
-            <td>李明</td>
-            <td>18</td>
-            <td>男</td>
-            <td>1000</td>
-            <td>第三场</td>
-            <td>2016-11-11</td>
-        </tr>
-    </table>
-
-    <br></br>
-
-    <!--input样式-->
-    <table class="input-style">
-        <tr>
-            <td class="input-title">姓名 :</td>
-            <td>
-                <form>
-                    <input class="input-frame">
-                </form>
-            </td>
-
-        </tr>
-
-
-    </table>
+<body>
+<table data-toggle="table">
+    <thead>
+    <tr>
+        <th>Item ID</th>
+        <th>Item Name</th>
+        <th>Item Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Item 1</td>
+        <td>$1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Item 2</td>
+        <td>$2</td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

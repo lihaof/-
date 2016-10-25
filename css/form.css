@@ -17,17 +17,33 @@
     margin-top: 20px;
 }
 
+.form-style button{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100%;
+    background-color: #51bb65;
+    border: none;
+    color: #fff;
+}
+
 .form-style th{
     padding: 5px 15px;
-    background-color: #d8fcff;
-    border: 1px solid #ddd;
+    background-color: #e7e7e7;
+    border: 1px solid #cecece;
 
 }
 
 .form-style td{
     border: 1px solid #ddd;
     padding: 5px 15px;
+}
 
+.form-style input{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
 }
 
 .input-style{
@@ -45,4 +61,25 @@
 .input-frame{
     width: 200px;
     height: 20px;
+}
+
+.add-box{
+    width: 100%;
+    text-align: center;
+}
+
+.add{
+    width: 150px;
+    height: 40px;
+    background-color: #35aeff;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    margin-top: 40px;
+    border: none;
+    border-radius: 3px;
+}
+
+#form form{
+
 }
