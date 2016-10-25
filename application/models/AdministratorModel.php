@@ -1,4 +1,5 @@
 <?php
+
 class AdministratorModel extends CI_Model {
     public function __construct() {
         parent::__construct();
@@ -6,15 +7,15 @@ class AdministratorModel extends CI_Model {
     }
 
     public function getModule($pmid = "0", $level = "4") {
-        $sql = "SELECT * FROM bms_module_permissions WHERE pmid = '$pmid' and level$level = 1 ORDER BY display_order ASC";
-        $query = $this->db->query($sql);
+        $array = array('pmid' => $pmid, "level$level" => 1);
+        $query= $this->db->select('*')->from('bms_module_permissions')->where($array)->order_by('display_order','ASC')->get();
         return $query->result_array();
     }
 
     public function checkAdministrator($user, $password) {
     	$psd = md5($password);
-    	$sql = "SELECT * FROM bms_administrator WHERE user = '$user' and password = '$psd'";
-    	$query = $this->db->query($sql);
+        $array = array('user' => $user, "password" => $psd);
+        $query = $this->db->select('*')->from('bms_administrator')->where($array)->get();
     	if ($query->num_rows() == 0) {
     		return 0;
     	}else{
