@@ -34,12 +34,14 @@ class OpenTime extends CI_Controller {
             $this->checkOpenTimeData($data);
             $this->db->insert("open_time", $data);
             if($this->db->insert_id() > 0) {
-                showNotice("添加成功",site_url("Admin/OpenTime/index"));
+                // showNotice("添加成功",site_url("Admin/OpenTime/index"));
+                $data = array('success'=>true,'message'=>'添加成功');
+                echo json_encode($data);
             } else {
-                showNotice("添加失败,请重新尝试");
+                // showNotice("添加失败,请重新尝试");
+                $data = array('success'=>true,'message'=>'添加失败,请重新尝试');
+                echo json_encode($data);
             }
-        } else {
-            $this->ui->load("Admin/OpenTime_add");
         }
     }
 

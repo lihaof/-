@@ -60,22 +60,24 @@ CREATE TABLE IF NOT EXISTS `bms_goods`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 导出  表 bms.bms_team 结构
-CREATE TABLE IF NOT EXISTS `bms_team`(
-  `team_id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `bms_team` (
+  `team_id` int(8) unsigned NOT NULL auto_increment,
   `team_name` varchar(200) NOT NULL COMMENT '球队名称',
-  `team_leader` int(8) unsigned COMMENT '队长id',
-  `team_memmber_id` int(8) unsigned COMMENT '成员列表',
+  `team_leader` int(8) unsigned default NULL COMMENT '队长id',
   `team_slogan` mediumtext COMMENT '球队口号',
-  `team_picture` varchar(40) COMMENT '球队宣传照片',
-  `team_status` int(8) DEFAULT '0' COMMENT '是否通过审核',
-  PRIMARY KEY (`team_id`)
+  `team_picture` varchar(40) default NULL COMMENT '球队宣传照片',
+  `team_status` int(8) default '0' COMMENT '是否通过审核',
+  PRIMARY KEY  (`team_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 导出  表 bms.bms_team_memmber 结构
-CREATE TABLE IF NOT EXISTS `bms_team_memmber`(
-  `team_memmber_id` int(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '所属球队',
-  `uid` int(8) unsigned COMMENT '球队成员id',
-  PRIMARY KEY (`team_memmber_id`)
+CREATE TABLE IF NOT EXISTS `bms_team_memmber` (
+  `team_memmber_id` int(8) unsigned NOT NULL auto_increment COMMENT '成员id',
+  `team_id` int(8) NOT NULL COMMENT '所属球队',
+  `position` int(8) NOT NULL COMMENT '球队中的场位',
+  `team_memmber_status` int(8) NOT NULL default '0' COMMENT '是否通过队长审核',
+  `uid` int(8) unsigned default NULL COMMENT '球队成员id',
+  PRIMARY KEY  (`team_memmber_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 导出  表 bms.bms_module_permissions 结构
