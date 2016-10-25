@@ -35,19 +35,27 @@
             <th width="8%">状态</th>
             <th width="29%" colspan="3">操作</th>
         </tr>
+        <?php
 
-        <tr id="tab1">
-            <form action=''  method=''>
-                <td><input id="form_datetime_s1" type="text" name = 'start' disabled="disabled" value="14:45" readonly></td>
-                <td><input id="form_datetime_e1" type="text" name = 'end' disabled="disabled" value="16:45" readonly></td>
-                <td><input id="price1" type='text' name='price' disabled="disabled" value="100"/></td>
-                <td><input id="court_num1" type='text' name='court_num' disabled="disabled" value="1"/></td>
-                <td id="state1">启用</td>
-                <td style="padding: 0"><button id="edit1" type="button">修 改</button></td>
-                <td style="padding: 0"><button id="stop1" type="button">状态切换</button></td>
-                <td style="padding: 0"><button id="delete1" type="button">删 除</button></td>
+            $query = $this->db->get("open_time");
+            $list = $query->result_array();
+            $num_rows  = $query->num_rows();
+        
+?>
+        <?php foreach($list as $key => $val): ?>
+        <tr id="tab<?php echo $val['time_id']; ?>">
+            <form action=''  method=''>        
+                <td><input id="form_datetime_s<?php echo $val['time_id']; ?>" type="text" name = 'start' disabled="disabled" value="<?php echo $val['start']; ?>" readonly></td>
+                <td><input id="form_datetime_e<?php echo $val['time_id']; ?>" type="text" name = 'end' disabled="disabled" value="<?php echo $val['end']; ?>" readonly></td>
+                <td><input id="price<?php echo $val['time_id']; ?>" type="text" name="price" disabled="disabled" value="<?php echo $val['price']; ?>"/></td>
+                <td><input id="court_num<?php echo $val['time_id']; ?>" type="text" name="court_num" disabled="disabled" value="<?php echo $val['court_num']; ?>"/></td>
+                <td id="state<?php echo $val['time_id']; ?>"><?php if($val['status']=='1'): ?>启用<?php elseif($val['status']=='2'): ?>停用<?php endif; ?></td>
+                <td style="padding: 0"><button id="edit<?php echo $val['time_id']; ?>" type="button">修 改</button></td>
+                <td style="padding: 0"><button id="stop<?php echo $val['time_id']; ?>" type="button">状态切换</button></td>
+                <td style="padding: 0"><button id="delete<?php echo $val['time_id']; ?>" type="button">删 除</button></td>                
             </form>
         </tr>
+        <?php endforeach; ?>
     </table>
 
     <div class="add-box"><button class="add" id="add">添加</button></div>
@@ -75,22 +83,17 @@
 
         $("input[id^='form_datetime']").datetimepicker({
             format: 'HH:ii',
-            autoclose: true,
-            startDate: "2016-11-01 01:00",
-            minuteStep: 5
+            autoclose: true
         });
         //确认时段
         $(document).delegate("button[id^='check']",'click',function () {
             var checkId = $(this).attr('id');
             var num = checkId.substring(5);
-            $(this).attr('id','edit' + num);
-            $(this).text('修改');
-            $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
             //提交修改后的表单信息
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '',
+                url: '<?php echo site_url("Admin/OpenTime/add/yes/"); ?>',
                 data: {
                     start: $('#form_datetime_s' + num).val(),
                     end: $('#form_datetime_e' + num).val(),
@@ -99,12 +102,17 @@
                     status: $('#state' + num).text()
                 },
                 success: function (data) {
-                    if(data.success){
-                        alert('success' + data.start);
+                    if(data.success) {
+                        alert(data.message);
+                        $(this).text('修改');
+                        $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
+                        $(this).attr('id','edit' + num);
+                    } else {
+                        alert(data.message);
                     }
                 },
                 error: function (data) {
-//                    alert('error' + data.start);
+                    alert('error');
                 }
             });
         });
@@ -116,14 +124,11 @@
             editId = $('#' + editId);
             var editInput = editId.parent().siblings().children('input')
             editInput.removeAttr('disabled').css('border','1px solid #ddd');
-            editId.text('确认')
+            editId.text('确认');
             editId.attr('id','check' + editNum);
             editInput.datetimepicker({
                 format: 'HH:ii',
-                autoclose: true,
-                startDate: "2016-11-01 01:00",
-                minuteStep: 5
-
+                autoclose: true
             });
         });
 
@@ -132,21 +137,29 @@
             var stopId = $(this).attr('id');
             var stopNum = stopId.substring(4);
             var text = $('#state' + stopNum).text();
-            if(text == '启用'){$('#state' + stopNum).text('停用');}
-            else {$('#state' + stopNum).text('启用');}
+
 
             //提交状态修改后的表单信息
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '',
+                url: '<?php echo site_url("Admin/OpenTime/changStatus/yes/"); ?>',
                 data: {
-                    status: $('#state' + num).text()
+                    time_id: stopNum,
                 },
                 success: function (data) {
-                    if(data.success){
-                        alert('success' + data.status);
+                    if(data.success) {
+                        alert(data.message);
+                        if(text == '启用') {
+                            $('#state' + stopNum).text('停用');
+                        }
+                        else {
+                            $('#state' + stopNum).text('启用');
+                        }
+                    } else {
+                        alert(data.message);
                     }
+
                 },
                 error: function (data) {
                     alert('error');
@@ -160,30 +173,28 @@
             var deleteNum = deleteId.substring(6);
             var  c = window.confirm("确认删除改时段吗？");
             if (c) {
-                $('#tab' + deleteNum).remove();
-            }
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: '',
-                data: {
-                    delete_form: true
-                },
-                success: function (data) {
-                    if(data.success){
-                        alert('success' + data.delete_form);
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '<?php echo site_url("Admin/OpenTime/del/yes/"); ?>',
+                    data: {
+                        time_id: deleteNum
+                    },
+                    success: function (data) {
+                        if(data.success) {
+                            alert(data.message);
+                            $('#tab' + deleteNum).remove();
+                        }
+                    },
+                    error: function (data) {
+                        alert('error');
                     }
-                },
-                error: function (data) {
-                    alert('error');
-                }
-            });
-
+                });
+            }
             changebgc();
         });
 
-        var id = 1;
+        var id = <?php echo $num_rows; ?>+1;
         $('#add').click(function (e) {
             e.preventDefault();
             var length = ++id;
@@ -201,23 +212,19 @@
                 "</form>" +
                 "</tr>");
             $('#form').append(tr);
-//            $('#check' + length).css('background-color','#000');
             $('#tab' + length).find('input').css('border','1px solid #ddd');
             $('#form_datetime_s'+ length).datetimepicker({
                 format: 'HH:ii',
-                autoclose: true,
-                startDate: "2016-11-01 01:00",
-                minuteStep: 5
+                autoclose: true
             });
             $('#form_datetime_e'+ length).datetimepicker({
                 format: 'HH:ii',
                 autoclose: true,
-                startDate: "2016-11-01 01:00",
-                minuteStep: 5
+                minuteStep: 10
             });
             changebgc();
-
         });
+
     });
 
 

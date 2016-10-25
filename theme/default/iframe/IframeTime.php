@@ -64,6 +64,21 @@
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 <script>
     $(document).ready(function () {
+
+        //添加列表背景色
+        var changebgc = function() {
+            $('#form').find('tr').each(function () {
+                if ($(this).index() % 2 == 0) {
+                    $(this).css('background-color', '#fff');
+                }
+                else {
+                    $(this).css('background-color', '#F6F6F6');
+                }
+            });
+        }
+
+        changebgc();
+
         $("input[id^='form_datetime']").datetimepicker({
             format: 'HH:ii',
             autoclose: true
@@ -87,7 +102,7 @@
                 success: function (data) {
                     if(data.success) {
                         alert(data.message);
-                        $(this).css('background','#51bb65').text('修改');
+                        $(this).text('修改');
                         $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
                         $(this).attr('id','edit' + num);
                     } else {
@@ -107,7 +122,7 @@
             editId = $('#' + editId);
             var editInput = editId.parent().siblings().children('input')
             editInput.removeAttr('disabled').css('border','1px solid #ddd');
-            editId.text('确认').css('background','#000');
+            editId.text('确认');
             editId.attr('id','check' + editNum);
             editInput.datetimepicker({
                 format: 'HH:ii',
@@ -174,6 +189,7 @@
                     }
                 });
             }
+            changebgc();
         });
 
         var id = {:$num_rows}+1;
@@ -194,7 +210,6 @@
                 "</form>" +
                 "</tr>");
             $('#form').append(tr);
-            $('#check' + length).css('background-color','#000');
             $('#tab' + length).find('input').css('border','1px solid #ddd');
             $('#form_datetime_s'+ length).datetimepicker({
                 format: 'HH:ii',
@@ -205,7 +220,9 @@
                 autoclose: true,
                 minuteStep: 10
             });
+            changebgc();
         });
+
     });
 
 
