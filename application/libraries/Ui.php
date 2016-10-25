@@ -19,7 +19,7 @@
  *
  *	Ui.php模板语句语法：
  *	1、采用{xxx}{/xxx}形式定界，如{if}{/if}
- *	2、可以在 { 前面加入 <!-- 或者 /*，在 } 后面加入 !--> 或者 ※/（※用*替换）修饰
+ *	2、可以在 { 前面加入 <!-- 或者 /*，在 } 后面加入 --> 或者 ※/（※用*替换）修饰
  *	3、原来的 <?php echo $param; ?>改用 {:$param}，即{:要echo的表达式或者变量}
  *	4、原来的 <?php foreach($arr as $key => $val): ?>
  *	   改为 {foreach $arr $key $val}，<?php endforeach; ?> 改为 {/foreach}
