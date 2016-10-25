@@ -37,26 +37,40 @@ class OpenTime extends CI_Controller {
                 // showNotice("添加成功",site_url("Admin/OpenTime/index"));
                 $data = array('success'=>true,'message'=>'添加成功');
                 echo json_encode($data);
+                exit;
             } else {
                 // showNotice("添加失败,请重新尝试");
-                $data = array('success'=>true,'message'=>'添加失败,请重新尝试');
+                $data = array('success'=>false,'message'=>'添加失败,请重新尝试');
                 echo json_encode($data);
+                exit;
             }
         }
     }
 
     private function checkOpenTimeData($data) {
         if(!$this->timeIsValid($data["start"])) {
-            showNotice("开始时间格式错误");
+            // showNotice("开始时间格式错误");
+            $data = array('success'=>false,'message'=>'开始时间格式错误');
+            echo json_encode($data);
+            exit;
         }
         if(!$this->timeIsValid($data["end"])) {
-            showNotice("结束时间格式错误");
+            // showNotice("结束时间格式错误");
+            $data = array('success'=>false,'message'=>'结束时间格式错误');
+            echo json_encode($data);
+            exit;
         }
         if(!is_numeric($data['price']) || $data['price'] < 0) {
-            showNotice("收费价格错误");
+            // showNotice("收费价格错误");
+            $data = array('success'=>false,'message'=>'收费价格错误');
+            echo json_encode($data);
+            exit;
         }
         if(!is_numeric($data['court_num']) || $data['court_num'] < 0) {
-            showNotice("开放球场数量");
+            // showNotice("开放球场数量");
+            $data = array('success'=>false,'message'=>'收费价格错误');
+            echo json_encode($data);
+            exit;
         }
     }
 
