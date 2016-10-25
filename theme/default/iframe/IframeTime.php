@@ -28,11 +28,12 @@
     <!--表格-->
     <table id="form" class="form-style">
         <tr>
-            <th width="22%">开始时间</th>
-            <th width="22%">结束时间</th>
-            <th width="16%">价格</th>
-            <th width="12%">状态</th>
-            <th width="28%" colspan="3">操作</th>
+            <th width="20%">开始时间</th>
+            <th width="20%">结束时间</th>
+            <th width="13%">价格</th>
+            <th width="10%">球场数量</th>
+            <th width="8%">状态</th>
+            <th width="29%" colspan="3">操作</th>
         </tr>
 
         <tr id="tab1">
@@ -40,6 +41,7 @@
                 <td><input id="form_datetime_s1" type="text" name = 'start' disabled="disabled" value="2016-11-15 14:45" readonly></td>
                 <td><input id="form_datetime_e1" type="text" name = 'end' disabled="disabled" value="2016-11-15 16:45" readonly></td>
                 <td><input id="price1" type='text' name='price' disabled="disabled" value="100"/></td>
+                <td><input id="court_num1" type='text' name='court_num' disabled="disabled" value="1"/></td>
                 <td id="state1">启用</td>
                 <td style="padding: 0"><button id="edit1" type="button">修 改</button></td>
                 <td style="padding: 0"><button id="stop1" type="button">状态切换</button></td>
@@ -71,18 +73,19 @@
                 url:  '',
                 dataType: 'json',
                 data: {
-                    startTime: $('#form_datetime_s' + num).val(),
-                    endTime: $('#form_datetime_e' + num).val(),
+                    start: $('#form_datetime_s' + num).val(),
+                    end: $('#form_datetime_e' + num).val(),
                     price: $('#price' + num).val(),
-                    state: $('#state' + num).text()
+                    court_num: $('#court_num' + num).val(),
+                    status: $('#state' + num).text()
                 },
                 success: function (data) {
                     if(data.success){
-                        alert('success' + data.startTime);
+                        alert('success' + data.start);
                     }
                 },
                 error: function (data) {
-//                    alert('error' + data.startTime);
+//                    alert('error' + data.start);
                 }
             });
         });
@@ -128,6 +131,7 @@
                 "<td>" + "<input id=" + 'form_datetime_s' + length +" type='text' name = 'start' value='2016-11-15 14:45' readonly>" + "</td>" +
                 "<td>" + "<input id=" + 'form_datetime_e' + length +" type='text' name = 'end' value='2016-11-15 14:45' readonly>" + "</td>" +
                 "<td>" + "<input id=" + 'price' + length +" type='text' name='price'/>" + "</td>" +
+                "<td>" + "<input id=" + 'court_num' + length +" type='text' name='court_num'/>" + "</td>" +
                 "<td id="+ 'state' + length +">" + '启用' + "</td>" +
                 "<td style='padding: 0'>" + "<button id="+ 'check' + length +" type='button'>" + '确 认' + "</button>" + "</td>" +
                 "<td style='padding: 0'>" + "<button type='button' id="+ 'stop' + length +">" + '状态切换' + "</button>" + "</td>" +
