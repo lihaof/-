@@ -1,3 +1,4 @@
+<?php !defined("FCPATH") && exit("Access Denied!"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,24 +25,29 @@
         </div>
         <div class="login-box">
             <div class="box-title">登录到管理台</div>
+            <?php echo form_open('login/login_process'); ?>
             <!--输入账号-->
             <div class="box-input">
                 <div class="box-input-title">账号</div>
-                <input class="box-input-content">
+                <input class="box-input-content" type="text" name="user">
             </div>
             <!--输入密码-->
             <div class="box-input">
                 <div class="box-input-title">密码</div>
-                <input class="box-input-content">
+                <input class="box-input-content" type="password" name="password">
             </div>
             <!--输入验证码-->
             <div class="box-input">
                 <div class="box-input-title">验证码</div>
-                <input class="box-input-content" style="width: 170px">
-                <div class="verify"></div>
+                <input class="box-input-content" style="width: 170px" type="text" name="verify">
+                <div class="verify">
+                    <img id="code" src="{:site_url('Code')}" />
+                </div>
             </div>
             <!--登录按钮-->
-            <div class="login-btn">登 录</div>
+            <div>
+                <input class="login-btn" type="submit" value="登 录">
+            </div>
         </div>
     </div>
 
