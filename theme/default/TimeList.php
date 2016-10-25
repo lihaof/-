@@ -10,6 +10,7 @@
 
 date:{:$val["date"]} time:{:$val["start"]}--{:$val["end"]} <br/>
 price:{:$val["price"]} 
+court_num:{:$val["court_num"]} surplus_num:{:$val["surplus_num"]}<br/>
 status:
 <!--{if $val["status"]==1}-->
 	开放预约 <a href="{:site_url('Order/add/'.$val['list_id'])}">预约</a>

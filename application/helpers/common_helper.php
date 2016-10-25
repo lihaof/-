@@ -1,11 +1,11 @@
 <?php
 
 /**
- *  This is a lottery learning soft, use should be under local law terms.
- *  Don't use it as a formal soft, money trades in the platform is forbidden,
- *  or else you should bear all the consequences caused by yourself.
+ *  Basketball Management System 1.0
  *
- *  Module: common_helper
+ *  @Id:        common_help.php
+ *  @Author:    Everyone
+ *  @Generate:  2016/10/19
  */
 
 define("HISTORY_BACK", "__history_goes_back");
@@ -73,4 +73,84 @@ function authcode($string, $key = '', $operation = 'DECODE', $expiry = 0) {
     } else {
         return $keyc.str_replace('=', '', base64_encode($result));
     }
+}
+
+//获取用户信息  WHERE中的$name表示字段名、$value表示字段值，  $status为null时表示接受全部信息，不为null时表示接受某些值
+function getUser($name, $value, $status = null) {
+    //用￥ci 代替 $this
+    $ci = & get_instance();
+    if($status == null) {
+        $sql = "SELECT * FROM bms_user_info WHERE $name = $value";
+        $query = $ci->db->query($sql);
+        $result = $query->result_array();
+    } else {
+        $sql ="SELECT $status FROM bms_user_info WHERE $name = $value";
+        $query = $ci->db->query($sql);
+        $result = $query->result_array();
+    }
+    
+    return $result;
+}
+
+//微信网页授权--静默型--获取用户 openid，返回为包含 openid、还有一个不记得  的数组 
+function snsapi_base($redirect_uri) {
+
+    //appid  appsecret
+    $appid = "wx274a5600eb3baa04";
+    $appsecret = "da4480ace51a57892c4c1c32b25351bc";
+     
+    $redirect_uri = urlencode($redirect_uri);
+    //1 第一步：用户同意授权，获取code
+    $snsapi_base_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=wtt#wechat_redirect";
+   
+    if(!isset($_GET['code'])) {
+        header("Location:{$snsapi_base_url}");
+    }
+    $code = $this->input->get('code');
+    //2 第二步：通过code换取网页授权access_token
+    $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$appid}&secret={$appsecret}&code={$code}&grant_type=authorization_code";     
+    return https_request($url);
+
+}
+
+//微信网页授权--获取用户详细信息，返回为包含 openid、nickname、等相关信息的数组
+function snsapi_userinfo($redirect_uri) {
+    $appid = "wx274a5600eb3baa04";
+    $appsecret = "da4480ace51a57892c4c1c32b25351bc";
+     
+    $redirect_uri = urlencode($redirect_uri);
+    //1 第一步：用户同意授权，获取code
+    $snsapi_userinfo_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_userinfo&state=wtt#wechat_redirect";
+    if(!isset($_GET['code'])) {
+        header("Location:{$snsapi_userinfo_url}");
+    }
+     $code = $this->input->get('code');
+    //2 第二步：通过code换取网页授权access_token
+     $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$appid}&secret={$appsecret}&code={$code}&grant_type=authorization_code";     
+     $result = $this->https_request($url);
+     $web_access_token = $result['access_token'];
+     $openid = $result['openid'];
+     //3获取用户信息
+     $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$web_access_token}&openid={$openid}&lang=zh_CN";
+
+     return https_request($userinfo_url);
+}
+
+//https_request()请求
+function https_request($url,$data=null) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,false);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+
+    if(!empty($data)) {
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+    }
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $res = curl_exec($ch);
+    curl_close($ch);
+    $res = json_decode($res,true);
+    return($res);
 }
