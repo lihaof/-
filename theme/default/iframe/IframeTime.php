@@ -38,8 +38,8 @@
 
         <tr id="tab1">
             <form action=''  method=''>
-                <td><input id="form_datetime_s1" type="text" name = 'start' disabled="disabled" value="2016-11-15 14:45" readonly></td>
-                <td><input id="form_datetime_e1" type="text" name = 'end' disabled="disabled" value="2016-11-15 16:45" readonly></td>
+                <td><input id="form_datetime_s1" type="text" name = 'start' disabled="disabled" value="14:45" readonly></td>
+                <td><input id="form_datetime_e1" type="text" name = 'end' disabled="disabled" value="16:45" readonly></td>
                 <td><input id="price1" type='text' name='price' disabled="disabled" value="100"/></td>
                 <td><input id="court_num1" type='text' name='court_num' disabled="disabled" value="1"/></td>
                 <td id="state1">启用</td>
@@ -59,7 +59,10 @@
 <script>
     $(document).ready(function () {
 
-        $("input[id^='form_datetime']").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+        $("input[id^='form_datetime']").datetimepicker({
+            format: 'HH:ii',
+            autoclose: true
+        });
         //确认时段
         $(document).delegate("button[id^='check']",'click',function () {
             var checkId = $(this).attr('id');
@@ -70,7 +73,6 @@
             //提交表单信息
             $.ajax({
                 type: 'POST',
-                url:  '',
                 dataType: 'json',
                 data: {
                     start: $('#form_datetime_s' + num).val(),
@@ -99,7 +101,12 @@
             editInput.removeAttr('disabled').css('border','1px solid #ddd');
             editId.text('确认').css('background','#000');
             editId.attr('id','check' + editNum);
-            editInput.datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+            editInput.datetimepicker({
+                format: 'HH:ii',
+                autoclose: true
+
+
+            });
         });
 
         //状态切换
@@ -128,8 +135,8 @@
             //添加时段
             var tr = $("<tr id="+ 'tab' + length +">" +
                 "<form action='' method=''>" +
-                "<td>" + "<input id=" + 'form_datetime_s' + length +" type='text' name = 'start' value='2016-11-15 14:45' readonly>" + "</td>" +
-                "<td>" + "<input id=" + 'form_datetime_e' + length +" type='text' name = 'end' value='2016-11-15 14:45' readonly>" + "</td>" +
+                "<td>" + "<input id=" + 'form_datetime_s' + length +" type='text' name = 'start' value='00:00' readonly>" + "</td>" +
+                "<td>" + "<input id=" + 'form_datetime_e' + length +" type='text' name = 'end' value='00:00' readonly>" + "</td>" +
                 "<td>" + "<input id=" + 'price' + length +" type='text' name='price'/>" + "</td>" +
                 "<td>" + "<input id=" + 'court_num' + length +" type='text' name='court_num'/>" + "</td>" +
                 "<td id="+ 'state' + length +">" + '启用' + "</td>" +
@@ -141,8 +148,15 @@
             $('#form').append(tr);
             $('#check' + length).css('background-color','#000');
             $('#tab' + length).find('input').css('border','1px solid #ddd');
-            $('#form_datetime_s'+ length).datetimepicker({format: 'yyyy-mm-dd hh:ii'});
-            $('#form_datetime_e'+ length).datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+            $('#form_datetime_s'+ length).datetimepicker({
+                format: 'HH:ii',
+                autoclose: true
+            });
+            $('#form_datetime_e'+ length).datetimepicker({
+                format: 'HH:ii',
+                autoclose: true,
+                minuteStep: 10
+            });
         });
     });
 
