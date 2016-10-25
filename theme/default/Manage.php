@@ -1,3 +1,4 @@
+<?php !defined("FCPATH") && exit("Access Denied!"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +22,9 @@
 <!--选项卡-->
 <div id="tab">
     <ul>
-        <li class="tab-li tab-li2" id="Home">首页</li>
-        <li class="tab-li" id="Time">时段管理</li>
-        <li class="tab-li" id="Reserve">预约管理</li>
-        <li class="tab-li" id="System">系统管理</li>
+<!--{foreach $module1 $row}-->
+                <li class="tab-li" id={:$row['identity']} >{:$row['module_name']}</li>
+<!--{/foreach}-->
     </ul>
 </div>
 
