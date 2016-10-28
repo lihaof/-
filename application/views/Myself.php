@@ -4,31 +4,9 @@
     <meta charset="UTF-8">
     <title>预约</title>
     <script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/top-bar.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/tab-bar.css'); ?>">
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-
-        body{
-            background: #f4f4f4;
-        }
-
-        .topbar-default{
-            width: 100%;
-            height: 130px;
-            background-color: #474747;
-            line-height: 130px;
-            font-size: 40px;
-            color: #fff;
-            text-align: center;
-        }
-
-        .default-topbar span{
-
-        }
-
         .top-style{
             width: 100%;
             height: 310px;
@@ -199,48 +177,6 @@
             margin-right: 30px;
             float: right;
         }
-
-        .bottom{
-            width: 100%;
-            height: 150px;
-            background: #fff;
-            position: fixed;
-            bottom: 0;
-
-        }
-
-        .bottom div{
-            width: 25%;
-            float: left;
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .bottom img{
-            width: 68px;
-            height: 68px;
-            margin-bottom: 13px;
-        }
-
-        .p-normal{
-            font-size: 23px;
-            color: #c7c7c7;
-        }
-
-        .p-pressed{
-            font-size: 23px;
-            color: #52dd5f;
-        }
-
-        .btn-normal{
-            background-color: #ddd;
-        }
-
-        .btn-pressed{
-            background-color: #52dd5f;
-        }
-
-
     </style>
 </head>
 <body>
