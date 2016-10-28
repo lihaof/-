@@ -1,4 +1,12 @@
 <?php
+/**
+ *  Basketball Management System 1.0
+ *
+ *  @Id:        TimeListModel.php
+ *  @Author:    Weafung
+ *  @Generate:  2016/09/29
+ */
+
 class TimeListModel extends CI_Model {
     public function __construct() {
         parent::__construct();
@@ -20,18 +28,16 @@ class TimeListModel extends CI_Model {
         if($timeLimit != 0 && ($dateStrToTime - time() > $timeLimit || $dateStrToTime < $todayStrToTime) ) {
             showNotice('只能查询今天到未来一周之内的时间段');
         }
-        $sql = "SELECT * FROM bms_time_list WHERE date = '{$date}' ORDER BY list_id ASC";
-        $query = $this->db->query($sql);
+        $query = $this->db->where('date',$date)->order_by('list_id','ASC')->get('time_list');
         if($query->num_rows() == 0) {
             $this->createDateData($date);
         }
-        $query = $this->db->query($sql);
+        $query = $this->db->where('date',$date)->order_by('list_id','ASC')->get('time_list');
         return $query->result_array();
     }
 
     private function createDateData($date) {
-        $sql = "SELECT * FROM bms_open_time WHERE status = '1'";
-        $openTime = $this->db->query($sql)->result_array();
+        $openTime = $this->db->where('status','1')->get('open_time')->result_array();
         $this->db->trans_start();
         foreach ($openTime as $key => $value) {
             $data = array(
@@ -49,9 +55,7 @@ class TimeListModel extends CI_Model {
     }
 
     private function getTimeLimit() {
-        $sql = "SELECT time FROM bms_time_limit WHERE time_limit_id = 1";
-        $query = $this->db->query($sql);
-        $result = $query->row_array();
+        $result = $this->db->where('time_limit_id','1')->get('time_limit')->row_array();
         if(isset($result)){
             return $result["time"];
         } else {
@@ -61,8 +65,7 @@ class TimeListModel extends CI_Model {
 
     //不存在返回false,存在返回该条记录的指定内容
     public function listIdIsExist($listId = 0) {
-        $this->db->where("list_id",$listId);
-        $listData = $this->db->get("time_list")->row_array();
+        $listData = $this->db->where("list_id",$listId)->get("time_list")->row_array();
         if(empty($listData)) {
             return false;
         }
