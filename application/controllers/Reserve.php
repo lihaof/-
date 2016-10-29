@@ -1,4 +1,11 @@
 <?php
+/**
+ *  Basketball Management System 1.0
+ *
+ *  @Id:        Reserve.php
+ *  @Author:    Weafung
+ *  @Generate:  2016/10/19
+ */
 class Reserve extends CI_Controller {
     public function __construct() {
         parent::__construct();
@@ -13,9 +20,4 @@ class Reserve extends CI_Controller {
         $data["date"] = $year.'-'.$month.'-'.$day;
         $this->ui->load("Reserve",$data);
     }
-
-
-    // public function index() {
-    //     $this->ui->load("Reserve");
-    // }
 }
