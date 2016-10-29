@@ -49,7 +49,7 @@ class TimeListModel extends CI_Model {
                 "surplus_num" => $value["court_num"],
                 'status' => 1
             );
-            $this->db->insert("bms_time_list",$data);
+            $this->db->insert("time_list",$data);
         }
         $this->db->trans_complete();
     }

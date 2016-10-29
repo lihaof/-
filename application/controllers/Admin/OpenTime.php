@@ -34,12 +34,10 @@ class OpenTime extends CI_Controller {
             $this->checkOpenTimeData($data);
             $this->db->insert("open_time", $data);
             if($this->db->insert_id() > 0) {
-                // showNotice("添加成功",site_url("Admin/OpenTime/index"));
                 $data = array('success'=>true,'message'=>'添加成功');
                 echo json_encode($data);
                 exit;
             } else {
-                // showNotice("添加失败,请重新尝试");
                 $data = array('success'=>false,'message'=>'添加失败,请重新尝试');
                 echo json_encode($data);
                 exit;
@@ -49,25 +47,21 @@ class OpenTime extends CI_Controller {
 
     private function checkOpenTimeData($data) {
         if(!$this->timeIsValid($data["start"])) {
-            // showNotice("开始时间格式错误");
             $data = array('success'=>false,'message'=>'开始时间格式错误');
             echo json_encode($data);
             exit;
         }
         if(!$this->timeIsValid($data["end"])) {
-            // showNotice("结束时间格式错误");
             $data = array('success'=>false,'message'=>'结束时间格式错误');
             echo json_encode($data);
             exit;
         }
         if(!is_numeric($data['price']) || $data['price'] < 0) {
-            // showNotice("收费价格错误");
             $data = array('success'=>false,'message'=>'收费价格错误');
             echo json_encode($data);
             exit;
         }
         if(!is_numeric($data['court_num']) || $data['court_num'] < 0) {
-            // showNotice("开放球场数量");
             $data = array('success'=>false,'message'=>'收费价格错误');
             echo json_encode($data);
             exit;
@@ -85,7 +79,7 @@ class OpenTime extends CI_Controller {
         }
     }
 
-    public function change($timeId = 0,$submit = "no") {
+    public function change($submit = "no") {
         if($submit == "yes") {
             $data = array(
                 "start" => $this->input->post("start"),
@@ -97,18 +91,17 @@ class OpenTime extends CI_Controller {
             );
             $this->checkOpenTimeData($data);
             $this->db->where("time_id", $this->input->post("time_id"));
-            $this->db->update("bms_open_time", $data);
-            if(!$this->db->affected_rows()){
-                showNotice("修改失败,请重新尝试");
+            $this->db->update("open_time", $data);
+            if($this->db->affected_rows() < 1){
+                $data = array('success'=>false,'message'=>'修改失败,请重新尝试');
+                echo json_encode($data);
+                exit;
             } else {
-                showNotice("修改成功");
+                $data = array('success'=>true,'message'=>'修改成功');
+                echo json_encode($data);
+                exit;
             }
         }
-        $data['data'] = $this->timeIdIsExist($timeId);
-        if(!$data['data']) {
-            showNotice("记录不存在,请返回重试");
-        }
-        $this->ui->load("Admin/OpenTime_change",$data);
     }
 
     //不存在返回false,存在返回该条记录的指定内容
@@ -126,12 +119,10 @@ class OpenTime extends CI_Controller {
             $time_id = $this->input->post('time_id');
             $this->db->delete("open_time", array("time_id" => $time_id));
             if(!$this->db->affected_rows()){
-                // showNotice("删除失败,请重新尝试",site_url("Admin/OpenTime/index"));
                 $data = array('success'=>false,'message'=>'删除失败,请重新尝试');
                 echo json_encode($data);
                 exit;
             } else {
-                // showNotice("删除成功",site_url("Admin/OpenTime/index"));
                 $data = array('success'=>true,'message'=>'删除成功');
                 echo json_encode($data);
                 exit;
