@@ -33,8 +33,9 @@
         echo '<p><a href="'.site_url('Reserve/index/'.date('Y/m/d/',time()+86400*$i)).'">周'.$week[date("w",time()+86400*$i)].'</a></p></div>';
     }
     ?>
-
 </div>
+<!--滑动条-->
+<div class="slide" id="slide"></div>
 
 <!--预约项目-->
 <div id="reserve0">
@@ -51,6 +52,6 @@
     <!--{/foreach}-->
 </div>
 
-<!-- <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script> -->
+ <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script>
 </body>
 </html>

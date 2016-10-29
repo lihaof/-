@@ -14,11 +14,21 @@
     box-sizing: border-box;
 }
 
+.week-select a{
+    text-decoration: none;
+    color: #454545;
+}
+
+.week-select a:visited{
+    color: #454545;
+}
+
 .week{
     width: calc(100%/7);
     height: 100%;
     text-align: center;
     float: left;
+    -webkit-tap-highlight-color:rgba(0,0,0,0)
 }
 
 .week span{
@@ -33,7 +43,7 @@
     display: block;
     height: 112px;
     color: #2e2e2e;
-    font-size: 45px;
+    font-size: 38px;
     line-height: 112px;
 }
 
@@ -52,13 +62,13 @@
 
 .box-reserve{
     width: 96%;
-    height: 250px;
+    height: 270px;
     background-color: #fff;
     margin: auto;
     margin-top: 20px;
     border-radius: 10px;
     box-sizing: border-box;
-    padding: 25px 30px;
+    padding: 30px 30px;
 }
 
 .box-reserve a{
@@ -99,7 +109,7 @@
     background-color: #ededed;
     margin: auto;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .box-reserve-court{

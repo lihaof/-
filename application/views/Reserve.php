@@ -25,129 +25,33 @@
 
 <!--选择周数-->
 <div class="week-select">
-    <div class="week week-border">
-        <span>今天</span>
-        <p><a href="">周二</a></p>
-    </div>
-
-    <div class="week">
-        <span>明天</span>
-        <p><a href="">周三</a></p>
-    </div>
-
-    <div class="week">
-        <span>27日</span>
-        <p><a href="">周四</a></p>
-    </div>
-
-    <div class="week">
-        <span>28日</span>
-        <p><a href="">周五</a></p>
-    </div>
-
-    <div class="week">
-        <span>29日</span>
-        <p><a href="">周六</a></p>
-    </div>
-
-    <div class="week">
-        <span>30日</span>
-        <p><a href="">周日</a></p>
-    </div>
-
-    <div class="week">
-        <span>31日</span>
-        <p><a href="">周一</a></p>
-    </div>
-
-    <div id="slide" class="slide"></div>
+    <?php 
+    $week=array("日","一","二","三","四","五","六");
+    for($i=0;$i<7;$i++) {
+        echo '<div class="week">';
+        echo '<span>'.date('j',time()+86400*$i).'号</span>';
+        echo '<p><a href="'.site_url('Reserve/index/'.date('Y/m/d/',time()+86400*$i)).'">周'.$week[date("w",time()+86400*$i)].'</a></p></div>';
+    }
+    ?>
 </div>
+<!--滑动条-->
+<div class="slide" id="slide"></div>
 
 <!--预约项目-->
 <div id="reserve0">
+    <?php foreach($list as $key => $val): ?>
     <div class="box-reserve">
-    <span class="box-reserve-date">2016年10月25日</span>
-    <button class="box-reserve-btn"><a href="">立即预约</a></button>
-    <p class="box-reserve-time">8:00 - 10:00</p>
+    <span class="box-reserve-date"><?php echo $val['date']; ?></span>
+    <button class="box-reserve-btn"><a href="<?php echo site_url('Order/add/'.$val['list_id']); ?>">立即预约</a></button>
+    <p class="box-reserve-time"><?php echo $val['start']; ?> - <?php echo $val['end']; ?></p>
     <div class="box-reserve-line"></div>
-    <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-    <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-    <span class="box-reserve-cost">¥49.99</span>
-</div>
-</div>
-
-<div id="reserve1">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月26日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
+    <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num"><?php echo $val['surplus_num']; ?></span>
+    <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num"><?php echo $val['court_num']; ?></span>
+    <span class="box-reserve-cost">¥<?php echo $val['price']; ?></span>
     </div>
+    <?php endforeach; ?>
 </div>
 
-<div id="reserve2">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月27日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
-    </div>
-</div>
-
-<div id="reserve3">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月28日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
-    </div>
-</div>
-
-<div id="reserve4">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月29日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
-    </div>
-</div>
-
-<div id="reserve5">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月30日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
-    </div>
-</div>
-
-<div id="reserve6">
-    <div class="box-reserve">
-        <span class="box-reserve-date">2016年10月31日</span>
-        <button class="box-reserve-btn">立即预约</button>
-        <p class="box-reserve-time">8:00 - 10:00</p>
-        <div class="box-reserve-line"></div>
-        <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
-        <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">5</span>
-        <span class="box-reserve-cost">¥49.99</span>
-    </div>
-</div>
-
-<script type="text/javascript" src="<?php echo base_url('js/reserve.js'); ?>"></script>
+ <script type="text/javascript" src="<?php echo base_url('js/reserve.js'); ?>"></script>
 </body>
 </html>
