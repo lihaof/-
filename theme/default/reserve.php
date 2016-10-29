@@ -27,37 +27,37 @@
 <div class="week-select">
     <div class="week week-border">
         <span>今天</span>
-        <p>周二</p>
+        <p><a href="">周二</a></p>
     </div>
 
     <div class="week">
         <span>明天</span>
-        <p>周三</p>
+        <p><a href="">周三</a></p>
     </div>
 
     <div class="week">
         <span>27日</span>
-        <p>周四</p>
+        <p><a href="">周四</a></p>
     </div>
 
     <div class="week">
         <span>28日</span>
-        <p>周五</p>
+        <p><a href="">周五</a></p>
     </div>
 
     <div class="week">
         <span>29日</span>
-        <p>周六</p>
+        <p><a href="">周六</a></p>
     </div>
 
     <div class="week">
         <span>30日</span>
-        <p>周日</p>
+        <p><a href="">周日</a></p>
     </div>
 
     <div class="week">
         <span>31日</span>
-        <p>周一</p>
+        <p><a href="">周一</a></p>
     </div>
 
     <div id="slide" class="slide"></div>
@@ -67,7 +67,7 @@
 <div id="reserve0">
     <div class="box-reserve">
     <span class="box-reserve-date">2016年10月25日</span>
-    <button class="box-reserve-btn">立即预约</button>
+    <button class="box-reserve-btn"><a href="">立即预约</a></button>
     <p class="box-reserve-time">8:00 - 10:00</p>
     <div class="box-reserve-line"></div>
     <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -79,7 +79,7 @@
 <div id="reserve1">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月26日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -91,7 +91,7 @@
 <div id="reserve2">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月27日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -103,7 +103,7 @@
 <div id="reserve3">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月28日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -115,7 +115,7 @@
 <div id="reserve4">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月29日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -127,7 +127,7 @@
 <div id="reserve5">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月30日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>
@@ -139,7 +139,7 @@
 <div id="reserve6">
     <div class="box-reserve">
         <span class="box-reserve-date">2016年10月31日</span>
-        <button class="box-reserve-btn">立即预约</button>
+        <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00 - 10:00</p>
         <div class="box-reserve-line"></div>
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">3</span>

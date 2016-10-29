@@ -61,6 +61,14 @@
     padding: 25px 30px;
 }
 
+.box-reserve a{
+    text-decoration: none;
+}
+
+.box-reserve a:visited{
+    color: #fff;
+}
+
 .box-reserve-date{
     font-size: 30px;
     color: #7f7f7f;
