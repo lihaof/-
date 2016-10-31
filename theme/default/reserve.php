@@ -22,13 +22,19 @@
     $week=array("日","一","二","三","四","五","六");
     for($i=0;$i<7;$i++) {
         echo '<div class="week">';
-        echo '<span>'.date('j',time()+86400*$i).'号</span>';
+        if($i > 0) {
+            echo '<span>'.date('j',time()+86400*$i).'号</span>';
+        } else {
+            echo '<span>今天</span>';
+        }
         echo '<p><a href="'.site_url('Reserve/index/'.date('Y/m/d/',time()+86400*$i)).'">周'.$week[date("w",time()+86400*$i)].'</a></p></div>';
     }
     ?>
 </div>
 <!--滑动条-->
-<div class="slide" id="slide"></div>
+
+<?php $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)); ?>
+<div class="slide" id="slide" style="left: <?php echo 112*$num; ?>px;"></div>
 
 <!--预约项目-->
 <div id="reserve0">

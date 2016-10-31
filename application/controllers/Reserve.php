@@ -17,7 +17,15 @@ class Reserve extends CI_Controller {
         //$year=$month=$day=0时,自动转为今天日期
         $list = $this->TimeListModel->fetchOneDay($year,$month,$day);
         $data["list"] = $list;
-        $data["date"] = $year.'-'.$month.'-'.$day;
+
+        if(checkdate($month, $day, $year)) {
+            $date = $year."-".$month."-".$day;
+        } else {
+            $date = date("Y-m-d",time());
+        }
+        $data["date"] = $date;
+
         $this->ui->load("Reserve",$data);
     }
+
 }

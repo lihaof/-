@@ -2,3 +2,5 @@
 .DS_Store
 .git
 application/views/
+cookie.php
+test.php

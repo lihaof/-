@@ -12,13 +12,13 @@ $(document).ready(function () {
         })
     });
 
-    //动态获取周数
-    var today = new Date();
-    var day = today.getDay() - 1;
-    var weeks = new Array('周一', '周二', '周三', '周四', '周五', '周六', '周日');
-    for(var i = 0; i < 7; i++){
-        $('.week-select').find('p').eq(i).text(weeks[(day + i) % 7]);
-    }
+    // 动态获取周数
+    // var today = new Date();
+    // var day = today.getDay() - 1;
+    // var weeks = new Array('周一', '周二', '周三', '周四', '周五', '周六', '周日');
+    // for(var i = 0; i < 7; i++){
+    //     $('.week-select').find('p').eq(i).text(weeks[(day + i) % 7]);
+    // }
 
     //获取n天后的日期
     // function GetDateStr(AddDayCount) {
@@ -35,16 +35,16 @@ $(document).ready(function () {
 
 
     //滑动块移动
-    var tabWeek = $('.week');
-    tabWeek.eq(0).addClass('week-border');
-    tabWeek.each(function () {
-        $(this).click(function () {
-            var marginLeft = $(this).offset().left + 'px';
-            $("#slide").animate({left:marginLeft},300);
-            $('.week').removeClass('week-border');
-            $(this).addClass('week-border');
-        });
-    });
+    // var tabWeek = $('.week');
+    // tabWeek.eq(0).addClass('week-border');
+    // tabWeek.each(function () {
+    //     $(this).click(function () {
+    //         var marginLeft = $(this).offset().left + 'px';
+    //         $("#slide").animate({left:marginLeft},300);
+    //         $('.week').removeClass('week-border');
+    //         $(this).addClass('week-border');
+    //     });
+    // });
 
     $("div[id^='reserve']").hide();
     $('#reserve0').show();
