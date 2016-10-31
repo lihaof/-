@@ -6,178 +6,7 @@
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/tab-bar.css')}">
-    <style>
-        .top-style{
-            width: 100%;
-            height: 310px;
-            background-color: #758EFC;
-        }
-
-        .img-portrait{
-            width: 130px;
-            height: 130px;
-            margin-top: 85px;
-            margin-left: 50px;
-            border-radius: 50%;
-            float: left;
-        }
-
-        .top-style p{
-            color: #fff;
-            font-size: 50px;
-            float: left;
-            line-height: 310px;
-            margin-left: 60px;
-        }
-
-        .btn-in{
-            width: 80px;
-            height: 80px;
-            margin-top: 115px;
-            margin-right: 20px;
-            float: right;
-        }
-
-        .level{
-            width: 100%;
-            height: 120px;
-            font-size: 25px;
-            color: #fff;
-            background-color: #6980E3;
-            line-height: 120px;
-        }
-
-        .level img{
-            width: 70px;
-            height: 70px;
-            margin-top: 25px;
-            margin-left: 87px;
-            float: left;
-        }
-
-        .level span{
-            color: #fff;
-            font-size: 37px;
-            margin-left: 30px;
-        }
-
-        .reserve-message{
-            width: 100%;
-            height: 150px;
-            background-color: #fff;
-            margin-top: 30px;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            line-height: 150px;
-        }
-
-        .img-default{
-            width: 90px;
-            height: 90px;
-            margin-top: 30px;
-            margin-left: 50px;
-            float: left;
-        }
-
-        .reserve-message span{
-            color: #000;
-            font-size: 40px;
-            margin-left: 40px;
-            display: block;
-            float: left;
-        }
-
-        .btn-in2{
-            width: 60px;
-            height: 60px;
-            margin-top: 40px;
-            margin-right: 45px;
-            float: right;
-        }
-
-        .box-left{
-            width: 50%;
-            height: 200px;
-            float: left;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .box-right{
-            width: 50%;
-            height: 200px;
-            float: right;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .box-all{
-            width: 100%;
-            height: 180px;
-            background-color: #fff;
-            padding: 20px 0;
-            margin-top: 5px;
-            margin-bottom: 35px;
-        }
-
-        .line{
-            height: 180px;
-            width: 5px;
-            background-color: #f4f4f4;
-            float: left;
-        }
-
-        .box-num{
-            margin-top: 45px;
-            font-size: 55px;
-            color: #000;
-        }
-
-        .box-text{
-            margin-top: 20px;
-            font-size: 30px;
-            color: #343434;
-        }
-
-        .list{
-            width: 100%;
-            height: 120px;
-            background-color: #fff;
-            margin-top: 3px;
-            line-height: 120px;
-        }
-
-        .list span{
-            display: block;
-            float: left;
-            font-size: 40px;
-            color: #3a3a3a;
-        }
-
-        .list-img{
-            width: 80px;
-            height: 80px;
-            margin-top: 20px;
-            margin-left: 50px;
-            /*float: left;*/
-        }
-
-        .img-border{
-            width: 180px;
-            height: 120px;
-            background-color: #fff;
-            float: left;
-            border-bottom: 3px solid #fff;
-        }
-
-        .btn-in3{
-            width: 50px;
-            height: 50px;
-            margin-top: 35px;
-            margin-right: 30px;
-            float: right;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/myself.css')}">
 </head>
 <body>
     <!--微信自带顶部栏-->
@@ -265,9 +94,25 @@
 
             });
 
-            $('.box-left').width($('.box-left').width()-2.5);
-            $('.box-right').width($('.box-right').width()-2.5);
+            var boxLeft = $('.box-left');
+            var boxright = $('.box-right');
+            var lineWidth = $('.line').width();
+
+            var changeWidth = function () {
+                boxLeft.width(boxLeft.width()-lineWidth/2);
+                boxright.width(boxright.width()-lineWidth/2);
+            };
+
+            changeWidth();
+
+            $(window).resize(function() {
+                boxLeft = $('.box-left');
+                boxright = $('.box-right');
+                changeWidth();
+            });
         });
+
+
     </script>
 </body>
 </html>
