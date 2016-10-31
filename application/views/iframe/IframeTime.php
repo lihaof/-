@@ -89,24 +89,31 @@
         $(document).delegate("button[id^='check']",'click',function () {
             var checkId = $(this).attr('id');
             var num = checkId.substring(5);
+            if($(this).text()=='确认') {
+                    var u = '<?php echo site_url("Admin/OpenTime/change/yes/"); ?>';
+            } else {
+                    var u = '<?php echo site_url("Admin/OpenTime/add/yes/"); ?>';
+            }
             //提交修改后的表单信息
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo site_url("Admin/OpenTime/add/yes/"); ?>',
+                url: u,
                 data: {
                     start: $('#form_datetime_s' + num).val(),
                     end: $('#form_datetime_e' + num).val(),
                     price: $('#price' + num).val(),
                     court_num: $('#court_num' + num).val(),
+                    time_id: num,
                     status: $('#state' + num).text()
                 },
                 success: function (data) {
                     if(data.success) {
                         alert(data.message);
-                        $(this).text('修改');
-                        $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
-                        $(this).attr('id','edit' + num);
+                        // $(this).text('修改');
+                        // $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
+                        // $(this).attr('id','edit' + num);
+                        location.reload();
                     } else {
                         alert(data.message);
                     }
@@ -206,7 +213,7 @@
                 "<td>" + "<input id=" + 'price' + length +" type='text' name='price'/>" + "</td>" +
                 "<td>" + "<input id=" + 'court_num' + length +" type='text' name='court_num'/>" + "</td>" +
                 "<td id="+ 'state' + length +">" + '启用' + "</td>" +
-                "<td style='padding: 0'>" + "<button id="+ 'check' + length +" type='button'>" + '确 认' + "</button>" + "</td>" +
+                "<td style='padding: 0'>" + "<button id="+ 'check' + length +" type='button'>" + '添 加' + "</button>" + "</td>" +
                 "<td style='padding: 0'>" + "<button type='button' id="+ 'stop' + length +">" + '状态切换' + "</button>" + "</td>" +
                 "<td style='padding: 0'>" + "<button type='button' id="+ 'delete' + length +">" + '删 除' + "</button>" + "</td>" +
                 "</form>" +

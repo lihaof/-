@@ -21,23 +21,36 @@ class TimeList extends CI_Controller {
         $this->ui->load("Admin/TimeList",$data);
     }
 
-    public function lock($listId = 0) {
-        $this->db->where( array("list_id" => $listId, "status" => 1) );
-        $this->db->update("time_list", array("status" => 3), );
-        if($this->db->affected_rows()==1){
-            showNotice("关闭预约成功",site_url("Admin/TimeList"));      
+    public function lock() {
+        $listId = $this->input->post('list_id');
+        $this->db->where(array("list_id" =>$listId, "status" => 1))->update("time_list", array("status" => 3));
+        if($this->db->affected_rows() > 0){
+            // showNotice("关闭预约成功",site_url("Admin/TimeList")); 
+            $data = array('success'=>true,'message'=>'关闭预约成功');
+            echo json_encode($data);
+            exit;    
         } else {
-            showNotice("关闭预约失败,请返回重试",site_url("Admin/TimeList"));
+            // showNotice("关闭预约失败,请返回重试",site_url("Admin/TimeList"));
+            $data = array('success'=>false,'message'=>'关闭预约失败,请返回重试');
+            echo json_encode($data);
+            exit; 
         }
     }
     
-    public function unlock($listId = 0) {
+    public function unlock() {
+        $listId = $this->input->post('list_id');
         $this->db->where( array("list_id" => $listId, "status" => 3) );
         $this->db->update("time_list", array("status" => 1));
         if($this->db->affected_rows() == 1){
-            showNotice("开放预约成功",site_url("Admin/TimeList"));      
+            // showNotice("开放预约成功",site_url("Admin/TimeList"));  
+            $data = array('success'=>true,'message'=>'开放预约成功');
+            echo json_encode($data);
+            exit;    
         } else {
-            showNotice("开放预约失败,请返回重试",site_url("Admin/TimeList"));
+            // showNotice("开放预约失败,请返回重试",site_url("Admin/TimeList"));
+            $data = array('success'=>false,'message'=>'开放预约失败,请返回重试');
+            echo json_encode($data);
+            exit;    
         }
     }
 
