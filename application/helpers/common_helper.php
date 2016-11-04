@@ -93,6 +93,7 @@ function getUser($name, $value, $status = null) {
 }
 
 //微信网页授权--静默型--获取用户 openid，返回为包含 openid、还有一个不记得  的数组 
+/*
 function snsapi_base($redirect_uri) {
 
     //appid  appsecret
@@ -135,6 +136,8 @@ function snsapi_userinfo($redirect_uri) {
 
      return https_request($userinfo_url);
 }
+
+*/
 
 //https_request()请求
 function https_request($url,$data=null) {

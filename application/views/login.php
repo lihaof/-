@@ -1,3 +1,4 @@
+<?php !defined("FCPATH") && exit("Access Denied!"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,9 @@
             <div class="box-input">
                 <div class="box-input-title">验证码</div>
                 <input class="box-input-content" style="width: 170px" type="text" name="verify">
-                <div class="verify"></div>
+                <div class="verify">
+                    <img id="code" src="<?php echo site_url('Code'); ?>" />
+                </div>
             </div>
             <!--登录按钮-->
             <div>

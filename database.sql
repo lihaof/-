@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
   `point` int(7) NULL COMMENT '用户积分',
   `user_level` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '用户权限等级',
   `teamid` int(5) NULL COMMENT '队伍id',
+  `iscompelete` int(1) NULL DEFAULT '0' COMMENT '是否完善用户个人信息',
   PRIMARY KEY (`uid`)
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户信息表';
