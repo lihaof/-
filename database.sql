@@ -152,3 +152,14 @@ CREATE TABLE IF NOT EXISTS `bms_administrator` (
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '管理员信息表';
 
+-- 站点信息设置表 bms_website_option
+CREATE TABLE IF NOT EXISTS `bms_website_option` (
+  `oid` tinyint(1) NOT NULL AUTO_INCREMENT COMMENT '选项自增id',
+  `oname` varchar(40) NOT NULL COMMENT '选项名称',
+  `otype` tinyint(1) NOT NULL DEFAULT '0' COMMENT '选项对应的类型：0单行填空，1单选，2多选，3下拉菜单',
+  `odescription` varchar(100) NOT NULL COMMENT '对选项的描述',
+  `oorder` tinyint(2) NOT NULL COMMENT '选项出现的顺序',
+  `oselection` varchar(1000) DEFAULT NULL COMMENT '如果类型为单选，多选或者是下拉菜单时不为空，此字段用于存放选择项,各个选项用;隔开',
+  `ovalue` varchar(100) NOT NULL COMMENT '各个选项的值，如果类型为单选，多选或者是下拉菜单时从0开始，按oselection字段中选择项的顺序存入',
+  PRIMARY KEY (`oid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '站点信息设置表';
