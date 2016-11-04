@@ -34,7 +34,7 @@
 <!--滑动条-->
 
 <?php $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)); ?>
-<div class="slide" id="slide" style="left: <?php echo 112*$num; ?>px;"></div>
+<div class="slide" id="slide" style="left: calc(<?php echo $num*100; ?>%/7)"></div>
 
 <!--预约项目-->
 <div id="reserve0">
@@ -51,7 +51,7 @@
     <?php endforeach; ?>
 </div>
 
-    <div class="box-reserve">
+    <!-- <div class="box-reserve">
         <span class="box-reserve-date">2016-10-25</span>
         <button class="box-reserve-btn"><a href="">立即预约</a></button>
         <p class="box-reserve-time">8:00-10:00</p>
@@ -59,7 +59,7 @@
         <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">1</span>
         <span class="box-reserve-court">场馆总量: </span><span class="box-reserve-court-num">1</span>
         <span class="box-reserve-cost">¥49.99</span>
-    </div>
+    </div> -->
 
 <!--底部栏-->
 <div class="bottom">

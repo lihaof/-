@@ -14,6 +14,9 @@ class User extends CI_Controller {
 		$this->load->model("initor");
         $this->load->helper("common_helper");
 	}
+    public function editHeight() {
+        $this->ui->load('editInfo/editHeight');
+    }
     public function test() {
         //var_dump($this->input->post);
         $data['openid'] = $this->input->cookie('openid');

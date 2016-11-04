@@ -34,7 +34,7 @@
 <!--滑动条-->
 
 <?php $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)); ?>
-<div class="slide" id="slide" style="left: calc(<?php echo $num*100; ?>%/7)"></div>
+<div class="slide" id="slide" style="left: calc(<?php echo $num*100; ?>/7)"></div>
 
 <!--预约项目-->
 <div id="reserve0">
