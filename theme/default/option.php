@@ -46,9 +46,10 @@
         float: left;
         margin-top: 10px;
         border-radius: 3px;
-        border: 0;
-        box-shadow: 1px 1px 1px #c4c4c4;
+        border: 1px solid #ddd;
         box-sizing: border-box;
+        font-size: 16px;
+        padding: 0 10px;
     }
 
     .box-hint{
@@ -99,6 +100,20 @@
         border-radius: 3px;
     }
 
+    .box-select{
+        width: 700px;
+        height: 30px;
+        float: left;
+        margin-top: 10px;
+        border-radius: 3px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        background-color: #fff;
+        font-size: 16px;
+        padding: 0 10px;
+    }
+
+
 
 
 </style>
@@ -129,9 +144,16 @@
         <div class="box">
             <p class="box-title">时间 :</p><br>
             <form action="">
-                <input class="box-input" type="date"/>
+                <select class="box-select">
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                </select>
             </form>
         </div>
+
+
 
 
         <!--时间选择-->
