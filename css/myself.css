@@ -70,7 +70,7 @@
     float: left;
 }
 
-.reserve-message span{
+.message-title{
     color: #000;
     font-size: 1rem;
     margin-left: 1rem;
@@ -78,11 +78,20 @@
     float: left;
 }
 
+.message-value{
+    color: #767676;
+    font-size: 1rem;
+    margin-right: 1rem;
+    display: block;
+    float: right;
+}
+
 .btn-in2{
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-top: 0.75rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: 0.9rem;
     margin-right: 0.5rem;
+    margin-left: -0.5rem;
     float: right;
 }
 
