@@ -1,0 +1,41 @@
+.box-reserve{
+    height: 3.5rem;
+}
+
+.box-reserve-cost{
+    font-size: 1rem;
+    color: #ef7e51;
+    float: right;
+    margin-top: 0.7rem;
+    margin-right: 0.7rem;
+}
+
+.box-reserve-status1{
+    float: right;
+    height: 1.6rem;
+    width: 4.3rem;
+    line-height: 1.6rem;
+    text-align: center;
+    background-color: #41bf5e;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    color: #fff;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+.box-reserve-status2{
+    float: right;
+    height: 1.6rem;
+    width: 4.3rem;
+    line-height: 1.6rem;
+    text-align: center;
+    background-color: #cecece;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    color: #fff;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 0.2rem;
+}
