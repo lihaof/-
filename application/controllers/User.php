@@ -14,10 +14,20 @@ class User extends CI_Controller {
 		$this->load->model("initor");
         $this->load->helper("common_helper");
 	}
-    public function editHeight() {
-        $this->ui->load('editInfo/editHeight');
+    public function edit() {
+        $this->ui->load("adduserinfo");
+    }
+
+    public function userInfo() {
+        $this->ui->load("userInfo");
+    }
+   
+    public function editPosition() {
+        $this->ui->load('editInfo/editPosition');
     }
     public function test() {
+        echo $this->initor->uid;
+        exit;
         //var_dump($this->input->post);
         $data['openid'] = $this->input->cookie('openid');
         $data['nickname'] = $this->input->cookie('nickname');
@@ -37,19 +47,21 @@ class User extends CI_Controller {
     }
 
 	public function index() {
-
-		/*
-
-        $redirect_uri = "<?php echo site_url('Admin/User/index');?>";
+/*
+        $redirect_uri = site_url('User/index');
         $result = snsapi_userinfo($redirect_uri);
         $data['openid'] = $result['openid'];
         $data['nickname'] = $result['neckname'];
 
         */
-
-
-        $data['openid'] = 'fweifugw';
-        $data['nickname'] = '1afufewfhwefe1';
+/*
+        var_dump($data);
+        exit();
+*/
+        
+        $data['openid'] = '111fifugw';
+        $data['nickname'] = '1afufw11111effhwefe1';
+        
 
         $this->input->set_cookie('openid',$data['openid'],$this->cookietime);
         $this->input->set_cookie('nickname',$data['nickname'],$this->cookietime);
@@ -59,10 +71,7 @@ class User extends CI_Controller {
         $this->db->where('openid',$data['openid']);
         $query = $this->db->get();
         $user = $query->result_array();
-        //var_dump($this->input->cookie('openid'));
-        //exit();
-        //var_dump($user);
-        //exit();
+        
         if(empty($user)) {
             //新用户
          
@@ -120,13 +129,13 @@ class User extends CI_Controller {
         $this->db->from('bms_user_info');
         $this->db->where('uid',$this->input->cookie('uid'));
         $query = $this->db->get();
-        $data = $query->result_array();
-        var_dump($data);
-        exit();
+        $result = $query->result_array();
+        $data = $result[0];
+        $this->ui->load('UserInfo',$data);
 
     }
 
-    //修改、添加用户信息
+    //完善用户信息
     public function addUser() {
 
         $data['openid'] = $this->input->cookie('openid');
@@ -145,6 +154,22 @@ class User extends CI_Controller {
         }
         
     }
+
+    //修改身高
+    public function editHeight(){
+        $data['uid'] = $this->input->cookie('uid');
+        $data['height'] = $this->input->post('height');
+        $result = $this->db->replace('bms_user_info',$data);     
+        if($result == TRUE) {
+            showNotice("完善成功！",site_url("User/showUser"));
+        } else {
+            showNotice("请重新完善！",site_url("User/addUserinfo"));
+        }
+    }
+
+    //修改体重
+
+    //修改场位
 
     
 

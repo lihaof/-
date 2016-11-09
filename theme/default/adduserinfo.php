@@ -61,8 +61,8 @@
 
   <!-- 用户完善信息的表单 -->
   <form class="add-form" action="<?php echo site_url('User/addUser'); ?>" method="POST">
-      <span>体重(kg): </span><input type="text" name="weight"><br>
-      <span>身高(cm): </span><input type="text" name="height"><br>
+      <span>体重(kg): </span><input type="number" min="40" max="100" value="70" name="weight"><br>
+      <span>身高(cm): </span><input type="number" min="150" max="200" value="175" name="height"><br>
       <span>场位: </span>
       <select name="position">
            <option value="1">控球后卫PG</option>

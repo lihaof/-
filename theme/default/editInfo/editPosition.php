@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/tab-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/myself.css')}">
-    <link rel="stylesheet" type="text/css" href="{:base_url('css/edit/editHeight.css')}">
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/edit/editPosition.css')}">
 </head>
 <body>
 <!--微信自带顶部栏-->
@@ -17,10 +17,16 @@
     <button class="save">保存</button>
 </div>
 
-<!--身高-->
+<!--场位-->
 <div class="reserve-message">
-    <form class="form-height">
-        <input class="edit-height" type="number" min="150" max="200" name="weight" value="<?php echo ?>">
+    <form class="form-Position">
+        <select name="position">
+           <option value="1">控球后卫PG</option>
+           <option value="2">等分后卫SG</option>>
+           <option value="3">小前锋SF</option>>
+           <option value="4">大前锋PF</option>>
+           <option value="5">中锋C</option>>
+        </select>
     </form>
 </div>
 

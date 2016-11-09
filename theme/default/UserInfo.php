@@ -35,35 +35,35 @@
 
 <!--昵称-->
 <div class="reserve-message">
-    <span>昵称</span>
+    <span>昵称 </span> <?php echo "       ".$nickname ;?>
 </div>
 
 <!--体重-->
 <div class="reserve-message">
-    <span>体重</span>
+    <span>体重</span><?php echo "       ".$weight ;?>
     <img class="btn-in2" src="{:base_url('image/in.png')}">
 </div>
 
 <!--身高-->
 <div class="reserve-message">
-    <span>身高</span>
+    <span>身高</span><?php echo "       ".$height ;?>
     <img class="btn-in2" src="{:base_url('image/in.png')}">
 </div>
 
 <!--场位-->
 <div class="reserve-message">
-    <span>场位</span>
+    <span>场位</span><?php echo "       ".$position ;?>
     <img class="btn-in2" src="{:base_url('image/in.png')}">
 </div>
 
 <!--积分-->
 <div class="reserve-message">
-    <span>积分</span>
+    <span>积分</span><?php echo "       ".$point ;?>
 </div>
 
 <!--球队-->
 <div class="reserve-message">
-    <span>球队</span>
+    <span>球队</span><?php echo "       ".$teamid ;?>
 </div>
 
 </body>
