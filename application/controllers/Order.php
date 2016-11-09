@@ -52,6 +52,6 @@ class Order extends CI_Controller {
             $value = array_merge($value,$queryResult);
         }
         $data["list"] = $list;
-        $this->ui->load("Order",$data);
+        $this->ui->load("ReserveMessage",$data);
     }
 }

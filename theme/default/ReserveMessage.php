@@ -19,20 +19,24 @@
 
 
 <!--预约项目-->
-<div class="box-reserve">
-    <span class="box-reserve-date">2016-10-25</span>
-    <div class="box-reserve-status1">已预约</div>
-    <span class="box-reserve-cost">¥49.99</span>
-    <p class="box-reserve-time">8:00-10:00</p>
-</div>
 
-<div class="box-reserve">
-    <span class="box-reserve-date">2016-10-25</span>
-    <div class="box-reserve-status2">已取消</div>
-    <span class="box-reserve-cost">¥49.99</span>
-    <p class="box-reserve-time">8:00-10:00</p>
-</div>
-
+<!--{foreach $list $val}-->
+    <!--{if $val["status"]==1}-->
+        <div class="box-reserve">
+            <span class="box-reserve-date">{:$val["date"]}</span>
+            <div class="box-reserve-status1">已预约</div>
+            <span class="box-reserve-cost">¥49.99</span>
+            <p class="box-reserve-time">8:00-10:00</p>
+        </div>
+    <!--{elseif $val["status"]==2}-->
+        <div class="box-reserve">
+            <span class="box-reserve-date">{:$val["date"]}</span>
+            <div class="box-reserve-status2">已取消</div>
+            <span class="box-reserve-cost">¥{:$val["price"]}</span>
+            <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
+        </div>
+    <!--{/if}-->
+<!--{/foreach}-->
 <!--底部栏-->
 <div class="bottom">
     <div><img class="btn-normal btn-pressed" src="{:base_url('image/reserve.png')}"><p class="p-normal p-pressed">预约</p></div>
