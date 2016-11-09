@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{:base_url('css/team.css')}">
 </head>
 <body>
-
-	<div class="box-team-main">
-        <div class="mask"></div>
-
         <!--创建球队-->
         <div class="box-team-round">
             <button class="box-team-btn-round">+</button>
@@ -25,8 +21,8 @@
 			<span class="box-popup-title">创建球队</span>
 			<img class="box-popup-btn-close" src="{:base_url('image/close.png')}">
 			<form class="box-popup-form">
-				<span id="applyTeamName" class="box-popup-text">球队名称: </span><br>
-				<input type="text" class="box-popup-input"><br>
+				<span class="box-popup-text">球队名称: </span><br>
+				<input type="text" class="box-popup-input" id="applyTeamName"><br>
 				<span class="box-popup-text">球队宣言: </span><br>
 				<input type="text" class="box-popup-input"><br>
 <!--				<span class="box-popup-text">上传头像: </span>-->
@@ -34,6 +30,18 @@
 				<button id="applyTeam" class="box-popup-btn" type="button">创 建</button>
 			</form>
 		</div>
+
+        <!--查看球队队员-->
+<!--        <div class="box-team-my box-team-member">-->
+<!--            <div class="box-team-my-list1">-->
+<!--                <span class="box-team-my-list-title">队中场位: </span>-->
+<!--                <span class="box-team-my-list-content">{:$val["position"]}</span>-->
+<!--                </div>-->
+<!--            <div class="box-team-my-list2">-->
+<!--                <span class="box-team-my-list-title">队员ID: </span>-->
+<!--                <span class="box-team-my-list-content">{:$val["uid"]}</span>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <!--搜索球队-->
         <span id="search" class="box-team-my-title" style="background-color: #35c66e">搜索球队</span><br><br><br>
@@ -46,7 +54,7 @@
         <div id="sTeam"></div>
 
         <!--我的球队-->
-        <span id="myTeam" class="box-team-my-title" style="margin-top: -20px">我的球队</span><br><br><br>
+        <span id="myTeam" class="box-team-my-title" style="margin-top: -10px">我的球队</span><br><br><br>
         {foreach $team $val}
         <div class="box-team-my">
             <div class="box-team-my-list1" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">
