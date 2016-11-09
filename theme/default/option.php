@@ -3,105 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/option.css')}">
     <title>设置页面</title>
 </head>
-<style>
-    *{
-        padding: 0;
-        margin: 0;
-        font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
-    }
 
-    body{
-        padding: 30px 0;
-        background-color: #f6f6f3;
-    }
-
-    .main-box{
-        width: 100%;
-        height: auto;
-        text-align: center;
-    }
-
-    .main-box-title{
-        font-size: 25px;
-    }
-
-    .box{
-        width: 700px;
-        height: 100px;
-        margin: 0 auto;
-        margin-bottom: 10px;
-    }
-
-    .box-title{
-        font-size: 16px;
-        color: #656565;
-        float: left;
-    }
-
-    .box-input{
-        width: 700px;
-        height: 30px;
-        float: left;
-        margin-top: 10px;
-        border-radius: 3px;
-        border: 0;
-        box-shadow: 1px 1px 1px #c4c4c4;
-        box-sizing: border-box;
-    }
-
-    .box-hint{
-        float: left;
-        font-size: 14px;
-        margin-top: 10px;
-        color: #b6b6b6;
-    }
-
-    .box-radio-form{
-        margin-top: 20px;
-    }
-
-    .box-radio{
-        float: left;
-        color: #5d5d5d;
-    }
-
-    .box-radio-text{
-        float: left;
-        margin-left: 10px;
-        color: #363636;
-        margin-right: 20px;
-    }
-
-    .box-checkbox-form{
-        margin-top: 20px;
-    }
-
-    .box-checkbox{
-        float: left;
-        margin-top: 3px;
-
-    }
-
-    .box-checkbox-text{
-        float: left;
-        margin-left: 10px;
-        color: #363636;
-        margin-right: 10px;
-    }
-
-    .btn-check{
-        width: 120px;
-        height: 36px;
-        border: 1px solid #f0f0f0;
-        background-color: #fff;
-        border-radius: 3px;
-    }
-
-
-
-</style>
 <body>
     <div class="main-box">
         <h class="main-box-title">基本设置</h>
@@ -129,9 +34,16 @@
         <div class="box">
             <p class="box-title">时间 :</p><br>
             <form action="">
-                <input class="box-input" type="date"/>
+                <select class="box-select">
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                    <option value="">2016-12-12 12:00-14:00</option>
+                </select>
             </form>
         </div>
+
+
 
 
         <!--时间选择-->
