@@ -56,8 +56,7 @@ class TimeList extends CI_Controller {
 
     public function cancelOrder() {
         $orderId = $this->input->post('order_id');
-
-        $orderData = $this->db->where(array('order_id'=>$orderId]))->get('user_order')->first_row('array');
+        $orderData = $this->db->where(array('order_id'=>$orderId))->get('user_order')->first_row('array');
         $listData = $this->db->where(array('list_id'=>$orderData['list_id']))->get('time_list')->first_row('array');
         $this->db->trans_start();
         //将此时段剩余场数+1
