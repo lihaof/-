@@ -54,27 +54,28 @@ class TimeList extends CI_Controller {
         }
     }
 
-    public function cancelOrder($listId = 0, $uid = 0) {
-        $listId = (int)$listId;
-        $uid = (int)$uid;    //TODO:动态获取uid,并检查合法性
-        $listData = $this->TimeListModel->listIdIsExist($listId);
-        $orderData = $this->userIsOrder($listId, $uid);
-        if(!$listData || !$orderData || $orderData["status"] == 2) {
-            showNotice("该记录不存在,撤销预约失败",site_url("Admin/TimeList/index"));
+    public function cancelOrder() {
+        $orderId = $this->input->post('order_id');
+
+        $orderData = $this->db->where(['order_id'=>$orderId])->get('user_order')->first_row('array');
+        $listData = $this->db->where(['list_id'=>$orderData['list_id']])->get('time_list')->first_row('array');
+        $this->db->trans_start();
+        //将此时段剩余场数+1
+        $this->db->where(array("list_id"=>$orderData['list_id']));
+        $this->db->update('time_list', array("surplus_num"=>$listData["surplus_num"]+1));
+        //将此用户的订单设置为撤销 
+        $this->db->where(['order_id'=>$orderId])->update('user_order', array("status"=>2));    
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === TRUE) {
+            // showNotice("撤销成功",site_url("Admin/TimeList/index"));      
+            $data = array('success'=>true,'message'=>'撤销成功');
+            echo json_encode($data);
+            exit;                
         } else {
-            $this->db->trans_start();
-            //将此时段剩余场数+1
-            $this->db->where( array("list_id" => $listId) );
-            $this->db->update('bms_time_list', array("surplus_num"=>$listData["surplus_num"]+1));
-            //将此用户的订单设置为撤销 
-            $this->db->where( array("uid"=>$uid, "list_id"=>$listId));
-            $this->db->update('bms_user_order', array("status"=>2));    
-            $this->db->trans_complete();
-            if ($this->db->trans_status() === TRUE) {
-                showNotice("撤销成功",site_url("Admin/TimeList/index"));      
-            } else {
-                showNotice("撤销失败,请返回重试",site_url("Admin/TimeList/index"));   
-            }
+            // showNotice("撤销失败,请返回重试",site_url("Admin/TimeList/index"));   
+            $data = array('success'=>false,'message'=>'撤销失败,请返回重试');
+            echo json_encode($data);
+            exit;
         }
     }
 

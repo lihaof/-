@@ -17,7 +17,7 @@
     <!--侧面栏-->
     <div id="nav">
         <ul>
-            <li class="module module2">子模块4<img class="module-img" src="{:base_url('image/in.png')}"></li>
+            <li class="module module2">开放时段管理<img class="module-img" src="{:base_url('image/in.png')}"></li>
             <li class="module">子模块5<img class="module-img" src="{:base_url('image/in.png')}"></li>
             <li class="module">子模块6<img class="module-img" src="{:base_url('image/in.png')}"></li>
         </ul>

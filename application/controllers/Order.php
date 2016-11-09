@@ -36,7 +36,7 @@ class Order extends CI_Controller {
             //TODO:调用微信通知
             showNotice("预约成功",site_url("Order/showOrderList"));      
         } else {
-            showNotice("预约失败,请返回重试",site_url("TimeList/index"));   
+            showNotice("预约失败,请返回重试",site_url("Resreve/index"));   
         }
     }
 

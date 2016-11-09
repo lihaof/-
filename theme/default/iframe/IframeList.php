@@ -18,7 +18,7 @@
     <div id="nav">
         <ul>
             <li class="module">子模块4<img class="module-img" src="{:base_url('image/in.png')}"></li>
-            <li class="module module2">子模块5<img class="module-img" src="{:base_url('image/in.png')}"></li>
+            <li class="module module2">指定时段管理<img class="module-img" src="{:base_url('image/in.png')}"></li>
             <li class="module">子模块6<img class="module-img" src="{:base_url('image/in.png')}"></li>
         </ul>
     </div>
@@ -53,7 +53,7 @@
                 <td><input id="court_num{:$val['list_id']}" type="text" name="court_num" disabled="disabled" value="{:$val['court_num']}"/></td>
                 <td><input id="surplus_num{:$val['list_id']}" type="text" name="surplus_num" disabled="disabled" value="{:$val['surplus_num']}"/></td>
                 <td style="padding: 0"><button id="state{:$val['list_id']}" type="button"><?php if($val['status']=='1'): ?>关闭预约<?php elseif($val['status']=='3'): ?>开放预约<?php endif; ?></button></td>
-                <td style="padding: 0"><button id="stop{:$val['list_id']}" type="button">管理预约用户</button></td>
+<!--                 <td style="padding: 0"><button id="stop{:$val['list_id']}" type="button">管理预约用户</button></td> -->
 <!--                 <td style="padding: 0"><button id="delete{:$val['list_id']}" type="button">删 除</button></td>                
  -->            </form>
         </tr>
