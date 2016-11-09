@@ -39,7 +39,7 @@ class TimeList extends CI_Controller {
     
     public function unlock() {
         $listId = $this->input->post('list_id');
-        $this->db->where( array("list_id" => $listId, "status" => 3) );
+        $this->db->where(array("list_id" => $listId, "status" => 3));
         $this->db->update("time_list", array("status" => 1));
         if($this->db->affected_rows() == 1){
             // showNotice("开放预约成功",site_url("Admin/TimeList"));  
@@ -57,8 +57,8 @@ class TimeList extends CI_Controller {
     public function cancelOrder() {
         $orderId = $this->input->post('order_id');
 
-        $orderData = $this->db->where(['order_id'=>$orderId])->get('user_order')->first_row('array');
-        $listData = $this->db->where(['list_id'=>$orderData['list_id']])->get('time_list')->first_row('array');
+        $orderData = $this->db->where(array('order_id'=>$orderId]))->get('user_order')->first_row('array');
+        $listData = $this->db->where(array('list_id'=>$orderData['list_id']))->get('time_list')->first_row('array');
         $this->db->trans_start();
         //将此时段剩余场数+1
         $this->db->where(array("list_id"=>$orderData['list_id']));
@@ -90,14 +90,6 @@ class TimeList extends CI_Controller {
             return false;
         }
         return true;
-    }
-
-    public function showOrderUser($listId = 0) {
-        $listId = (int)$listId;
-        $this->db->where(array("list_id" => $listId,"status" => 1));
-        $list = $this->db->get("user_order")->result_array();
-        $data["list"] = $list;
-        $this->ui->load("Admin/TimeList_showOrderUser",$data);
     }
 
 }

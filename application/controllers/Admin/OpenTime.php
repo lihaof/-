@@ -14,12 +14,13 @@ class OpenTime extends CI_Controller {
         $this->load->helper("common_helper");
     }
 
-    public function index() {
-        $this->db->order_by("time_id","DESC");
-        $list = $this->db->get("open_time")->result_array();
-        $data["list"] = $list;
-        $this->ui->load("Admin/OpenTime",$data);
-    }
+    // 已转移至IframeTime
+    // public function index() {
+    //     $this->db->order_by("time_id","DESC");
+    //     $list = $this->db->get("open_time")->result_array();
+    //     $data["list"] = $list;
+    //     $this->ui->load("Admin/OpenTime",$data);
+    // }
 
     public function add($submit = "no") {
         if($submit == "yes") {
@@ -130,44 +131,12 @@ class OpenTime extends CI_Controller {
         }
     }
 
-    public function lock($timeId = 0) {
-        $data = $this->timeIdIsExist($timeId);
-        if($data) {
-            $data["status"] = 2;
-            $this->db->where("time_id", $timeId);
-            $this->db->update("bms_open_time", $data);
-            if($this->db->affected_rows()){
-                showNotice("停用成功",site_url("Admin/OpenTime/index"));
-            } else {
-                showNotice("停用失败,请重新尝试",site_url("Admin/OpenTime/index"));
-            }
-        } else {
-            showNotice("停用失败,请重新尝试",site_url("Admin/OpenTime/index"));
-        }
-    }
-
-    public function unlock($timeId = 0) {
-        $data = $this->timeIdIsExist($timeId);
-        if($data) {
-            $data["status"] = 1;
-            $this->db->where("time_id", $timeId);
-            $this->db->update("bms_open_time", $data);
-            if($this->db->affected_rows()){
-                showNotice("启用成功",site_url("Admin/OpenTime/index"));
-            } else {
-                showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
-            }
-        } else {
-            showNotice("启用失败,请重新尝试",site_url("Admin/OpenTime/index"));
-        }
-    }
-
     public function changStatus() {
         $time_id = $this->input->post('time_id');
         $data = $this->timeIdIsExist($time_id);
         if($data) {
             $data["status"] = ($data["status"]==1) ? 2 : 1;
-            $this->db->where("time_id", $time_id)->update("bms_open_time", $data);
+            $this->db->where("time_id", $time_id)->update("open_time", $data);
             if($this->db->affected_rows()){
                 // showNotice("启用成功",site_url("Admin/OpenTime/index"));
                 $data = array('success'=>true,'message'=>'切换成功');
@@ -187,7 +156,4 @@ class OpenTime extends CI_Controller {
         }
     }
     
-    public function test() {
-        var_dump($this->timeIsValid('14:55'));
-    }
 }
