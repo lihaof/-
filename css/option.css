@@ -6,37 +6,76 @@
 
 body{
     padding: 30px 0;
-    background-color: #f6f6f3;
+    background-color: #f4f7fa;
 }
 
 .main-box{
-    width: 100%;
+    width: 80%;
     height: auto;
-    text-align: center;
+    margin: 0 auto;
 }
 
-.main-box-title{
+.main-box-title {
+    width: 100%;
     font-size: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #3a3a3a;
 }
 
 .box{
     width: 700px;
-    height: 100px;
+    height: auto;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.23);
+    transition: box-shadow;
+}
+
+.box:hover{
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.box2{
+    width: 700px;
+    height: 80px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 20px 20px 40px 20px;
+    background: #fff;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.box2:hover{
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
 .box-title{
-    font-size: 16px;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
     color: #656565;
-    float: left;
+    font-size: 20px;
+    box-sizing: border-box;
+    padding-left: 5px;
+    border-left: 15px solid #b1cdf7;
+}
+
+.box-title-check{
+    border-left: 15px solid #b0ffb9;
+}
+
+.box-title-radio{
+    border-left: 15px solid #f7caa5;
 }
 
 .box-input{
-    width: 700px;
+    width: 100%;
     height: 30px;
-    float: left;
     margin-top: 10px;
+    margin-bottom: 12px;
     border-radius: 3px;
     border: 1px solid #ddd;
     box-sizing: border-box;
@@ -45,19 +84,25 @@ body{
 }
 
 .box-hint{
-    float: left;
+    width: 100%;
     font-size: 14px;
     margin-top: 10px;
     color: #b6b6b6;
 }
 
 .box-radio-form{
-    margin-top: 20px;
 }
 
 .box-radio{
     float: left;
+    margin-top: 9px;
     color: #5d5d5d;
+}
+
+.box-div{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
 }
 
 .box-radio-text{
@@ -65,6 +110,7 @@ body{
     margin-left: 10px;
     color: #363636;
     margin-right: 20px;
+    font-size: 17px;
 }
 
 .box-checkbox-form{
@@ -73,7 +119,7 @@ body{
 
 .box-checkbox{
     float: left;
-    margin-top: 3px;
+    margin-top: 9px;
 
 }
 
@@ -84,19 +130,27 @@ body{
     margin-right: 10px;
 }
 
+.box-btn{
+    width: 100%;
+    text-align: center;
+}
+
+
 .btn-check{
-    width: 120px;
-    height: 36px;
+    width: 200px;
+    height: 50px;
     border: none;
     background-color: #51dd70;
     border-radius: 3px;
     color: #fff;
+    margin: auto;
+    font-size: 23px;
+    cursor: pointer;
 }
 
 .box-select{
     width: 700px;
     height: 30px;
-    float: left;
     margin-top: 10px;
     border-radius: 3px;
     border: 1px solid #ddd;
