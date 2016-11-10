@@ -5,6 +5,10 @@ $(document).ready(function () {
 
     var bodyID = $('body');
 
+    var member = $('.box-team-member');
+    var memberMarginLeft = ($('body').width() - member.width())/2;
+    member.css({position: "absolute",'left':memberMarginLeft + 'px','top':window.pageYOffset+400});
+
     //创建球队弹窗居中
     var popupCenter = function () {
         var popupID = $('.box-popup');
