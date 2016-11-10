@@ -31,18 +31,6 @@
 			</form>
 		</div>
 
-        <!--查看球队队员-->
-<!--        <div class="box-team-my box-team-member">-->
-<!--            <div class="box-team-my-list1">-->
-<!--                <span class="box-team-my-list-title">队中场位: </span>-->
-<!--                <span class="box-team-my-list-content">{:$val["position"]}</span>-->
-<!--                </div>-->
-<!--            <div class="box-team-my-list2">-->
-<!--                <span class="box-team-my-list-title">队员ID: </span>-->
-<!--                <span class="box-team-my-list-content">{:$val["uid"]}</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
         <!--搜索球队-->
         <span id="search" class="box-team-my-title" style="background-color: #35c66e">搜索球队</span><br><br><br>
         <!--搜索框-->
@@ -57,30 +45,19 @@
         <span id="myTeam" class="box-team-my-title" style="margin-top: -10px">我的球队</span><br><br><br>
         {foreach $team $val}
         <div class="box-team-my">
-            <div class="box-team-my-list1" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">
-                <span class="box-team-my-list-title">球队ID: </span>
-                <span class="box-team-my-list-content">{:$val["team_id"]}</span>
+
+            <div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">
+                <div class="img-style"><img class="box-team-my-list-img" src="{:base_url('image/fruit.png')}"></div>
             </div>
-            <div class="box-team-my-list2">
+            <div class="box-team-my-list1">
                 <span class="box-team-my-list-title">球队名称: </span>
                 <span class="box-team-my-list-content">{:$val["team_name"]}</span>
             </div>
-            <div class="box-team-my-list1">
+            <div class="box-team-my-list2">
                 <span class="box-team-my-list-title">队长ID: </span>
                 <span class="box-team-my-list-content">{:$val["team_leader"]}</span>
             </div>
-            <div class="box-team-my-list2">
-                <span class="box-team-my-list-title">球队宣言: </span>
-                <span class="box-team-my-list-content">{:$val["team_slogan"]}</span>
-            </div>
-            <div class="box-team-my-list1">
-                <span class="box-team-my-list-title">球队图片名: </span>
-                <span class="box-team-my-list-content">{:$val["team_picture"]}</span>
-            </div>
-            <div class="box-team-my-list2">
-                <span class="box-team-my-list-title">球队状态: </span>
-                <span class="box-team-my-list-content">{:$val["team_status"]}</span>
-            </div>
+                <button class="box-team-my-list-btn3" value="" name="">申请列表</button>
                 <button class="box-team-my-list-btn" value="{:$val['team_id']}" name="teammate">球员列表</button>
         </div>
 		{/foreach}
