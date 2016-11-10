@@ -5,9 +5,28 @@ $(document).ready(function () {
 
     var bodyID = $('body');
 
-    var member = $('.box-team-member');
-    var memberMarginLeft = ($('body').width() - member.width())/2;
-    member.css({position: "absolute",'left':memberMarginLeft + 'px','top':window.pageYOffset+400});
+    // var member = $('.box-team-member');
+    // var memberMarginLeft = ($('body').width() - member.width())/2;
+    // member.css({position: "absolute",'left':memberMarginLeft + 'px','top':window.pageYOffset+400});
+
+    // 申请列表居中
+    var join = $('#joinList');
+    var joinMarginLeft = ($('body').width() - join.width())/2;
+    join.css({position: "absolute",'left':joinMarginLeft + 'px','top':window.pageYOffset+100});
+
+
+    //显示申请列表
+    $('#joinBtn').click(function () {
+        $('#joinList').fadeIn('fast').css('display','block');
+        bodyID.append(popupMask).css('overflow','hidden');
+    });
+
+    //关闭申请列表
+    $('#joinClose').click(function () {
+        $('#joinList').fadeOut('fast').css('display','none');
+        $('.mask').fadeOut('fast').remove();
+        bodyID.css('overflow','visible');
+    });
 
     //创建球队弹窗居中
     var popupCenter = function () {
@@ -97,19 +116,18 @@ $("button#serchTeam").click(function(){
             for(var i=0;i<steam.length;i++) {
                 teamurl = "./Team/joinTeam"+"?team_id="+steam[i]['team_id'];
                 teamInfo +=
-                    '<div class="box-team-other">' +
-                        '<div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">' +
-                        '<div class="img-style"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
+                    '<div class="box-team-my box-team-other">' +
+                        '<div class="img-style2"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
+                        '<div class="box-team-my-list2">' +
+                            '<span class="box-team-my-list-title">球队名: </span>' +
+                            '<span class="box-team-my-list-content">' + steam[i]["team_name"] + '</span>' +
+                            '<a class="btn-join" href= '+teamurl+'>申请加入</a>' + '<br>' +
+                        '</div>' +
+                        '<div class="box-team-my-list1">' +
+                            '<span class="box-team-my-list-title">队长: </span>' +
+                            '<span class="box-team-my-list-content">' + steam[i]["team_leader"] + '</span>' +
+                        '</div>' +
                     '</div>' +
-                    '<div class="box-team-my-list1">' +
-                        '<span class="box-team-my-list-title">球队名称: </span>' +
-                        '<span class="box-team-my-list-content">' + steam[i]["team_name"] + '</span>' +
-                    '</div>' +
-                    '<div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">' +
-                        '<span class="box-team-my-list-title">队长ID: </span>' +
-                        '<span class="box-team-my-list-content">' + steam[i]["team_leader"] + '</span>' +
-                    '</div>' +
-                        '<a href= '+teamurl+'>' + '<button class="box-team-my-list-btn2">申请加入</button>' + '</a>' +
                     '</div>';
                 document.getElementById("sTeam").innerHTML= teamInfo;
             }
@@ -130,24 +148,23 @@ $("button[name='teammate']").click(function(){
             steam = $.parseJSON(msg);
             for(var i=0;i<steam.length;i++) {
                 teamMate +=
-                '<div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">' +
-                    '<div class="img-style"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
-                '</div>' +
-                '<div class="box-team-my-list1">' +
+                '<div class="box-team-my-list2">' +
+                    '<div class="img-style2" style="padding-left: 0"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
                     '<span class="box-team-my-list-title">队员ID: </span>' +
                     '<span class="box-team-my-list-content">' + steam[i]['uid'] + '</span>' +
                 '</div>' +
-                '<div class="box-team-my-list2">' +
+                '<div class="box-team-my-list1">' +
                     '<span class="box-team-my-list-title">队中场位: </span>' +
                     '<span class="box-team-my-list-content">' + steam[i]['position'] + '</span>' +
-                '</div>'+
-                '<div class="single-line"></div>'
+                '</div>' + '<div class="single-line2"></div>' +
+                '<div class="single-line"></div>';
             }
 
             teamMate =
             '<div class="box-team-my box-team-member" style="box-shadow:none">' +
-                '<div class="box-team-my-list1" style="height: 35px">' +
-                    '<div class="box-team-member-close">关闭</div>' +
+                '<div class="box-team-my-list1">' +
+                    '<span class="join-list-title">我的队友</span>' +
+                    '<img class="box-team-member-close" src="../image/close.png">' +
                 '</div>' + teamMate +
             '</div>';
 

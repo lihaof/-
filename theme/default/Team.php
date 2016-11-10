@@ -45,51 +45,39 @@
         <span id="myTeam" class="box-team-my-title" style="margin-top: -10px">我的球队</span><br><br><br>
         {foreach $team $val}
         <div class="box-team-my">
-            <div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">
-                <div class="img-style"><img class="box-team-my-list-img" src="{:base_url('image/fruit.png')}"></div>
-            </div>
-            <div class="box-team-my-list1">
-                <span class="box-team-my-list-title">球队名称: </span>
-                <span class="box-team-my-list-content">{:$val["team_name"]}</span>
+            <div class="img-style">
+                <img class="box-team-my-list-img" src="{:base_url('image/fruit.png')}">
             </div>
             <div class="box-team-my-list2">
-                <span class="box-team-my-list-title">队长ID: </span>
+                <span class="box-team-my-list-title">球队名称:  </span>
+                <span class="box-team-my-list-content">{:$val["team_name"]}</span><br>
+                <span class="box-team-my-list-title">队长:  </span>
                 <span class="box-team-my-list-content">{:$val["team_leader"]}</span>
             </div>
-                <button class="box-team-my-list-btn3" value="" name="">申请列表</button>
+                <button id="joinBtn" class="box-team-my-list-btn3" value="" name="">申请列表</button>
                 <button class="box-team-my-list-btn" value="{:$val['team_id']}" name="teammate">球员列表</button>
         </div>
 		{/foreach}
 
-
-
-
-
-
-<!--        <@@@@@@@@@@@@@陈国>-->
-        <!--        <@@@@@@@@@@@@@陈国>-->
-        <!--        <@@@@@@@@@@@@@陈国>-->
-        <!--        <@@@@@@@@@@@@@陈国>-->
-        <!--        <@@@@@@@@@@@@@陈国>-->
-
-        <!--申请列表弹窗（等待修改）-->
-        <div class="box-team-my box-team-member" style="box-shadow:none">
-            <div class="box-team-my-list1" style="height: 35px">
-                <div class="box-team-member-close">关闭</div>
-            </div>
-            <div class="box-team-my-list2" style="border-top-right-radius: 10px;border-top-left-radius: 10px;">
-                <div class="img-style"><img class="box-team-my-list-img" src="../image/fruit.png"></div>
-            </div>
+        
+        <!--球队申请列表-->
+        <div id="joinList" class="box-team-my2" style="display: none">
             <div class="box-team-my-list1">
-                <span class="box-team-my-list-title">队员ID: </span>
-                <span class="box-team-my-list-content">1</span>
+                <span class="join-list-title">球队申请</span>
+                <img id="joinClose" class="box-team-member-close" src="{:base_url('image/close.png')}">
             </div>
+            <div class="img-style2"><img class="box-team-my-list-img" src="{:base_url('image/fruit.png')}"></div>
             <div class="box-team-my-list2">
+                <span class="box-team-my-list-title">队员ID: </span>
+                <span class="box-team-my-list-content">111</span>
+                <a class="btn-join" href= ''>同意</a><br>
+                </div>
+            <div class="box-team-my-list1">
                 <span class="box-team-my-list-title">队中场位: </span>
-                <span class="box-team-my-list-content">2</span>
+                <span class="box-team-my-list-content">222</span>
+                <a class="btn-join-refused" href= ''>拒绝</a><br>
+                </div>
             </div>
-            <button class="box-team-my-list-btn3" style="background-color: #2ccb73" value="" name="">同意</button><br>
-            <button class="box-team-my-list-btn3" style="background-color: #f75d67" value="" name="">拒绝</button>
         </div>
 
 

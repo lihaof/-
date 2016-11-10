@@ -170,36 +170,37 @@ body{
     display: block;
     color: #fff;
     box-shadow: 1px 1px 5px #bcbcbc;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
     cursor: pointer;
     margin-bottom: 10px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .box-team-my{
     width: 90%;
     box-sizing: border-box;
     margin: auto;
-    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #bcbcbc;
+    margin-bottom: 20px;
+}
+
+.box-team-my2{
+    width: 90%;
+    box-sizing: border-box;
+    margin: auto;
     background-color: #fff;
     box-shadow: 1px 1px 5px #bcbcbc;
     margin-bottom: 20px;
 }
 
 .box-team-other{
-    width: 90%;
-    box-sizing: border-box;
-    margin: auto;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 1px 1px 5px #bcbcbc;
-    margin-bottom: 20px;
 }
 
 .box-team-my-list1{
     width: 100%;
-    height: auto;
-    line-height: 35px;
+    height: 45px;
+    line-height: 45px;
     background-color: #f7f7f7;
     padding: 0 15px;
     box-sizing: border-box;
@@ -207,34 +208,46 @@ body{
 
 .box-team-my-list2{
     width: 100%;
-    height: auto;
-    line-height: 35px;
+    height: 45px;
+    line-height: 45px;
     background-color: #fff;
     padding: 0 15px;
     box-sizing: border-box;
 }
 
 .img-style{
-    text-align: center;
-    padding: 10px 0;
+    float: left;
+    padding: 10px 0 10px 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
 
+.img-style2{
+    padding: 10px 10px 10px 10px;
+    float: left;
+    margin-top: 10px;
 }
 
 .box-team-my-list-img{
-    width: 100px;
-    height: 100px;
-    margin: auto;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    display: block;
 }
 
 .box-team-my-list-title{
+    float: left;
     font-weight: 400;
+    margin-right: 10px;
+
 }
 
 .box-team-my-list-content{
-    float: right;
+    float: left;
     font-weight: 300;
+    max-width:35%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .box-team-my-list-btn{
@@ -243,8 +256,6 @@ body{
     line-height: 38px;
     border: none;
     background-color: #3590f7;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
     color: #fff;
     font-size: 18px;
 }
@@ -254,11 +265,9 @@ body{
     height: 38px;
     line-height: 38px;
     border: none;
-    background-color: #92ddf7;
+    background-color: #f77150;
     color: #fff;
     font-size: 18px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
 }
 
 .box-team-my-list-btn2{
@@ -267,8 +276,6 @@ body{
     line-height: 38px;
     border: none;
     background-color: #f75d67;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
     color: #fff;
     font-size: 18px;
 }
@@ -280,7 +287,6 @@ body{
 .box-team-member{
     width: 80%;
     background-color: #fff;
-    border-radius: 10px;
     box-sizing: border-box;
     position: absolute;
     top: 100px;
@@ -289,16 +295,53 @@ body{
 }
 
 .box-team-member-close{
+    height: 20px;
+    width: 20px;
+    margin-top: 12px;
+    margin-right: 4px;
     float: right;
     color: #575757;
-    font-size: 17px;
     cursor: pointer;
 }
 
 .single-line{
     width: 100%;
-    height: 5px;
+    height: 10px;
     background-color: #808080;
     margin: auto;
-    margin-top: 5px;
+}
+
+.single-line2{
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+    margin: auto;
+}
+
+.btn-join{
+    float: right;
+    text-decoration: none;
+    color: #279c57;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.btn-join-refused{
+    float: right;
+    text-decoration: none;
+    color: #9c2920;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.join-list-title{
+    float: left;
+    font-size: 20px;
+    color: #565656;
+}
+
+#joinList{
+    position: absolute;
+    top: 0;
+    z-index: 3;
 }
