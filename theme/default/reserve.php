@@ -18,7 +18,7 @@
 
 <!--选择周数-->
 <div class="week-select">
-    <?php 
+    <!--{execute}--> 
     $week=array("日","一","二","三","四","五","六");
     for($i=0;$i<7;$i++) {
         echo '<div class="week">';
@@ -29,12 +29,14 @@
         }
         echo '<p><a href="'.site_url('Reserve/index/'.date('Y/m/d/',time()+86400*$i)).'">周'.$week[date("w",time()+86400*$i)].'</a></p></div>';
     }
-    ?>
+    <!--{/execute}-->
 </div>
 <!--滑动条-->
 
-<?php $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)); ?>
-<div class="slide" id="slide" style="left: calc(<?php echo $num*100; ?>%/7)"></div>
+<!--{execute}-->
+$num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)) * 100;
+<!--{/execute}-->
+<div class="slide" id="slide" style="left: calc({:$num}%/7)"></div>
 
 <!--预约项目-->
 <div id="reserve0">
