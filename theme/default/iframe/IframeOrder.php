@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/bootstrap.min.css')}">
-    <link rel="stylesheet" type="text/css" href="{:base_url('css/bootstrap-datetimepicker.min.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/form.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/manage.css')}">
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <script type="text/javascript" src="{:base_url('js/bootstrap.min.js')}"></script>
-    <script type="text/javascript" src="{:base_url('js/bootstrap-datetimepicker.min.js')}"></script>
-    <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 </head>
 <body>
 <div class="iframe-all">
@@ -51,13 +48,9 @@
         <!--{/foreach}-->
     </table>
 </div>
-
-
-
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 <script>
     $(document).ready(function () {
-
         //添加列表背景色
         var changebgc = function() {
             $('#form').find('tr').each(function () {
@@ -69,16 +62,11 @@
                 }
             });
         }
-
         changebgc();
-
         $("input[id^='form_datetime']").datetimepicker({
             format: 'HH:ii',
             autoclose: true
         });
-
-
-
         //状态切换
         $(document).delegate("button[id^='state']",'click',function () {
             var stopId = $(this).attr('id');
@@ -108,11 +96,7 @@
                 }
             });
         });
-
-
      });
-
-
 </script>
 </body>
 </html>
