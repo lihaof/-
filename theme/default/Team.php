@@ -36,19 +36,19 @@
 		</div>
 
         <!--搜索球队-->
-        <span id="search" class="box-team-my-title" style="background-color: #35c66e">搜索球队</span><br><br><br>
+        <span id="search" class="box-team-my-title" style="background: linear-gradient(to right,#49b571,#52cb7e);">搜索球队</span>
         <!--搜索框-->
         <div class="box-team-search">
             <input class="box-team-input" type="text" id="team_name" placeholder="搜索球队">
             <button class="box-team-btn" id="serchTeam">搜 索</button>
-        </div><br>
+        </div>
 
         <div id="sTeam"></div>
 
         <!--我的球队-->
-        <span id="myTeam" class="box-team-my-title" style="margin-top: -10px">我的球队</span><br><br><br>
+        <span id="myTeam" class="box-team-my-title" style="background: linear-gradient(to right,#e69e50,#f7aa56);">我的球队</span>
         {if empty($myteam)}
-        <span>暂未创建过球队</span>
+        <span class="no-team">暂未创建过球队</span>
         {else}
         {foreach $myteam $val}
         <div class="box-team-my">
@@ -70,11 +70,11 @@
         </div>
         {/foreach}
         {/if}
-        
+
         <!--我加入的球队-->
-        <span id="myTeam" class="box-team-my-title" style="margin-top: -10px">加入球队</span><br><br><br>
+        <span id="myTeam" class="box-team-my-title" style="background: linear-gradient(to right,#c64e54,#e25960);">加入球队</span>
         {if empty($team)}
-        <span>暂未加入过其他球队</span>
+        <span class="no-team">暂未加入球队</span>
         {else}
         {foreach $team $val}
         <div id='{:$val["team_id"]}'  class="box-team-my">
@@ -96,10 +96,10 @@
 
 	<!--底部栏-->
 	<div class="bottom">
-		<div><img class="btn-normal" src="{:base_url('image/reserve.png')}"><p class="p-normal">预约</p></div>
+		<div onclick="window.location='{:base_url("index.php/reserve")}';"><img class="btn-normal" src="{:base_url('image/reserve.png')}"><p class="p-normal">预约</p></div>
 		<div><img class="btn-normal btn-pressed" src="{:base_url('image/match.png')}"><p class="p-normal p-pressed">球队</p></div>
 		<div><img class="btn-normal" src="{:base_url('image/find.png')}"><p class="p-normal">发现</p></div>
-		<div><img class="btn-normal" src="{:base_url('image/myself.png')}"><p class="p-normal">我</p></div>
+		<div onclick="window.location='{:base_url("index.php/myself")}';"><img class="btn-normal" src="{:base_url('image/myself.png')}"><p class="p-normal">我</p></div>
 	</div>
 
 

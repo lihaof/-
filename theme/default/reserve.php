@@ -43,7 +43,7 @@ $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)) 
     <!--{foreach $list $key $val}-->
     <div class="box-reserve">
     <span class="box-reserve-date">{:$val['date']}</span>
-    <button class="box-reserve-btn"><a href="{:site_url('Order/add/'.$val['list_id'])}">立即预约</a></button>
+    <button class="box-reserve-btn"><a style="color: #fff" href="{:site_url('Order/add/'.$val['list_id'])}">立即预约</a></button>
     <p class="box-reserve-time">{:$val['start']} - {:$val['end']}</p>
     <div class="box-reserve-line"></div>
     <span class="box-reserve-court">场馆余量: </span><span class="box-reserve-court-num">{:$val['surplus_num']}</span>
@@ -66,9 +66,9 @@ $num = floor((strtotime($date) - strtotime(date('Y-m-d',time()))) / (60*60*24)) 
 <!--底部栏-->
 <div class="bottom">
     <div><img class="btn-normal btn-pressed" src="{:base_url('image/reserve.png')}"><p class="p-normal p-pressed">预约</p></div>
-    <div><img class="btn-normal" src="{:base_url('image/match.png')}"><p class="p-normal">约战</p></div>
+    <div onclick="window.location='{:base_url("index.php/team")}';"><img class="btn-normal" src="{:base_url('image/match.png')}"><p class="p-normal">球队</p></div>
     <div><img class="btn-normal" src="{:base_url('image/find.png')}"><p class="p-normal">发现</p></div>
-    <div><img class="btn-normal" src="{:base_url('image/myself.png')}"><p class="p-normal">我</p></div>
+    <div onclick="window.location='{:base_url("index.php/myself")}';"><img class="btn-normal" src="{:base_url('image/myself.png')}"><p class="p-normal">我</p></div>
 </div>
 
  <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script>

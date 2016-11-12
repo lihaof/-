@@ -13,7 +13,7 @@
 <body>
 <!--微信自带顶部栏-->
 <div class="topbar-default">
-    <img class="back" src="{:base_url('image/back_white.png')}">
+    <img class="back" src="{:base_url('image/back_white.png')}" onclick="window.location='{:base_url("index.php/myself")}';">
     <span>预约信息</span>
 </div>
 
@@ -37,13 +37,6 @@
         </div>
     <!--{/if}-->
 <!--{/foreach}-->
-<!--底部栏-->
-<div class="bottom">
-    <div><img class="btn-normal btn-pressed" src="{:base_url('image/reserve.png')}"><p class="p-normal p-pressed">预约</p></div>
-    <div><img class="btn-normal" src="{:base_url('image/match.png')}"><p class="p-normal">约战</p></div>
-    <div><img class="btn-normal" src="{:base_url('image/find.png')}"><p class="p-normal">发现</p></div>
-    <div><img class="btn-normal" src="{:base_url('image/myself.png')}"><p class="p-normal">我</p></div>
-</div>
 
 <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script>
 </body>

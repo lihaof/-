@@ -16,7 +16,7 @@
 <body>
 <!--微信自带顶部栏-->
 <div class="topbar-default">
-    <img class="back" src="{:base_url('image/back_white.png')}">
+    <img class="back" src="{:base_url('image/back_white.png')}" onclick="window.location='{:base_url("index.php/myself")}';">
     <span>用户信息</span>
 </div>
 <!--顶部信息-->
