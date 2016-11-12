@@ -64,10 +64,9 @@
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 <script>
     $(document).ready(function () {
-
         //添加列表背景色
         var changebgc = function() {
-            $('#form').find('tr').each(function () {
+            $('.form-style').find('tr').each(function () {
                 if ($(this).index() % 2 == 0) {
                     $(this).css('background-color', '#fff');
                 }
@@ -108,9 +107,6 @@
                 success: function (data) {
                     if(data.success) {
                         alert(data.message);
-                        // $(this).text('修改');
-                        // $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
-                        // $(this).attr('id','edit' + num);
                         location.reload();
                     } else {
                         alert(data.message);
@@ -131,6 +127,7 @@
             editInput.removeAttr('disabled').css('border','1px solid #ddd');
             editId.text('确认');
             editId.attr('id','check' + editNum);
+            editInput = editId.parent().siblings().children('input:lt(2)');
             editInput.datetimepicker({
                 format: 'HH:ii',
                 autoclose: true

@@ -17,7 +17,7 @@
     <!--侧面栏-->
     <div id="nav">
         <ul>
-            <li class="module module2">子模块4<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
+            <li class="module module2">开放时段管理<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
             <li class="module">子模块5<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
             <li class="module">子模块6<img class="module-img" src="<?php echo base_url('image/in.png'); ?>"></li>
         </ul>
@@ -66,10 +66,9 @@
 <script type="text/javascript" src="<?php echo base_url('js/iframe.js'); ?>"></script>
 <script>
     $(document).ready(function () {
-
         //添加列表背景色
         var changebgc = function() {
-            $('#form').find('tr').each(function () {
+            $('.form-style').find('tr').each(function () {
                 if ($(this).index() % 2 == 0) {
                     $(this).css('background-color', '#fff');
                 }
@@ -110,9 +109,6 @@
                 success: function (data) {
                     if(data.success) {
                         alert(data.message);
-                        // $(this).text('修改');
-                        // $(this).parent().siblings().children('input').attr("disabled",'false').css('border','none');
-                        // $(this).attr('id','edit' + num);
                         location.reload();
                     } else {
                         alert(data.message);
@@ -133,6 +129,7 @@
             editInput.removeAttr('disabled').css('border','1px solid #ddd');
             editId.text('确认');
             editId.attr('id','check' + editNum);
+            editInput = editId.parent().siblings().children('input:lt(2)');
             editInput.datetimepicker({
                 format: 'HH:ii',
                 autoclose: true

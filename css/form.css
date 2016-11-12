@@ -17,6 +17,12 @@
     box-shadow: -1px 1px 7px #bbb;
 }
 
+.team-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
 .form-style button{
     width: 100%;
     height: 100%;
@@ -44,6 +50,10 @@
     padding: 10px 15px;
     font-size: 14px;
     height: 45px;
+    max-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .form-style input{
@@ -87,8 +97,4 @@
     margin-top: 40px;
     border: none;
     border-radius: 3px;
-}
-
-#form form{
-
 }
