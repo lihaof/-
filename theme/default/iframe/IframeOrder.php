@@ -26,13 +26,9 @@
             $list = $query->result_array();
             foreach($list as $key=>&$value) {
                 $data = $this->db->where(['list_id'=>$value['list_id']])->get('time_list')->first_row('array');
-                unset($data['list_id']);
-                unset($data['status']);
-                unset($data['court_num']);
-                unset($data['surplus_num']);
+                unset($data['list_id'], $data['status'], $data['court_num'], $data['surplus_num']);
                 $value = array_merge($value,$data);
             }
-            $num_rows  = $query->num_rows();
         <!--{/execute}-->
         <!--{foreach $list $key $val}-->
         <tr id="tab{:$val['order_id']}">
@@ -42,7 +38,7 @@
                 <td><input id="form_datetime_e{:$val['order_id']}" type="text" name = 'time' disabled="disabled" value="{:$val['start']} - {:$val['end']}" readonly></td>
                 <td><input id="price{:$val['order_id']}" type="text" name="price" disabled="disabled" value="{:$val['price']}"/></td>
                 <td><input id="status{:$val['order_id']}" type="text" name="status" disabled="disabled" value="<!--{if $val['status']=='1'}-->预约成功<!--{elseif $val['status']=='2'}-->撤销预约<!--{/if}-->"/></td>
-                <td style="padding: 0"><button id="state{:$val['order_id']}" type="button"><?php if($val['status']=='1'): ?>撤销预约<?php endif; ?></button></td>
+                <td style="padding: 0"><!--{if $val['status']=='1'}--><button id="state{:$val['order_id']}" type="button">撤销预约</button><!--{/if}--></td>
             </form>
         </tr>
         <!--{/foreach}-->
@@ -62,17 +58,15 @@
                 }
             });
         }
+
         changebgc();
-        $("input[id^='form_datetime']").datetimepicker({
-            format: 'HH:ii',
-            autoclose: true
-        });
+
         //状态切换
         $(document).delegate("button[id^='state']",'click',function () {
             var stopId = $(this).attr('id');
             var stopNum = stopId.substring(5);
             var text = $('#state' + stopNum).text();
-            var u = '<?php echo site_url("Admin/TimeList/cancelOrder/"); ?>';
+            var u = '{:site_url("Admin/TimeList/cancelOrder/")}';
             //提交状态修改后的表单信息
             $.ajax({
                 type: 'POST',
@@ -84,7 +78,7 @@
                 success: function (data) {
                     if(data.success) {
                         alert(data.message);
-                        $('#state' + stopNum).text('');
+                        $('#state' + stopNum).remove();
                         $('#status' + stopNum).val('撤销预约');
                     } else {
                         alert(data.message);

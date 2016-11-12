@@ -27,10 +27,9 @@ class Order extends CI_Controller {
         }
         $this->db->trans_start();
         //更新剩余球场数量
-        $this->db->where( array("list_id"=>$listId, "status"=>1) );
-        $this->db->update("bms_time_list", array("surplus_num"=>$listData["surplus_num"]-1));
+        $this->db->set('`surplus_num`', '`surplus_num`-1', FALSE)->where(array("list_id"=>$listId, "status"=>1))->update("time_list");
         //添加至用户预定记录
-        $this->db->insert("bms_user_order", array("uid"=>$uid, "list_id"=>$listId, "status"=>1, "time"=>time()));
+        $this->db->insert("user_order", array("uid"=>$uid, "list_id"=>$listId, "status"=>1, "time"=>time()));
         $this->db->trans_complete();
         if ($this->db->trans_status() === TRUE) {
             //TODO:调用微信通知

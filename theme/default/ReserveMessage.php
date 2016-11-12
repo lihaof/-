@@ -25,8 +25,8 @@
         <div class="box-reserve">
             <span class="box-reserve-date">{:$val["date"]}</span>
             <div class="box-reserve-status1">已预约</div>
-            <span class="box-reserve-cost">¥49.99</span>
-            <p class="box-reserve-time">8:00-10:00</p>
+            <span class="box-reserve-cost">¥{:$val["price"]}</span>
+            <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
         </div>
     <!--{elseif $val["status"]==2}-->
         <div class="box-reserve">

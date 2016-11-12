@@ -14,6 +14,17 @@ class TimeListModel extends CI_Model {
         $this->load->helper("common_helper");
     }
 
+    public function fetchSevenDay() {
+        $this->createDateData();
+        $queryDate = array();
+        for($i=0;$i<7;$i++) {
+            $queryDate[] = date('Y-m-d',time()+60*60*24*$i);
+        }
+        $query = $this->db->or_where_in('date',$queryDate)->order_by('date','asc')->get("time_list");
+        $list = $query->result_array();
+        return $list;
+    }
+
     public function fetchOneDay($year = "0", $month = "0", $day = "0") {
         if(checkdate($month, $day, $year)) {
             $date = $year."-".$month."-".$day;
@@ -30,28 +41,37 @@ class TimeListModel extends CI_Model {
         }
         $query = $this->db->where('date',$date)->order_by('list_id','ASC')->get('time_list');
         if($query->num_rows() == 0) {
-            $this->createDateData($date);
+            $this->createDateData();
         }
-        $query = $this->db->where('date',$date)->order_by('list_id','ASC')->get('time_list');
+        $query = $this->db->where(['date'=>$date,'status'=>1])->order_by('list_id','ASC')->get('time_list');
         return $query->result_array();
     }
 
-    private function createDateData($date) {
-        $openTime = $this->db->where('status','1')->get('open_time')->result_array();
-        $this->db->trans_start();
-        foreach ($openTime as $key => $value) {
-            $data = array(
-                'date' => $date,
-                'start' => $value['start'],
-                'end' => $value['end'],
-                'price' => $value['price'],
-                "court_num" => $value["court_num"],
-                "surplus_num" => $value["court_num"],
-                'status' => 1
-            );
-            $this->db->insert("time_list",$data);
+    private function createDateData() {
+        //一次性生成7天的数据
+        for($i=0;$i<7;$i++) {
+            $date = date('Y-m-d',time() + 60*60*24*$i);
+            if($this->db->where('date',$date)->get('time_list')->num_rows() != 0) {
+                // 今天的数据已经存在代表此后一周的数据都已经生成
+                break;
+            }
+            $openTime = $this->db->where('status','1')->get('open_time')->result_array();
+            $this->db->trans_start();
+            foreach ($openTime as $key => $value) {
+                $data = array(
+                    'date' => $date,
+                    'start' => $value['start'],
+                    'end' => $value['end'],
+                    'price' => $value['price'],
+                    "court_num" => $value["court_num"],
+                    "surplus_num" => $value["court_num"],
+                    'status' => 1
+                );
+                $this->db->insert("time_list",$data);
+            }
+            $this->db->trans_complete();
         }
-        $this->db->trans_complete();
+        
     }
 
     private function getTimeLimit() {

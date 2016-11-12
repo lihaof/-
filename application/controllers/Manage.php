@@ -11,6 +11,7 @@ class Manage extends CI_Controller {
         parent::__construct();
         $this->load->model("initor");
         $this->load->model("AdministratorModel");
+        $this->load->model("TimeListModel");
     }
 
     public function index() {

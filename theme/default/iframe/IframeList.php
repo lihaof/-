@@ -14,27 +14,23 @@
     <!--表格-->
     <table id="form" class="form-style">
         <tr>
+            <th width="10%">日期</th>
             <th width="20%">开始时间</th>
             <th width="20%">结束时间</th>
             <th width="13%">价格</th>
             <th width="14%">球场总数</th>
-            <th width="14%">剩余总数</th>
-            <th width="19%" colspan="3">操作</th>
+            <th width="13%">剩余总数</th>
+            <th width="10%" colspan="3">操作</th>
         </tr>
         <!--{execute}-->
-            $queryDate = array();
-            for($i=0;$i<7;$i++) {
-                $queryDate[] = date('Y-m-d',time()+86400*$i);
-            }
-            $query = $this->db->or_where_in('date',$queryDate)->order_by('date','asc')->get("time_list");
-            $list = $query->result_array();
-            $num_rows  = $query->num_rows();
+            $list = $this->TimeListModel->fetchSevenDay();
         <!--{/execute}-->
         <!--{foreach $list $key $val}-->
         <tr id="tab{:$val['list_id']}">
-            <form action=''  method=''>        
-                <td><input id="form_datetime_s{:$val['list_id']}" type="text" name = 'start' disabled="disabled" value="{:$val['date']} {:$val['start']}" readonly></td>
-                <td><input id="form_datetime_e{:$val['list_id']}" type="text" name = 'end' disabled="disabled" value="{:$val['date']} {:$val['end']}" readonly></td>
+            <form action=''  method=''>  
+                <td><input id="form_datetime_d{:$val['list_id']}" type="text" name = 'date' disabled="disabled" value="{:$val['date']}" readonly></td>      
+                <td><input id="form_datetime_s{:$val['list_id']}" type="text" name = 'start' disabled="disabled" value="{:$val['start']}" readonly></td>
+                <td><input id="form_datetime_e{:$val['list_id']}" type="text" name = 'end' disabled="disabled" value="{:$val['end']}" readonly></td>
                 <td><input id="price{:$val['list_id']}" type="text" name="price" disabled="disabled" value="{:$val['price']}"/></td>
                 <td><input id="court_num{:$val['list_id']}" type="text" name="court_num" disabled="disabled" value="{:$val['court_num']}"/></td>
                 <td><input id="surplus_num{:$val['list_id']}" type="text" name="surplus_num" disabled="disabled" value="{:$val['surplus_num']}"/></td>
@@ -62,13 +58,6 @@
         }
 
         changebgc();
-
-        $("input[id^='form_datetime']").datetimepicker({
-            format: 'HH:ii',
-            autoclose: true
-        });
-
-
 
         //状态切换
         $(document).delegate("button[id^='state']",'click',function () {
