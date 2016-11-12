@@ -15,7 +15,7 @@ class Team extends CI_Controller {
         $this->load->helper("common_helper");
 	}
 	public function index() {
-		$uid = 1;//待获取
+		$uid = $this->initor->uid;//待获取
 		$data["team"] = $this->getMyTeam($uid);
 		$data["myteam"] = $this->getCreatedTeam($uid);
 		$this->ui->load("Team",$data);
@@ -68,7 +68,7 @@ class Team extends CI_Controller {
 		$team_picture = $this->input->post('team_picture');
 		if($team_name=="") return;
 		if($team_picture=="") $team_picture = "default.png";
-		$uid = 1;//待获取
+		$uid = $this->initor->uid;//待获取
 		//验证该用户是否已创建相同的球队
 		if($this->fetchTeam($uid,$team_name)) {
 			/*showNotice("你已创建该球队,如未查询到,可能是后台未审核");*/
@@ -112,7 +112,7 @@ class Team extends CI_Controller {
 	 */
 	public function joinTeam() {
 		$team_id = $this->input->get('team_id');
-		$uid = 1;//待获取
+		$uid = $this->initor->uid;//待获取
 		$this->db->select("team_memmber_id,team_memmber_status");
 		$this->db->from("team_memmber");
 		$this->db->where("team_id",$team_id);
@@ -142,17 +142,14 @@ class Team extends CI_Controller {
 	 *@return boolean
 	 */
 	public function admitTeam() {
-		$uid = 1; //待获取
+		$uid = $this->initor->uid; //待获取
 		$team_memmber_status = 1;
-		$team_memmber_id = $this->input->get("team_memmber_id");
-		if(empty($team_memmber_id)) return;
+		$team_memmber_id = $this->input->post("team_memmber_id");
+		if(empty($team_memmber_id)) { echo "获取参数失败"; return;  }
 		$this->db->select("team_id");
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$team_id = $this->db->get("team_memmber")->result_array();
-		$this->db->select("team_id");
-		$this->db->where("team_id",$team_id);
-		$this->db->where("team_leader",$uid);
-		if($this->db->get("team")) return;  //该用户不是队长
+		if($this->checkLeader($team_id,$uid)) { echo "无操作权限"; return;  }  //该用户不是队长
 
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$this->db->set("team_memmber_status",$team_memmber_status);
@@ -168,9 +165,9 @@ class Team extends CI_Controller {
 	 *@return boolean
 	 */
 	public function refuseTeam() {
-		$uid = 1; //待获取
-		$team_memmber_status = 2;
-		$team_memmber_id = $this->input->get("team_memmber_id");
+		$uid = $this->initor->uid; //待获取
+		$team_memmber_status = 3;
+		$team_memmber_id = $this->input->post("team_memmber_id");
 		if(empty($team_memmber_id)) return;
 		$this->db->select("team_id");
 		$this->db->where("team_memmber_id",$team_memmber_id);
@@ -260,21 +257,16 @@ class Team extends CI_Controller {
 	public function getApplyTeammate() {
 		$team_id = $this->input->post("team_id");
 		if($team_id=="") return;
-		$this->db->select("position,uid");
+		$this->db->select("team_memmber_id,position,uid");
 		$this->db->where("team_id",$team_id);
-		$this->db->where("team_memmber_status>=","0");
-		echo json_encode($this->db->get("team_memmber")->result_array());
-	}
-	/**
-	 *显示创建的球队成员(队长，显示包括未审核的队员)
-	 *@param $team_id
-	 *@return uid
-	 */
-	public function getTeammate() {
-		$team_id = $this->input->post("team_id");
-		$this->db->select("*");
-		$this->db->where("team_id",$team_id);
-		echo json_encode($this->db->get("team_memmber")->result_array());
+		$this->db->where("team_memmber_status","0");
+		$resultData = $this->db->get("team_memmber")->result_array();
+		foreach($resultData as &$each) {
+			$uid = $this->getUserInfoById($each['uid']);
+			$each['uid']= $uid['0']['nickname'];
+			$each['position'] = $this->changeAsAccb($each['position']);
+		}
+		echo json_encode($resultData);
 	}
 	/**
 	 *查找球队(模糊查找),参数为空时显示全部球队
@@ -367,9 +359,39 @@ class Team extends CI_Controller {
 	 *@param $team_id,$uid
 	 *@return $boolean
 	 */
+	public function exitTeam() {
+		$team_id = $this->input->post("team_id");
+		$uid = $this->initor->uid; //待获取
+		if($team_id=="") return ;
+		$this->db->where("uid",$uid);
+		$this->db->where("team_id",$team_id);
+		if($this->db->delete("team_memmber")) echo 1;
+		else echo 0;
+	}
 	/**
 	 *解散球队
 	 *@param $team_id,$uid
 	 *@return $boolean
 	 */
+	public function dissolution() {
+		$team_id = $this->input->post("team_id");
+		$uid = $this->initor->uid; //待获取
+		if($team_id=="") return ;
+		//验证是否队长
+		if(!$this->checkLeader($team_id,$uid)) return ;
+		$this->db->where("team_id",$team_id);
+		if($this->db->delete("team_memmber")) echo 1;
+		else echo 0;
+	}
+	/**
+	 *验证是否队长
+	 *@param $team_id,$uid
+	 *@return $boolean
+	 */
+	public function checkLeader($team_id,$uid) {
+		$this->db->select("team_id");
+		$this->db->where("team_id",$team_id);
+		$this->db->where("team_leader",$uid);
+		return $this->db->get("team")->result_array();
+	}
 }

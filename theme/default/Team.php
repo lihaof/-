@@ -57,12 +57,16 @@
             </div>
             <div class="box-team-my-list2">
                 <span class="box-team-my-list-content">{:$val["team_name"]}</span>
-                <span class="dissolution" id="d{:$val['team_id']}" onclick="dissolution(this.id)">解散</span><br>
+                <span class="dissolution" id="d{:$val['team_id']}" data_team_id="{:$val['team_id']}" onclick="dissolution(this)">解散</span><br>
                 <span class="box-team-my-list-title">队长:  </span>
                 <span class="box-team-my-list-content">{:$val["team_leader"]}</span>
             </div>
-                <button id="joinBtn" class="box-team-my-list-btn3" value="{:$val['team_id']}" applynum="{:@$val["apply_Num"]}" name="">申请人数: {:@$val["apply_Num"]}</button>
+                <div onclick="applyteam(this)">
+                <button class="box-team-my-list-btn3" value="{:$val['team_id']}" applynum="{:@$val["apply_Num"]}" name="">申请人数: {:@$val["apply_Num"]}</button>
+                </div>
+                <div onclick="teamnum(this)">
                 <button class="box-team-my-list-btn" value="{:$val['team_id']}" name="teammate">当前人数: {:@$val["teammate_num"]}</button>
+                </div>
         </div>
         {/foreach}
         {/if}
@@ -79,11 +83,13 @@
             </div>
             <div class="box-team-my-list2">
                 <span class="box-team-my-list-content">{:$val["team_name"]}</span>
-                <span class="exit" id="e{:$val['team_id']}" onclick="exit(this.id)">退出</span><br>
+                <span class="exit" id="e{:$val['team_id']}" data_team_id="{:$val['team_id']}" onclick="exit(this)">退出</span><br>
                 <span class="box-team-my-list-title">队长:  </span>
                 <span class="box-team-my-list-content">{:$val["team_leader"]}</span>
             </div>
+            <div onclick="teamnum(this)">
                 <button class="box-team-my-list-btn" value="{:$val['team_id']}" name="teammate">球员列表 ({:@$val["teammate_num"]}人)</button>
+            </div>
         </div>
         {/foreach}
         {/if}

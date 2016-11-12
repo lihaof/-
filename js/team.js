@@ -4,22 +4,58 @@
 $(document).ready(function () {
 
     //解散球队确认事件
-    dissolution = function(id){
+    dissolution = function(dissolution){
          var r=confirm("您确定要解散球队吗？")
           if (r==true){
-            alert("您已成功解散球队");
-            $('#' + id).parent().parent().remove();
+            var team_id = $(dissolution).attr("data_team_id");
+            $.ajax({
+                url:"./Team/exitTeam",
+                cache:false,
+                type:"POST",
+                async:false,
+                data:{
+                    team_id:team_id
+                },
+                success:function(msg) {
+                    alert("您已成功解散球队");
+                    $('#' + dissolution.id).parent().parent().remove();
+                }
+            });
           }
 
     }
 
     //退出球队确认事件
-   exit = function(id){
+   exit = function(exit){
          var r=confirm("您确定要退出球队吗？")
           if (r==true){
-            alert("您已成功退出球队");
-            $('#' + id).parent().parent().remove();
+            var team_id = $(exit).attr("data_team_id");
+            $.ajax({
+                url:"./Team/exitTeam",
+                cache:false,
+                type:"POST",
+                async:false,
+                data:{
+                    team_id:team_id
+                },
+                success:function(msg) {
+                    alert("您已成功退出球队");
+                    $('#' + exit.id).parent().parent().remove();
+                }
+            });
           }
+    }
+    //同意加入或者拒绝函数封装
+    function agreeden(team_memmber_id,url) {
+        $.ajax({
+                url:url,
+                cache:false,
+                type:"POST",
+                async:false,
+                data:{
+                    team_memmber_id:team_memmber_id
+                }
+            });
     }
 
     var bodyID = $('body');
@@ -33,22 +69,81 @@ $(document).ready(function () {
     var joinMarginLeft = ($('body').width() - join.width())/2;
     join.css({position: "absolute",'left':joinMarginLeft + 'px','top':window.pageYOffset+100});*/
 
-
-    //显示申请列表
-    $('#joinBtn').click(function () {
-        //$('#joinList').fadeIn('fast').css('display','block');
-        //bodyID.append(popupMask).css('overflow','hidden');
-        if($(this).attr('applynum')==0) {
+    applyteam = function(apply) {
+        var team_id = $(apply).find("button:eq(0)").attr("value");
+        var apply_num = $(apply).find("button:eq(0)").attr("applynum");
+        var url = "./Team/getApplyTeammate";
+        if(apply_num==0) {
             alert("暂时未有用户申请加入");
         } else {
+            ajaxgetinfo(team_id,url);
+        }
+    }
+    teamnum = function(apply) {
+        var team_id = $(apply).find("button:eq(0)").attr("value");
+        var url = "./Team/getValidTeammate";
+        var teamMate="";
+        $.ajax({
+            url:"./Team/getValidTeammate",
+            cache:false,
+            type:"POST",
+            async:false,
+            data:{
+                team_id:team_id
+            },
+            success:function(msg) {
+                steam = $.parseJSON(msg);
+                for(var i=0;i<steam.length;i++) {
+                    teamMate +=
+                    '<div class="box-team-my-list2">' +
+                        '<div class="img-style2" style="padding-left: 0"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
+                        '<span class="box-team-my-list-title">队员: </span>' +
+                        '<span class="box-team-my-list-content">' + steam[i]['uid'] + '</span>' +
+                    '</div>' +
+                    '<div class="box-team-my-list1">' +
+                        '<span class="box-team-my-list-title">队中场位: </span>' +
+                        '<span class="box-team-my-list-content">' + steam[i]['position'] + '</span>' +
+                    '</div>' + '<div class="single-line2"></div>' +
+                    '<div class="single-line"></div>';
+                }
+
+                teamMate =
+                '<div class="box-team-my box-team-member" style="box-shadow:none">' +
+                    '<div class="box-team-my-list1">' +
+                        '<span class="join-list-title">我的队友</span>' +
+                        '<img class="box-team-member-close" src="../image/close.png">' +
+                    '</div>' + teamMate +
+                '</div>';
+
+                bodyID.append(teamMate).append(popupMask);
+                // member.fadeIn('fast').css('display','block');
+                bodyID.css('overflow','hidden');
+
+                //查看球员弹窗居中
+                var member = $('.box-team-member');
+                var memberMarginLeft = ($('body').width() - member.width())/2;
+                member.css({position: "absolute",'left':memberMarginLeft + 'px','top':window.pageYOffset+100});
+                $('.mask').css('top',window.pageYOffset);
+
+                //关闭查看球员弹窗
+                var closeMember = $('.box-team-member-close').click(function () {
+                    $('.box-team-member').remove();
+                    $('.mask').fadeOut('fast').remove();
+                    bodyID.css('overflow','visible');
+                });
+            }
+        });
+
+    }
+    function ajaxgetinfo(team_id,url) {
             var applyteammate = "";
             $.ajax({
-                url:"./Team/getApplyTeammate",
+                url:url,
                 cache:false,
                 type:"POST",
                 async:false,
                 data:{
-                    team_id:$(this).attr('value')
+                    team_id:team_id
                 },
                 success:function(msg) {
                     steam = $.parseJSON(msg);
@@ -61,12 +156,12 @@ $(document).ready(function () {
                             '<div class="box-team-my-list2">'+
                                 '<span class="box-team-my-list-title">队员: </span>'+
                                 '<span class="box-team-my-list-content">'+steam[i]['uid']+'</span>'+
-                                '<div class="btn-join">同意</div><br>'+
+                                '<div class="btn-join" value="'+steam[i]['team_memmber_id']+'">同意</div><br>'+
                             '</div>'+
                             '<div class="box-team-my-list1">'+
                                 '<span class="box-team-my-list-title">队中场位: </span>'+
                                 '<span class="box-team-my-list-content">'+steam[i]['position']+'</span>'+
-                                '<div class="btn-join-refused">拒绝</div><br>'+
+                                '<div class="btn-join-refused" value="'+steam[i]['team_memmber_id']+'">拒绝</div><br>'+
                             '</div>' +
                         '</div>';
 
@@ -108,7 +203,7 @@ $(document).ready(function () {
                     //同意以后移除当前申请列
                     $('.btn-join').click(function(){
                         //同意事件.......
-
+                        agreeden($(this).attr('value'),"./Team/admitTeam");
 
                         //同意后删除当前列
                         $(this).parent().parent().remove();
@@ -118,7 +213,7 @@ $(document).ready(function () {
                      //拒绝以后移除当前申请列
                     $('.btn-join-refused').click(function(){
                         //拒绝事件.......
-
+                        agreeden($(this).attr('value'),"./Team/refuseTeam");
                         
                         //拒绝后删除当前列
                        $(this).parent().parent().remove();
@@ -126,9 +221,7 @@ $(document).ready(function () {
                     });
                 }
             })
-        }
-    });
-
+    }
     //关闭申请列表
     $('#joinClose').click(function () {
         $('#joinList').fadeOut('fast').css('display','none');
@@ -187,7 +280,7 @@ $('#myTeam').click(function () {
     else { team.fadeIn('fast').css('display','block');}
 });
 
-    $("button#applyTeam").click(function(){
+$("button#applyTeam").click(function(){
     var teamInfo='';
     var teamurl='';
     if($("#applyTeamName").val()==""){
@@ -210,8 +303,7 @@ $('#myTeam').click(function () {
                 $('body').css('overflow','visible');
             }
         })
-    }
-    
+    }   
 });
 
 $("button#serchTeam").click(function(){
@@ -254,87 +346,6 @@ $("button#serchTeam").click(function(){
             }
             document.getElementById("serchTeam").innerHTML = "搜索";
             }
-        }
-    });
-});
-$("button[name='teammate']").click(function(){
-    var teamMate="";
-    $.ajax({
-        url:"./Team/getValidTeammate",
-        cache:false,
-        type:"POST",
-        async:false,
-        data:{
-            team_id:$(this).attr('value')
-        },
-        success:function(msg) {
-            steam = $.parseJSON(msg);
-            for(var i=0;i<steam.length;i++) {
-                teamMate +=
-                '<div class="box-team-my-list2">' +
-                    '<div class="img-style2" style="padding-left: 0"><img class="box-team-my-list-img" src="../image/fruit.png"></div>' +
-                    '<span class="box-team-my-list-title">队员: </span>' +
-                    '<span class="box-team-my-list-content">' + steam[i]['uid'] + '</span>' +
-                '</div>' +
-                '<div class="box-team-my-list1">' +
-                    '<span class="box-team-my-list-title">队中场位: </span>' +
-                    '<span class="box-team-my-list-content">' + steam[i]['position'] + '</span>' +
-                '</div>' + '<div class="single-line2"></div>' +
-                '<div class="single-line"></div>';
-            }
-
-            teamMate =
-            '<div class="box-team-my box-team-member" style="box-shadow:none">' +
-                '<div class="box-team-my-list1">' +
-                    '<span class="join-list-title">我的队友</span>' +
-                    '<img class="box-team-member-close" src="../image/close.png">' +
-                '</div>' + teamMate +
-            '</div>';
-
-            bodyID.append(teamMate).append(popupMask);
-            // member.fadeIn('fast').css('display','block');
-            bodyID.css('overflow','hidden');
-
-            //查看球员弹窗居中
-            var member = $('.box-team-member');
-            var memberMarginLeft = ($('body').width() - member.width())/2;
-            member.css({position: "absolute",'left':memberMarginLeft + 'px','top':window.pageYOffset+100});
-            $('.mask').css('top',window.pageYOffset);
-
-            //关闭查看球员弹窗
-            var closeMember = $('.box-team-member-close').click(function () {
-                $('.box-team-member').remove();
-                $('.mask').fadeOut('fast').remove();
-                bodyID.css('overflow','visible');
-            });
-        }
-    });
-});
-
-$("button[name='allteammate']").click(function(){
-    var teamMate="";
-    $.ajax({
-        url:"./Team/getTeammate",
-        cache:false,
-        type:"POST",
-        async:false,
-        data:{
-            team_id:$(this).attr('value')
-        },
-        success:function(msg) {
-            steam = $.parseJSON(msg);
-            for(var i=0;i<steam.length;i++) {
-                teamurl = "./Team/admitTeam"+"?team_memmber_id="+steam[i]['team_memmber_id'];
-                teamMate +=
-                    '队员id: '+steam[i]['uid']+' '+
-                    '队中场位：'+steam[i]['position']+' '+
-                    '审核状态：'+steam[i]['team_memmber_status'];
-                if(steam[i]['team_memmber_status']==0){
-                    teamMate += " <a href="+teamurl+">通过审核</a>";
-                }
-                teamMate += "<br>";
-            }
-            document.getElementById("teammateinfo{:$val['team_id']}").innerHTML = teamMate;
         }
     });
 });
