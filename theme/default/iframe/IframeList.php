@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/bootstrap.min.css')}">
-    <link rel="stylesheet" type="text/css" href="{:base_url('css/bootstrap-datetimepicker.min.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/form.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/manage.css')}">
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <script type="text/javascript" src="{:base_url('js/bootstrap.min.js')}"></script>
-    <script type="text/javascript" src="{:base_url('js/bootstrap-datetimepicker.min.js')}"></script>
-    <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 </head>
 <body>
 <div class="iframe-all">
@@ -20,9 +17,9 @@
             <th width="20%">开始时间</th>
             <th width="20%">结束时间</th>
             <th width="13%">价格</th>
-            <th width="9%">球场总数</th>
-            <th width="9%">剩余总数</th>
-            <th width="29%" colspan="3">操作</th>
+            <th width="14%">球场总数</th>
+            <th width="14%">剩余总数</th>
+            <th width="19%" colspan="3">操作</th>
         </tr>
         <!--{execute}-->
             $queryDate = array();
