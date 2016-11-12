@@ -25,7 +25,7 @@ class Initor extends CI_Model {
 		$this->load->helper("url");
 		$this->load->library("session");
 		$this->load->helper("common_helper");
-
+/*
 		if(!$this->session->tempdata("OPENID")) {
 			$data = $this->snsapi_userinfo();
 			$this->openId = $data["openid"];
@@ -53,7 +53,7 @@ class Initor extends CI_Model {
             $this->uid  = $this->db->insert_id();
             $this->info = getUser("uid",$this->uid);
 		}
-
+*/
 
 		
          
@@ -78,10 +78,12 @@ class Initor extends CI_Model {
   "picture"=>"0"
 );
 */
+/*
 		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
 
 			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
 		}
+*/
 		
 	}
 
