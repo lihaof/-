@@ -16,7 +16,7 @@ class Order extends CI_Controller {
 
     public function add($listId = 0) {
         $listId = (int)$listId;
-        $uid = 1;    //TODO:动态获取uid
+        $uid = $this->initor->uid;
         $listData = $this->TimeListModel->listIdIsExist($listId);
         if(!$listData) {
             showNotice("该记录不存在,请返回重试");      
@@ -41,7 +41,7 @@ class Order extends CI_Controller {
     }
 
     public function showOrderList() {
-        $uid = 1;    //TODO:动态获取uid
+        $uid = $this->initor->uid;
         $this->db->order_by("order_id","DESC");
         $this->db->where('uid', $uid);
         $list = $this->db->get("user_order")->result_array();

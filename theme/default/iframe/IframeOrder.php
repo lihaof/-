@@ -14,17 +14,6 @@
 </head>
 <body>
 <div class="iframe-all">
-    <!--侧面栏-->
-    <div id="nav">
-        <ul>
-            <li class="module">子模块4<img class="module-img" src="{:base_url('image/in.png')}"></li>
-            <li class="module">子模块5<img class="module-img" src="{:base_url('image/in.png')}"></li>
-            <li class="module module2">用户预约管理<img class="module-img" src="{:base_url('image/in.png')}"></li>
-        </ul>
-    </div>
-
-
-
     <!--表格-->
     <table id="form" class="form-style">
         <tr>
