@@ -343,5 +343,15 @@ body{
 #joinList{
     position: absolute;
     top: 0;
-    z-index: 3;
+    z-index: 4;
+}
+
+.dissolution{
+    float: right;
+    color: #ccc;
+}
+
+.exit{
+    float: right;
+    color: #ccc;
 }
