@@ -23,6 +23,16 @@
         </ul>
     </div>
 
+    <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+        <input type="text" class="form-control" value="13:14">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-time"></span>
+    </span>
+    </div>
+    <script type="text/javascript">
+        $('.clockpicker').clockpicker();
+    </script>
+
 
 
     <!--表格-->
@@ -57,6 +67,19 @@
     </table>
 
     <div class="add-box"><button class="add" id="add">添加</button></div>
+
+    <!--分页-->
+    <nav class="pages">
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </nav>
 </div>
 
 
