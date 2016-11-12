@@ -19,8 +19,9 @@
 
 <!--身高-->
 <div class="reserve-message">
-    <form class="form-height">
-        <input class="edit-height" type="number" min="150" max="200" name="weight" value="<?php echo ?>">
+    <form class="form-height" action="<?php echo site_url('User/addHeight'); ?>" method="POST">
+        <input class="edit-height" type="number" min="150" max="200" name="height" value="<?php echo $height;?>" >
+        <button class="save">保存</button>
     </form>
 </div>
 

@@ -19,7 +19,7 @@
 
 <!--场位-->
 <div class="reserve-message">
-    <form class="form-Position">
+    <form class="form-Position" action="<?php echo site_url('User/addPosition'); ?>" method="POST">
         <select name="position">
            <option value="1">控球后卫PG</option>
            <option value="2">等分后卫SG</option>>
@@ -27,6 +27,7 @@
            <option value="4">大前锋PF</option>>
            <option value="5">中锋C</option>>
         </select>
+        <button class="save">保存</button>
     </form>
 </div>
 

@@ -21,84 +21,87 @@
 </div>
 <!--顶部信息-->
 <div class="top-style">
-    <img class="img-portrait" src="{:base_url('image/fruit.png')}">
-    <p>Vonlion</p>
+    <!--<img class="img-portrait" src="{:$picture}">-->
+    <img class="img-portrait" src="{:base_url('image/default-avatar.png')}">
+    <p><?php echo $nickname;?></p>
 <!--    <img class="btn-in" src="{:base_url('image/in-white.png')}">-->
 </div>
 
 <!--会员等级-->
 <div class="level">
     <img src="{:base_url('image/vip.png')}">
-    <span>初级会员</span>
+    <span>
+          <?php
+               if($point<=1000) {
+                  echo "初级会员";
+               } else if($point<=3000) {
+                  echo "中级会员";
+               } else if($point<=5000) {
+                  echo "高级会员";
+               } else if($point<=10000) {
+                  echo "超高级会员";
+               } else {
+                  echo "VIP会员";
+               }
+          ?>   
+    </span>
 </div>
 
 <br>
 
 <!--昵称-->
-<<<<<<< HEAD
-<div class="reserve-message">
-    <span>昵称 </span> <?php echo "       ".$nickname ;?>
-=======
 <div class="reserve-message" style="border-top: none">
     <span class="message-title">昵称</span>
-    <span class="message-value">vonlion</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
+    <span class="message-value"><?php echo $nickname;?></span>
 </div>
 
 <!--体重-->
 <div class="reserve-message">
-<<<<<<< HEAD
-    <span>体重</span><?php echo "       ".$weight ;?>
-=======
     <span class="message-title">体重</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
-    <img class="btn-in2" src="{:base_url('image/in.png')}">
-    <span class="message-value">120 kg</span>
+    <a href = "{:site_url('User/editWeight')}"><img class="btn-in2" src="{:base_url('image/in.png')}"></a>
+    <span class="message-value"><?php echo $weight; ?> kg</span>
 </div>
 
 <!--身高-->
 <div class="reserve-message">
-<<<<<<< HEAD
-    <span>身高</span><?php echo "       ".$height ;?>
-=======
     <span class="message-title">身高</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
-    <img class="btn-in2" src="{:base_url('image/in.png')}">
-    <span class="message-value">180 cm</span>
+    <a href = "{:site_url('User/editHeight')}"><img class="btn-in2" src="{:base_url('image/in.png')}"></a>
+    <span class="message-value"><?php echo $height?> cm</span>
 </div>
 
 <br>
 
 <!--场位-->
-<<<<<<< HEAD
-<div class="reserve-message">
-    <span>场位</span><?php echo "       ".$position ;?>
-=======
 <div class="reserve-message" style="border-top: none">
     <span class="message-title">场位</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
-    <img class="btn-in2" src="{:base_url('image/in.png')}">
-    <span class="message-value">小前锋</span>
+    <a href = "{:site_url('User/editPosition')}"><img class="btn-in2" src="{:base_url('image/in.png')}"></a>
+    <span class="message-value">
+       <?php 
+            if($position = 1) {
+                echo "控球后卫PG";
+            } else if($position = 2) {
+                echo "等分后卫SG";
+            } else if($position = 3) {
+                echo "小前锋SF";
+            } else if($position = 4) {
+                echo "大前锋PF";
+            } else {
+                echo "中锋C";
+            }
+       ?>
+    </span>
 </div>
 
 <!--积分-->
 <div class="reserve-message">
-<<<<<<< HEAD
-    <span>积分</span><?php echo "       ".$point ;?>
-=======
     <span class="message-title">积分</span>
-    <span class="message-value">120</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
+    <span class="message-value"><?php echo $point; ?></span>
 </div>
 
 <!--球队-->
 <div class="reserve-message">
-<<<<<<< HEAD
-    <span>球队</span><?php echo "       ".$teamid ;?>
-=======
     <span class="message-title">球队</span>
-    <span class="message-value">win战队</span>
->>>>>>> 3547300f9d4d16aba6c175492b14cae0b5cfd8ec
+    <span class="message-value"><?php echo $team_name;?></span>
 </div>
 
 </body>

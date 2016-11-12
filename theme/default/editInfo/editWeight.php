@@ -19,9 +19,11 @@
 
 <!--体重-->
 <div class="reserve-message">
-    <form class="form-weight">
-        <input class="edit-weight" type="number" min="150" max="200" name="weight" value="1">
+    <form class="form-weight" action="<?php echo site_url('User/addWeight'); ?>" method="POST" >
+        <input class="edit-weight" type="number" min="40" max="100" name="weight" value = "<?php echo $weight;?>">
+        <button class="save">保存</button>
     </form>
+
 </div>
 
 </body>
