@@ -108,21 +108,6 @@ CREATE TABLE IF NOT EXISTS `bms_join_info` (
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT= '添加队伍信息表';
 
--- 球队信息 表 bms_team_info
-DROP TABLE IF EXISTS `bms_team_info`;
-CREATE TABLE IF NOT EXISTS `bms_team_info` (
-  `teamid` int(5) NOT NULL AUTO_INCREMENT COMMENT '队伍id',
-  `status` int(1) NOT NULL COMMENT '队伍状态，0表待审核，1表审核通过，2表审核失败',
-  `teamname` varchar(40) NOT NULL COMMENT '队伍名称',
-  `teamleader` int(8) NOT NULL COMMENT '队长id',
-  `teamnum` int(2) NOT NULL COMMENT '队伍目前人数',
-  `member_1` int(8) NULL COMMENT '队员1号id',
-  `member_2` int(8) NULL COMMENT '队员2号id',
-  `member_3` int(8) NULL COMMENT '队员3号id',
-  `member_4` int(8) NULL COMMENT '队员4号id',
-  PRIMARY KEY (`teamid`)
-) 
-ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '队伍信息表';
 
 
 -- 用户信息表 bms_user_info
@@ -138,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
   `user_level` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '用户权限等级',
   `teamid` int(5) NULL COMMENT '队伍id',
   `iscompelete` int(1) NULL DEFAULT '0' COMMENT '是否完善用户个人信息',
+  `picture` varchar(40) default NULL COMMENT '用户照片',
   PRIMARY KEY (`uid`)
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户信息表';
