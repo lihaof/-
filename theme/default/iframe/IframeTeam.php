@@ -62,17 +62,18 @@
             <th>审核状态</th>
             <th colspan="2" >操作</th>
         </tr>
-
+        {foreach $noauteam $val}
         <tr>
             <td>1</td>
-            <td style="padding: 0"><img class="team-img" src="{:base_url('image/fruit.png')}"></td>
-            <td>球队1</td>
-            <td>李明</td>
-            <td style="overflow: hidden">一定要赢</td>
+            <td style="padding: 0"><img class="team-img" src="{:base_url()}image/team/{:$val['team_picture']}"></td>
+            <td>{:$val["team_name"]}</td>
+            <td>{:$val["team_leader"]}</td>
+            <td style="overflow: hidden">{:$val["team_slogan"]}</td>
             <td class="status" style="color: #b63d3c">未审核</td>
-            <td class="agree-btn"><button id="temp1" onclick="agree(this.id)">同意</button></td>
-            <td class="agree-btn"><button id="temp2" onclick="refuse(this.id)" style="color: #ee716b">拒绝</button></td>
+            <td class="agree-btn"><button id="temp1" onclick="agree(this)" data-team-id="{:$val['team_id']}">同意</button></td>
+            <td class="agree-btn"><button id="temp2" onclick="refuse(this)" data-team-id="{:$val['team_id']}" style="color: #ee716b">拒绝</button></td>
         </tr>
+        {/foreach}
     </table>
 
 
@@ -90,14 +91,16 @@
         </thead>
 
         <tbody>
+        {foreach $auteam $val}
             <tr>
-                <td>2</td>
-                <td style="padding: 0"><img class="team-img" src="{:base_url('image/fruit.png')}"></td>
-                <td>球队2</td>
-                <td>张三</td>
-                <td style="overflow: hidden">必胜</td>
+                <td>{:$val["team_id"]}</td>
+                <td style="padding: 0"><img class="team-img" src="{:base_url()}image/team/{:$val['team_picture']}"></td>
+                <td>{:$val["team_name"]}</td>
+                <td>{:$val["team_leader"]}</td>
+                <td style="overflow: hidden">{:$val["team_slogan"]}</td>
                 <td style="color: #2bb654">审核通过</td>
             </tr>
+        {/foreach}
         </tbody>
     </table>
 
