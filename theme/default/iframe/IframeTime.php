@@ -47,8 +47,7 @@
         </ul>
     </div>
 
-<<<<<<< HEAD
-    <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
+        <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
         <input type="text" class="form-control" value="13:14">
     <span class="input-group-addon">
         <span class="glyphicon glyphicon-time"></span>
@@ -62,10 +61,8 @@
 
     <!--表格-->
     <table id="form" class="form-style">
-=======
     <!--未审核-->
     <table class="form-style">
->>>>>>> 18d9eff68313fe7ad536ecccf130573e1500ebeb
         <tr>
             <th width="20%">开始时间</th>
             <th width="20%">结束时间</th>
@@ -95,7 +92,6 @@
         <!--{/foreach}-->
     </table>
 
-<<<<<<< HEAD
     <div class="add-box"><button class="add" id="add">添加</button></div>
 
     <!--分页-->
@@ -111,9 +107,6 @@
         </ul>
     </nav>
 </div>
-
-=======
->>>>>>> 18d9eff68313fe7ad536ecccf130573e1500ebeb
 
     <!--通过审核-->
     <table id="agreed" class="form-style">
