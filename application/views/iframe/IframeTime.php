@@ -97,7 +97,6 @@
         <?php endforeach; ?>
     </table>
 
-<<<<<<< HEAD
     <div class="add-box"><button class="add" id="add">添加</button></div>
 
     <!--分页-->
@@ -113,9 +112,6 @@
         </ul>
     </nav>
 </div>
-
-=======
->>>>>>> 18d9eff68313fe7ad536ecccf130573e1500ebeb
 
     <!--通过审核-->
     <table id="agreed" class="form-style">
@@ -219,6 +215,7 @@
         changebgc();
     });
 
+        $('.clockpicker').clockpicker();
 </script>
 </body>
 </html>

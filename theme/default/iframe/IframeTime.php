@@ -47,17 +47,9 @@
         </ul>
     </div>
 
-        <div class="input-group clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-        <input type="text" class="form-control" value="13:14">
-    <span class="input-group-addon">
-        <span class="glyphicon glyphicon-time"></span>
-    </span>
-    </div>
-    <script type="text/javascript">
-        $('.clockpicker').clockpicker();
-    </script>
-
-
+        <div class="input-group clockpicker" data-placement="bottom" data-align="top" data-autoclose="true">
+            <input type="text" class="form-control" value="13:14">
+        </div>
 
     <!--表格-->
     <table id="form" class="form-style">
@@ -208,6 +200,7 @@
         changebgc();
     });
 
+        $('.clockpicker').clockpicker();
 </script>
 </body>
 </html>
