@@ -238,9 +238,10 @@ class Team extends CI_Controller {
 	 */
 	public function getValidTeammate() {
 		$team_id = $this->input->post("team_id");
+		$validStatus = array("1","2");
 		$this->db->select("position,uid");
 		$this->db->where("team_id",$team_id);
-		$this->db->where("team_memmber_status>=","1");
+		$this->db->where_in("team_memmber_status",$validStatus);
 		$resultData = $this->db->get("team_memmber")->result_array();
 		foreach($resultData as &$each) {
 			$uid = $this->getUserInfoById($each['uid']);
@@ -333,8 +334,9 @@ class Team extends CI_Controller {
 	 *@return $num
 	 */
 	public function getTeammateNum($team_id) {
+		$allowStatus = array("1","2");
 		$this->db->select("team_memmber_id");
-		$this->db->where("team_memmber_status>=",1);
+		$this->db->where_in("team_memmber_status",$allowStatus);
 		$this->db->where("team_id",$team_id);
 		return $this->db->get("team_memmber")->num_rows();
 	}
