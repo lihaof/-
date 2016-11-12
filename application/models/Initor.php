@@ -20,18 +20,11 @@ class Initor extends CI_Model {
 
 	public function __construct() {
 		parent::__construct();
-
 		$this->load->database();
-
 		$this->load->library("ui");
 		$this->load->helper("url");
-
 		$this->load->library("session");
 		$this->load->helper("common_helper");
-
-		
-
-		/*
 
 		if(!$this->session->tempdata("OPENID")) {
 			$data = $this->snsapi_userinfo();
@@ -62,7 +55,7 @@ class Initor extends CI_Model {
 		}
 
 
-		*/
+		
          
         $curModuleName = $this->router->class."/".$this->router->method;
 		$validModules  = array(
@@ -70,8 +63,8 @@ class Initor extends CI_Model {
 			"User/addUser",
 			"User/test"
 		);
-		
-$this->info = array(
+
+/*$this->info = array(
   "openid"=>"fhwoefewofowfwe",
   "uid"=>"1",
   "nickname"=>"wtt",
@@ -84,6 +77,7 @@ $this->info = array(
   "is_compelete"=>"1",
   "picture"=>"0"
 );
+*/
 		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
 
 			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
