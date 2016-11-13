@@ -82,7 +82,7 @@
             }
         });
     });
-//确认时段
+        //确认时段
         $(document).delegate("button[id^='check']",'click',function () {
             var checkId = $(this).attr('id');
             var num = checkId.substring(5);

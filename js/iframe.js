@@ -38,8 +38,4 @@ $(document).ready(function(){
             $('.form-style').hide().eq($(this).index()).show();
         });
     });
-    
-    if($('.form-style td').index()/2){
-        
-    }
 });

@@ -23,7 +23,7 @@
 <div id="tab">
     <ul>
 <?php foreach($module1 as $row): ?>
-                <li class="tab-li" id=<?php echo $row['identity']; ?> ><?php echo $row['module_name']; ?></li>
+        <li class="tab-li" id=<?php echo $row['identity']; ?> ><?php echo $row['module_name']; ?></li>
 <?php endforeach; ?>
     </ul>
 </div>
@@ -32,9 +32,8 @@
 
 <!--操作区域-->
 <div class="operate" id="operate">
-    <iframe src="iframe/IframeHome" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+    <iframe src="iframe/IframeTime" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no" style="min-height: 700px"></iframe>
 </div>
-
 
 <script>
     //修改iframe宽度
@@ -44,6 +43,14 @@
     }
 
     $(window).load(function(){
+
+        //iframe高度自适应
+        var addBtn = $("#iframeSlect").contents().find('.add');
+        addBtn.click(function () {
+            $("#operate").height($("#operate").height() + 45);
+        });
+
+
         apdateIframe();
 
         //改变iframe地址
