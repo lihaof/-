@@ -50,7 +50,6 @@
             $("#operate").height($("#operate").height() + 45);
         });
 
-
         apdateIframe();
 
         //改变iframe地址
@@ -76,6 +75,9 @@
     $(window).resize(function(){
         apdateIframe();
     });
+
+    //时段管理区块(第一个)选项卡高亮
+    $('.tab-li').eq(0).addClass('tab-li2');
 
     //选项卡点击效果
     $('.tab-li').each(function (){
