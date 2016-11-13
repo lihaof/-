@@ -44,12 +44,23 @@
         </tr>
         <!--{/foreach}-->
     </table>
-    <div class="add-box"><button class="add" id="add">添加</button></div>
+    <div class="add-box" onclick="addBtn()"><button class="add" id="add">添加</button></div>
 
 
 </div>
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 <script type="text/javascript">
+
+    var operate = $('.operate', window.parent.document);
+
+    addBtn = function () {
+        operate.height(operate.height() + 45);
+    }
+
+    $(window).load(function () {
+        operate.height($('.iframe-all').height() + 150);
+    });
+
     //状态切换
     $(document).delegate("button[id^='stop']",'click',function () {
         var stopId = $(this).attr('id');
@@ -164,6 +175,7 @@
     $('#add').click(function (e) {
         e.preventDefault();
         var length = ++id;
+        length += 2;
         //添加时段
         var tr = $("<tr id="+ 'tab' + length +">" +
             "<form action='' method=''>" +
