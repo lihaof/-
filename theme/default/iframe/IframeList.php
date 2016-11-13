@@ -100,9 +100,8 @@
      });
 
     var operate = $('.operate', window.parent.document);
-
     $(window).load(function () {
-        operate.height($('.iframe-all').height() + 150);
+        operate.height($('.form-style').height() + 150);
     });
 
 
