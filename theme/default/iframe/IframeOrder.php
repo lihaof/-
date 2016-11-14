@@ -91,6 +91,14 @@
             });
         });
      });
+
+    var operate = $('.operate', window.parent.document);
+
+    $(window).load(function () {
+        operate.height($('.form-style').height() + 150);
+    });
+
+
 </script>
 </body>
 </html>

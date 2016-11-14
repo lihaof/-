@@ -26,7 +26,7 @@
         <!--{execute}-->
             $query = $this->db->get("open_time");
             $list = $query->result_array();
-            $num_rows  = $query->num_rows();
+            $tabMaxId = $this->db->select_max('time_id')->get("open_time")->first_row('array')['time_id'];
         <!--{/execute}-->
         <!--{foreach $list $key $val}-->
         <tr id="tab{:$val['time_id']}">
@@ -39,17 +39,28 @@
                 <td id="state{:$val['time_id']}"><!--{if $val['status']=='1'}-->启用<!--{elseif $val['status']=='2'}-->停用<!--{/if}--></td>
                 <td style="padding: 0"><button id="edit{:$val['time_id']}" type="button">修 改</button></td>
                 <td style="padding: 0"><button id="stop{:$val['time_id']}" type="button">状态切换</button></td>
-                <td style="padding: 0"><button id="delete{:$val['time_id']}" type="button">删 除</button></td>      
+                <td style="padding: 0"><button id="delete{:$val['time_id']}" type="button">删 除</button></td>  
             </form>
         </tr>
         <!--{/foreach}-->
     </table>
-    <div class="add-box"><button class="add" id="add">添加</button></div>
+    <div class="add-box" onclick="addBtn()"><button class="add" id="add">添加</button></div>
 
 
 </div>
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
 <script type="text/javascript">
+
+    var operate = $('.operate', window.parent.document);
+
+    addBtn = function () {
+        operate.height(operate.height() + 45);
+    }
+
+    $(window).load(function () {
+        operate.height($('.iframe-all').height() + 150);
+    });
+
     //状态切换
     $(document).delegate("button[id^='stop']",'click',function () {
         var stopId = $(this).attr('id');
@@ -160,10 +171,10 @@
         });
     });
 
-    var id = {:$num_rows}+1;
+    var id = {:$tabMaxId}+1;
     $('#add').click(function (e) {
         e.preventDefault();
-        var length = ++id;
+        var length = id++;
         //添加时段
         var tr = $("<tr id="+ 'tab' + length +">" +
             "<form action='' method=''>" +
