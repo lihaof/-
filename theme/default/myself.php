@@ -14,7 +14,7 @@
         <span>微信</span>
     </div>
     <!--顶部信息-->
-    <div class="top-style" onclick="window.location='{:base_url("index.php/UserInfo")}';">
+    <div class="top-style" onclick="window.location='{:site_url("User/showUser")}';">
         <img class="img-portrait" src="{:base_url('image/fruit.png')}">
         <p>Vonlion</p>
         <img class="btn-in" src="{:base_url('image/in-white.png')}">
@@ -54,7 +54,7 @@
     </div>
 
     <!--我的信息-->
-    <div class="list" onclick="window.location='{:base_url("index.php/UserInfo")}';">
+    <div class="list" onclick="window.location='{:site_url("User/showUser")}';">
         <div class="img-border"><img class="list-img" src="{:base_url('image/message.png')}"></div>
         <span>我的信息</span>
         <img class="btn-in3" src="{:base_url('image/in.png')}">

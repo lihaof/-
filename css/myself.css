@@ -97,7 +97,7 @@
 }
 
 .box-left{
-    width: 50%;
+    width: calc(50% - 0.05rem);
     height: 3rem;
     float: left;
     background-color: #fff;
@@ -105,7 +105,7 @@
 }
 
 .box-right{
-    width: 50%;
+    width: calc(50% - 0.05rem);
     height: 3rem;
     float: right;
     background-color: #fff;
