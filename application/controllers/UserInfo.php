@@ -16,6 +16,6 @@ class BackUserInfo extends CI_Controller {
     }
 
     public function editUserinfo() {
-    	$this->ui->load
+    	$this->ui->load();
     }
 }
