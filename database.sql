@@ -131,10 +131,10 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户信息表';
 -- 用户组表 bms_group
 DROP TABLE IF EXISTS `bms_group`;
 CREATE TABLE IF NOT EXISTS `bms_group` (
-  `group_id` int(40) NOT NULL COMMENT '用户组id',
-  `group_name` varchar(40) NOT NULL '用户组名称',
+  `group_id` int(40) NOT NULL AUTO_INCREMENT COMMENT '用户组id',
+  `group_name` varchar(40) NOT NULL COMMENT '用户组名称',
   `min_point` int(8) NOT NULL COMMENT '积分下线，>=下线',
-  `max_point` int(8) NOT NULL COMMENT '积分上线，<上线'
+  `max_point` int(8) NOT NULL COMMENT '积分上线，<上线',
   PRIMARY KEY (`group_id`)
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户组 表';
