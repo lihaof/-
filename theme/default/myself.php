@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>预约</title>
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
@@ -10,10 +10,6 @@
     <link rel="stylesheet" type="text/css" href="{:base_url('css/myself.css')}">
 </head>
 <body>
-    <!--微信自带顶部栏-->
-    <div class="topbar-default">
-        <span>微信</span>
-    </div>
     <!--顶部信息-->
     <div class="top-style" onclick="window.location='{:base_url("index.php/UserInfo")}';">
         <img class="img-portrait" src="{:base_url('image/fruit.png')}">
@@ -95,22 +91,22 @@
 
             });
 
-            var boxLeft = $('.box-left');
-            var boxright = $('.box-right');
-            var lineWidth = $('.line').width();
+//            var boxLeft = $('.box-left');
+//            var boxright = $('.box-right');
+//            var lineWidth = $('.line').width();
+//
+//            var changeWidth = function () {
+//                boxLeft.width(boxLeft.width()-lineWidth/2);
+//                boxright.width(boxright.width()-lineWidth/2);
+//            };
 
-            var changeWidth = function () {
-                boxLeft.width(boxLeft.width()-lineWidth/2);
-                boxright.width(boxright.width()-lineWidth/2);
-            };
-
-            changeWidth();
-
-            $(window).resize(function() {
-                boxLeft = $('.box-left');
-                boxright = $('.box-right');
-                changeWidth();
-            });
+//            changeWidth();
+//
+//            $(window).resize(function() {
+//                boxLeft = $('.box-left');
+//                boxright = $('.box-right');
+//                changeWidth();
+//            });
         });
 
 
