@@ -46,18 +46,23 @@
         .add-form select{
             width: 130px;
             height: 30px;
-            margin-left: -50px;
+            float: right;
+            border: none;
+            margin-top: 7.5px;
+            margin-right: 10px;
+            text-align: right;
         }
 
         .btn-check{
-            width: 100px;
-            height: 30px;
+            width: 70%;
+            height: 40px;
             background-color: #01ba60;
             border: 1px solid #ececec;
             padding: 0 10px;
-            margin-top: 20px;
+            margin-top: 28px;
             border-radius: 3px;
             color: #fff;
+            font-size: 17px;
         }
 
     </style>

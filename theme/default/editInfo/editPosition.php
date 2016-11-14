@@ -8,14 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/tab-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/myself.css')}">
-    <link rel="stylesheet" type="text/css" href="{:base_url('css/edit/editPosition.css')}">
+    <link rel="stylesheet" type="text/css" href="{:base_url('css/edit/edit.css')}">
 </head>
 <body>
 <!--微信自带顶部栏-->
 <div class="topbar-default">
     <img class="back" src="{:base_url('image/back_white.png')}">
     <span>修改身高</span>
-    <button class="save">保存</button>
 </div>
 
 <!--场位-->
@@ -23,10 +22,10 @@
     <form class="form-Position" action="<?php echo site_url('User/addPosition'); ?>" method="POST">
         <select name="position" value="<?php echo $position; ?>">
            <option value="1">控球后卫PG</option>
-           <option value="2">等分后卫SG</option>>
-           <option value="3">小前锋SF</option>>
-           <option value="4">大前锋PF</option>>
-           <option value="5">中锋C</option>>
+           <option value="2">等分后卫SG</option>
+           <option value="3">小前锋SF</option>
+           <option value="4">大前锋PF</option>
+           <option value="5">中锋C</option>
         </select>
         <button class="save">保存</button>
     </form>
