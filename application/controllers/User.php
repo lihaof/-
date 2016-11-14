@@ -82,7 +82,7 @@ class User extends CI_Controller {
         //$data['uid'] = $this->initor->uid;
         $this->db->set('weight', $this->input->post('weight'));
         $this->db->where('uid', $this->initor->uid);
-        $result = $this->db->update('bms_user_info',$data);     
+        $result = $this->db->update('bms_user_info');     
         if($result == TRUE) {
             showNotice("完善成功！",site_url("User/showUser"));
         } else {
@@ -96,7 +96,7 @@ class User extends CI_Controller {
        // $data['uid'] = $this->initor->uid;
         $this->db->set('position', $this->input->post('position'));
         $this->db->where('uid', $this->initor->uid);
-        $result = $this->db->update('bms_user_info',$data);     
+        $result = $this->db->update('bms_user_info');     
         if($result == TRUE) {
             showNotice("完善成功！",site_url("User/showUser"));
         } else {
