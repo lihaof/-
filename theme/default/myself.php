@@ -27,7 +27,7 @@
     </div>
 
     <!--预约信息-->
-    <div class="reserve-message" onclick="window.location='{:base_url("index.php/ReserveMessage")}';">
+    <div class="reserve-message" onclick="window.location='{:site_url("Order/showOrderList")}';">
         <img class="img-default" src="{:base_url('image/reserve_message.png')}">
         <span>预约信息</span>
         <img class="btn-in2" src="{:base_url('image/in.png')}">

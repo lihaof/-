@@ -31,7 +31,7 @@ class Initor extends CI_Model {
 			$this->openId = $data["openid"];
 			$this->wechatInfo = $data;
 		} else {
-			$this->openId = $this->session->temdata("OPENID");
+			$this->openId = $this->session->tempdata("OPENID");
 			$this->wechatInfo = $this->session->tempdata("WECHAT_INFO");
 		}
 
@@ -99,10 +99,10 @@ class Initor extends CI_Model {
 
 		     //3获取用户信息
 		     $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$web_access_token}&openid={$openid}&lang=zh_CN";
-		     $data = https_request($userinfo_url);
+		     $data = $this->https_request($userinfo_url);
 
-		     $this->session->set_temdata("WECHAT_INFO", $data, 7200);
-		     $this->session->set_temdata("OPENID",$data["openid"],7200);
+		     $this->session->set_tempdata("WECHAT_INFO", $data, 7200);
+		     $this->session->set_tempdata("OPENID",$data["openid"],7200);
 		     copy($data['headimgurl'], FCPATH."avatars/".$this->uid.".jpg");
 		     return $data;
 	    }
