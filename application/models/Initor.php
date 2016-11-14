@@ -9,14 +9,14 @@
  */
 
 class Initor extends CI_Model {
-	public $openId = 1;
-	public $uid = 1;
+	public $openId;
+	public $uid ;
 	public $info;
-    public $group = 1;
-	public $wechatInfo = 1;
+    public $group;
+	public $wechatInfo;
 
-	const APPID     = "wx274a5600eb3baa04";
-	const APPSECRET = "da4480ace51a57892c4c1c32b25351bc";
+	const APPID     = "wx69e65b6c4b56e608";
+	const APPSECRET = "c7b34e86f8b18bed2b66443b4e7f270e";
 
 	public function __construct() {
 		parent::__construct();
@@ -25,7 +25,7 @@ class Initor extends CI_Model {
 		$this->load->helper("url");
 		$this->load->library("session");
 		$this->load->helper("common_helper");
-/*
+
 		if(!$this->session->tempdata("OPENID")) {
 			$data = $this->snsapi_userinfo();
 			$this->openId = $data["openid"];
@@ -41,7 +41,7 @@ class Initor extends CI_Model {
 		}
 
 		$user = getUser("openid", $this->openId);
-		if($user) {
+		if(!!$user) {
 			$this->uid = $user['uid'];
 			$this->info = $user;
 		} else {
@@ -57,9 +57,8 @@ class Initor extends CI_Model {
 		$validModules  = array(
 			"User/addUserinfo",
 			"User/addUser",
-			"User/test"
 		);
-*/
+/*
 		
 		$this->info = array(
 		  "openid"=>"fhwoefewofowfwe",
@@ -73,8 +72,8 @@ class Initor extends CI_Model {
 		  "team_id"=>"1",
 		  "is_compelete"=>"1",
 		  "picture"=>"0"
-		);
-		
+		)
+		*/
 
 		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
 			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
