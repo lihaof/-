@@ -9,9 +9,14 @@
 class Manage extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model("initor");
+        $this->load->database();
+        $this->load->library("ui");
+        $this->load->helper("url");
+        $this->load->library("session");
+        $this->load->helper("common_helper");
+
         $this->load->model("AdministratorModel");
-        $this->load->model("TimeListModel");
+        $this->load->model("time_list_model");
     }
 
     public function index() {

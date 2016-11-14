@@ -7,7 +7,7 @@
  *  @Generate:  2016/09/29
  */
 
-class TimeListModel extends CI_Model {
+class Time_list_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
@@ -20,7 +20,7 @@ class TimeListModel extends CI_Model {
         for($i=0;$i<7;$i++) {
             $queryDate[] = date('Y-m-d',time()+60*60*24*$i);
         }
-        $query = $this->db->or_where_in('date',$queryDate)->order_by('date','asc')->get("time_list");
+        $query = $this->db->or_where_in('date',$queryDate)->order_by('date asc,list_id asc')->get("time_list");
         $list = $query->result_array();
         return $list;
     }

@@ -11,13 +11,13 @@ class Order extends CI_Controller {
         parent::__construct();
         $this->load->model("initor");
         $this->load->helper("common_helper");
-        $this->load->model("TimeListModel");
+        $this->load->model("time_list_model");
     }
 
     public function add($listId = 0) {
         $listId = (int)$listId;
         $uid = $this->initor->uid;
-        $listData = $this->TimeListModel->listIdIsExist($listId);
+        $listData = $this->time_list_model->listIdIsExist($listId);
         if(!$listData) {
             showNotice("该记录不存在,请返回重试");      
         }

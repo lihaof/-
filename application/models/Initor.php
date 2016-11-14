@@ -53,67 +53,60 @@ class Initor extends CI_Model {
             $this->uid  = $this->db->insert_id();
             $this->info = getUser("uid",$this->uid);
 		}
-*/
-
-		
-         
         $curModuleName = $this->router->class."/".$this->router->method;
 		$validModules  = array(
 			"User/addUserinfo",
 			"User/addUser",
 			"User/test"
 		);
-
-$this->info = array(
-  "openid"=>"fhwoefewofowfwe",
-  "uid"=>"1",
-  "nickname"=>"wtt",
-  "weight"=>"47",
-  "height"=>"160",
-  "position"=>"4",
-  "point"=>"33",
-  "user_level"=>"1",
-  "team_id"=>"1",
-  "is_compelete"=>"1",
-  "picture"=>"0"
-);
-
+*/
+		
+		$this->info = array(
+		  "openid"=>"fhwoefewofowfwe",
+		  "uid"=>"1",
+		  "nickname"=>"wtt",
+		  "weight"=>"47",
+		  "height"=>"160",
+		  "position"=>"4",
+		  "point"=>"33",
+		  "user_level"=>"1",
+		  "team_id"=>"1",
+		  "is_compelete"=>"1",
+		  "picture"=>"0"
+		);
+		
 
 		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
-
 			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
 		}
-
-		
 	}
 
 	private function snsapi_userinfo() {  
-    //1 第一步：用户同意授权，获取code
-    $snsapi_userinfo_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".SELF::APPID."&redirect_uri=".urlencode(site_url())."&response_type=code&scope=snsapi_userinfo&state=wtt#wechat_redirect";
+	    //1 第一步：用户同意授权，获取code
+	    $snsapi_userinfo_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".SELF::APPID."&redirect_uri=".urlencode(site_url())."&response_type=code&scope=snsapi_userinfo&state=wtt#wechat_redirect";
 
-    $code = trim($this->input->get('code'));
-    if($code == "") {
-        header("Location:{$snsapi_userinfo_url}");
-    } else {
+	    $code = trim($this->input->get('code'));
+	    if($code == "") {
+	        header("Location:{$snsapi_userinfo_url}");
+	    } else {
 
-    	//2 第二步：通过code换取网页授权access_token
-	     $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".self::APPID."&secret=".self::APPSECRET."&code={$code}&grant_type=authorization_code";     
-	     $result = $this->https_request($url);
+	    	//2 第二步：通过code换取网页授权access_token
+		     $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".self::APPID."&secret=".self::APPSECRET."&code={$code}&grant_type=authorization_code";     
+		     $result = $this->https_request($url);
 
-	     $web_access_token = $result['access_token'];
-	     $openid = $result['openid'];
+		     $web_access_token = $result['access_token'];
+		     $openid = $result['openid'];
 
-	     //3获取用户信息
-	     $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$web_access_token}&openid={$openid}&lang=zh_CN";
-	     $data = https_request($userinfo_url);
+		     //3获取用户信息
+		     $userinfo_url = "https://api.weixin.qq.com/sns/userinfo?access_token={$web_access_token}&openid={$openid}&lang=zh_CN";
+		     $data = https_request($userinfo_url);
 
-	     $this->session->set_temdata("WECHAT_INFO", $data, 7200);
-	     $this->session->set_temdata("OPENID",$data["openid"],7200);
-	     copy($data['headimgurl'], FCPATH."avatars/".$this->uid.".jpg");
-	     return $data;
-    }
-}
-
+		     $this->session->set_temdata("WECHAT_INFO", $data, 7200);
+		     $this->session->set_temdata("OPENID",$data["openid"],7200);
+		     copy($data['headimgurl'], FCPATH."avatars/".$this->uid.".jpg");
+		     return $data;
+	    }
+	}
 
 	//https_request()请求
 	private function https_request($url,$data=null) {
