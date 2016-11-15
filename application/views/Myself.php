@@ -91,23 +91,7 @@
                 })
 
             });
-
-            var boxLeft = $('.box-left');
-            var boxright = $('.box-right');
-            var lineWidth = $('.line').width();
-
-            var changeWidth = function () {
-                boxLeft.width(boxLeft.width()-lineWidth/2);
-                boxright.width(boxright.width()-lineWidth/2);
-            };
-
-            changeWidth();
-
-            $(window).resize(function() {
-                boxLeft = $('.box-left');
-                boxright = $('.box-right');
-                changeWidth();
-            });
+            
         });
 
 

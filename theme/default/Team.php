@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{:base_url('css/tab-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/team.css')}">
 </head>
-<body>
+<body style="padding-bottom: 100px">
         <!--创建球队-->
         <div class="box-team-round">
             <button class="box-team-btn-round">+</button>
