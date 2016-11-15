@@ -102,7 +102,7 @@ class Initor extends CI_Model {
 
 		     $this->session->set_tempdata("WECHAT_INFO", $data, 7200);
 		     $this->session->set_tempdata("OPENID",$data["openid"],7200);
-		     copy($data['headimgurl'], FCPATH."avatars/".$this->uid.".jpg");
+		    // copy($data['headimgurl'], FCPATH."avatars/".$this->uid.".jpg");
 		     return $data;
 	    }
 	}
