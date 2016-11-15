@@ -133,7 +133,7 @@
             success: function (data) {
                 if(data.success) {
                     $('.form-style input').css('background-color','transparent');
-                    alert(data.message);
+//                    alert(data.message);
                     location.reload();
                 } else {
                     alert(data.message);
