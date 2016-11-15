@@ -32,7 +32,7 @@
 
 <!--操作区域-->
 <div class="operate" id="operate">
-    <iframe src="iframe/IframeTime" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no" style="min-height: 700px"></iframe>
+    <iframe src="{:site_url('Manage')}/iframe/IframeTime" id="iframeSlect" width="100%" height="100%" frameborder="0" scrolling="no" style="min-height: 700px"></iframe>
 </div>
 
 <script>
@@ -55,7 +55,7 @@
         //改变iframe地址
         $('.tab-li').each(function () {
             $(this).click(function () {
-                var url = 'iframe/Iframe' + $(this).attr('id');
+                var url = "{:site_url('Manage')}/iframe/Iframe" + $(this).attr('id');
                 $('#iframeSlect').fadeOut(100).attr('src',url).fadeIn(400);
                 console.log(url);
             });

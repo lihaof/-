@@ -15,12 +15,12 @@ class Manage extends CI_Controller {
         $this->load->library("session");
         $this->load->helper("common_helper");
 
-        $this->load->model("AdministratorModel");
-        $this->load->model("time_list_model");
+        $this->load->model("Administrator_model");
+        $this->load->model("Time_list_model");
     }
 
     public function index() {
-        $data['module1'] = $this->AdministratorModel->getModule(0,5);
+        $data['module1'] = $this->Administrator_model->getModule(0,5);
 
         $this->ui->load("Manage",$data);
     }
