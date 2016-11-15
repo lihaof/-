@@ -105,7 +105,7 @@
         var editNum = editId.substring(4);
         editId = $('#' + editId);
         var editInput = editId.parent().siblings().children('input')
-        editInput.removeAttr('disabled').css('border','1px solid #ddd');
+        editInput.removeAttr('disabled').css('border','1px solid #ddd').css('background-color','#fff');
         editId.text('确认');
         editId.attr('id','check' + editNum);
         editInput = editId.parent().siblings().children('input:lt(2)');
@@ -132,6 +132,7 @@
             },
             success: function (data) {
                 if(data.success) {
+                    $('.form-style input').css('background-color','transparent');
                     alert(data.message);
                     location.reload();
                 } else {
