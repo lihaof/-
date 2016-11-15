@@ -2,7 +2,7 @@
 /**
  *  Basketball Management System 1.0
  *
- *  @Id:        TimeListModel.php
+ *  @Id:        Time_list_model.php
  *  @Author:    Weafung
  *  @Generate:  2016/09/29
  */

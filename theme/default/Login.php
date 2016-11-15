@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>后台登录</title>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/login.css')}">
 </head>
 <body>
@@ -25,11 +25,11 @@
         </div>
         <div class="login-box">
             <div class="box-title">登录到管理台</div>
-            <?php echo form_open('login/login_process'); ?>
+            {:form_open('Manage/login/yes')}
             <!--输入账号-->
             <div class="box-input">
                 <div class="box-input-title">账号</div>
-                <input class="box-input-content" type="text" name="user">
+                <input class="box-input-content" type="text" name="username">
             </div>
             <!--输入密码-->
             <div class="box-input">
