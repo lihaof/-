@@ -17,7 +17,7 @@ class Team extends CI_Controller {
 	public function index() {
 		$data["noauteam"] = $this->getNoAudiedTeamInfo();
 		$data["auteam"]   = $this->getAudiedTeamInfo();
-		$this->ui->load("iframe/iframeTeam",$data);
+		$this->ui->load("iframe/IframeTeam",$data);
 	}
 	/**
 	 *显示未审核球队所有信息
