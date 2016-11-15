@@ -9,14 +9,15 @@
 class Team extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
-		$this->load->model("initor");
 		$this->load->database();
+		$this->load->library("ui");
+		$this->load->helper("url");
         $this->load->helper("common_helper");
 	}
 	public function index() {
 		$data["noauteam"] = $this->getNoAudiedTeamInfo();
 		$data["auteam"]   = $this->getAudiedTeamInfo();
-		$this->ui->load("iframe/iframeTeam",$data);
+		$this->ui->load("iframe/IframeTeam",$data);
 	}
 	/**
 	 *显示未审核球队所有信息
