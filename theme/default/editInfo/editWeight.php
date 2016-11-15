@@ -19,6 +19,8 @@
     </form>
 
 </div>
-
+<script>
+    $('.edit').focus();
+</script>
 </body>
 </html>

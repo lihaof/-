@@ -278,14 +278,14 @@ $('#search').click(function () {
 
 // 我的球队隐藏显示
 $('#myTeam').click(function () {
-    var team = $('.box-team-my:lt(1)');
+    var team = $('.box-team-my');
     if(team.css('display') == 'block'){ team.fadeOut('fast').css('display','none');}
     else { team.fadeIn('fast').css('display','block');}
 });
 
 // 我加入的球队隐藏显示
 $('#myTeam2').click(function () {
-    var team = $('.box-team-my:gt(0)');
+    var team = $('.box-team-my2');
     if(team.css('display') == 'block'){ team.fadeOut('fast').css('display','none');}
     else { team.fadeIn('fast').css('display','block');}
 });

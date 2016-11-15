@@ -18,6 +18,8 @@
         <button class="save">保存</button>
     </form>
 </div>
-
+<script>
+    $('.edit').focus();
+</script>
 </body>
 </html>

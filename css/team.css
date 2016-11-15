@@ -194,6 +194,7 @@ body{
     background-color: #fff;
     box-shadow: 1px 1px 5px #bcbcbc;
     margin-bottom: 20px;
+    display: none;
 }
 
 .box-team-other{

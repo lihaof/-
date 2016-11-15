@@ -77,7 +77,7 @@
         <span class="no-team">暂未加入球队</span>
         {else}
         {foreach $team $val}
-        <div id='{:$val["team_id"]}'  class="box-team-my">
+        <div id='{:$val["team_id"]}'  class="box-team-my2">
             <div class="img-style">
                 <img class="box-team-my-list-img" src="../image/team/{:$val['team_picture']}">
             </div>
