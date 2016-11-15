@@ -132,7 +132,7 @@
     $(document).delegate("button[id^='delete']",'click',function () {
         var deleteId = $(this).attr('id');
         var deleteNum = deleteId.substring(6);
-        var  c = window.confirm("确认删除改时段吗？");
+        var  c = window.confirm("确认删除该时段吗？");
         if (c) {
             $.ajax({
                 type: 'POST',
