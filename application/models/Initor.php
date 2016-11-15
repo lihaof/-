@@ -26,58 +26,58 @@ class Initor extends CI_Model {
 		$this->load->library("session");
 		$this->load->helper("common_helper");
 
-//		if(!$this->session->tempdata("OPENID")) {
-//			$data = $this->snsapi_userinfo();
-//			$this->openId = $data["openid"];
-//			$this->wechatInfo = $data;
-//		} else {
-//			$this->openId = $this->session->tempdata("OPENID");
-//			$this->wechatInfo = $this->session->tempdata("WECHAT_INFO");
-//		}
-//
-//		if(!$this->openId) {
-//			echo "系统初始化失败，请重新进入页面";
-//			exit();
-//		}
-//
-//		$user = getUser("openid", $this->openId);
-//		if(!!$user) {
-//			$this->uid = $user['uid'];
-//			$this->info = $user;
-//		} else {
-//            $this->db->insert("bms_user_info", array(
-//            	'openid'   =>$this->openId,
-//            	'nickname' =>$this->wechatInfo['nickname'],
-//            	'picture'  =>$this->wechatInfo['headimgurl']
-//            	));
-//            $this->uid  = $this->db->insert_id();
-//            $this->info = getUser("uid",$this->uid);
-//		}
-//        $curModuleName = $this->router->class."/".$this->router->method;
-//		$validModules  = array(
-//			"User/addUserinfo",
-//			"User/addUser",
-//		);
-///*
-//		
-//		$this->info = array(
-//		  "openid"=>"fhwoefewofowfwe",
-//		  "uid"=>"1",
-//		  "nickname"=>"wtt",
-//		  "weight"=>"47",
-//		  "height"=>"160",
-//		  "position"=>"4",
-//		  "point"=>"33",
-//		  "user_level"=>"1",
-//		  "team_id"=>"1",
-//		  "is_compelete"=>"1",
-//		  "picture"=>"0"
-//		)
-//		*/
-//
-//		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
-//			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
-//		}
+		if(!$this->session->tempdata("OPENID")) {
+			$data = $this->snsapi_userinfo();
+			$this->openId = $data["openid"];
+			$this->wechatInfo = $data;
+		} else {
+			$this->openId = $this->session->tempdata("OPENID");
+			$this->wechatInfo = $this->session->tempdata("WECHAT_INFO");
+		}
+
+		if(!$this->openId) {
+			echo "系统初始化失败，请重新进入页面";
+			exit();
+		}
+
+		$user = getUser("openid", $this->openId);
+		if(!!$user) {
+			$this->uid = $user['uid'];
+			$this->info = $user;
+		} else {
+            $this->db->insert("bms_user_info", array(
+            	'openid'   =>$this->openId,
+            	'nickname' =>$this->wechatInfo['nickname'],
+            	'picture'  =>$this->wechatInfo['headimgurl']
+            	));
+            $this->uid  = $this->db->insert_id();
+            $this->info = getUser("uid",$this->uid);
+		}
+        $curModuleName = $this->router->class."/".$this->router->method;
+		$validModules  = array(
+			"User/addUserinfo",
+			"User/addUser",
+		);
+/*
+
+		$this->info = array(
+		  "openid"=>"fhwoefewofowfwe",
+		  "uid"=>"1",
+		  "nickname"=>"wtt",
+		  "weight"=>"47",
+		  "height"=>"160",
+		  "position"=>"4",
+		  "point"=>"33",
+		  "user_level"=>"1",
+		  "team_id"=>"1",
+		  "is_compelete"=>"1",
+		  "picture"=>"0"
+		)
+		*/
+
+		if($this->info['is_compelete']==0 && in_array($curModuleName, $validModules)!=1) {
+			showNotice("您尚未完善个人信息，请先完善", site_url("User/addUserinfo"));
+		}
 	}
 
 	private function snsapi_userinfo() {  
