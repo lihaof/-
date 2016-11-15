@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=yes">
     <title>预约</title>
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
@@ -9,10 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{:base_url('css/myself.css')}">
 </head>
 <body>
-    <!--微信自带顶部栏-->
-    <div class="topbar-default">
-        <span>微信</span>
-    </div>
+
     <!--顶部信息-->
     <div class="top-style" onclick="window.location='{:site_url("User/showUser")}';">
         <img class="img-portrait" src="{:base_url('image/fruit.png')}">

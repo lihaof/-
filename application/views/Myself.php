@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=yes">
     <title>预约</title>
     <script type="text/javascript" src="<?php echo base_url('js/jquery.js'); ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/top-bar.css'); ?>">
@@ -10,8 +10,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/myself.css'); ?>">
 </head>
 <body>
+
     <!--顶部信息-->
-    <div class="top-style" onclick="window.location='<?php echo base_url("index.php/UserInfo"); ?>';">
+    <div class="top-style" onclick="window.location='<?php echo site_url("User/showUser"); ?>';">
         <img class="img-portrait" src="<?php echo base_url('image/fruit.png'); ?>">
         <p>Vonlion</p>
         <img class="btn-in" src="<?php echo base_url('image/in-white.png'); ?>">
@@ -51,7 +52,7 @@
     </div>
 
     <!--我的信息-->
-    <div class="list" onclick="window.location='<?php echo base_url("index.php/UserInfo"); ?>';">
+    <div class="list" onclick="window.location='<?php echo site_url("User/showUser"); ?>';">
         <div class="img-border"><img class="list-img" src="<?php echo base_url('image/message.png'); ?>"></div>
         <span>我的信息</span>
         <img class="btn-in3" src="<?php echo base_url('image/in.png'); ?>">
@@ -91,22 +92,22 @@
 
             });
 
-//            var boxLeft = $('.box-left');
-//            var boxright = $('.box-right');
-//            var lineWidth = $('.line').width();
-//
-//            var changeWidth = function () {
-//                boxLeft.width(boxLeft.width()-lineWidth/2);
-//                boxright.width(boxright.width()-lineWidth/2);
-//            };
+            var boxLeft = $('.box-left');
+            var boxright = $('.box-right');
+            var lineWidth = $('.line').width();
 
-//            changeWidth();
-//
-//            $(window).resize(function() {
-//                boxLeft = $('.box-left');
-//                boxright = $('.box-right');
-//                changeWidth();
-//            });
+            var changeWidth = function () {
+                boxLeft.width(boxLeft.width()-lineWidth/2);
+                boxright.width(boxright.width()-lineWidth/2);
+            };
+
+            changeWidth();
+
+            $(window).resize(function() {
+                boxLeft = $('.box-left');
+                boxright = $('.box-right');
+                changeWidth();
+            });
         });
 
 
