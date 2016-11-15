@@ -37,6 +37,33 @@
     }
 </style>
 <body>
+<!--{execute}-->
+        $this->db->select("*");
+        $this->db->from("team");
+        $this->db->where("team_status","0");
+        $resultData = $this->db->get()->result_array();
+        foreach($resultData as &$each) {
+            $this->db->select("nickname");
+            $this->db->where("uid",$each['team_leader']);
+            $uid = $this->db->get("user_info")->result_array();
+            $each['team_leader']= $uid['0']['nickname'];
+        }
+        unset($each);
+        $noauteam = $resultData;
+
+        $this->db->select("*");
+        $this->db->from("team");
+        $this->db->where("team_status","1");
+        $resultData = $this->db->get()->result_array();
+        foreach($resultData as &$each) {
+            $this->db->select("nickname");
+            $this->db->where("uid",$each['team_leader']);
+            $uid = $this->db->get("user_info")->result_array();
+            $each['team_leader']= $uid['0']['nickname'];
+        }
+        unset($each);
+        $auteam = $resultData;
+<!--{/execute}-->
 <div class="iframe-all">
     <!--侧面栏-->
     <div id="nav">
@@ -109,6 +136,87 @@
 </div>
 
 <script type="text/javascript" src="{:base_url('js/iframe.js')}"></script>
-<script type="text/javascript" src="{:base_url('js/iframeTeam.js')}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $('#dd').click(function () {
+        $('.form-style').hide().show()
+    });
+
+    var changebgc = function() {
+        $('.form-style').find('tr').each(function () {
+            if ($(this).index() % 2 == 0) {
+                $(this).css('background-color', '#fff');
+            }
+            else {
+                $(this).css('background-color', '#F6F6F6');
+            }
+        });
+    }
+
+    //同意球队申请
+    agree = function (agree) {
+        var id = agree.id;
+        var agreeList = $('#' + id).parent().parent();
+        var agreeHistroy;
+
+        // 同意事件....
+
+
+        var r=confirm("您确定要通过该球队申请吗？")
+        if (r){
+            var team_id = $(agree).attr("data-team-id");
+            var url = "{:site_url('Admin/Team/verifyTeamYes')}";
+            $.ajax({
+                url:url,
+                cache:false,
+                type:"POST",
+                async:false,
+                data:{
+                    team_id:team_id
+                },
+                success:function(msg) {
+                    agreeList.remove();
+                    agreeList.find('.status').text('审核通过').css('color','#2bb654');
+                    agreeList.find('.agree-btn').remove();
+
+                    //同意之后保存记录
+                    $('#agreed tbody').prepend(agreeList);
+                    changebgc();
+                }
+            });
+        }
+    }
+
+
+
+    //拒绝球队申请
+    refuse = function (refuse) {
+        var id = refuse.id;
+        var refuseList = $('#' + id);
+
+        // 拒绝事件....
+
+
+        var r=confirm("您确定要拒绝该球队申请吗？")
+        if (r){
+            var team_id = $(refuse).attr("data-team-id");
+            var url = "{:site_url('Admin/Team/verifyTeamNo')}";
+            $.ajax({
+                url:url,
+                cache:false,
+                type:"POST",
+                async:false,
+                data:{
+                    team_id:team_id
+                },
+                success:function(msg) {
+                    refuseList.parent().parent().remove();
+                }
+            });
+        }
+    }
+});
+</script>
 </body>
 </html>
