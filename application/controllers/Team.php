@@ -149,7 +149,8 @@ class Team extends CI_Controller {
 		$this->db->select("team_id");
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$team_id = $this->db->get("team_memmber")->result_array();
-		if($this->checkLeader($team_id,$uid)) { echo "无操作权限"; return;  }  //该用户不是队长
+		$team_id = $team_id['0']['team_id'];
+		if(!$this->checkLeader($team_id,$uid)) { echo "无操作权限"; return;  }  //该用户不是队长
 
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$this->db->set("team_memmber_status",$team_memmber_status);
@@ -172,10 +173,11 @@ class Team extends CI_Controller {
 		$this->db->select("team_id");
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$team_id = $this->db->get("team_memmber")->result_array();
+		$team_id = $team_id['0']['team_id'];
 		$this->db->select("team_id");
 		$this->db->where("team_id",$team_id);
 		$this->db->where("team_leader",$uid);
-		if($this->db->get("team")) return;  //该用户不是队长
+		if(!$this->db->get("team")) {return;} //该用户不是队长
 
 		$this->db->where("team_memmber_id",$team_memmber_id);
 		$this->db->set("team_memmber_status",$team_memmber_status);

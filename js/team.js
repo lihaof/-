@@ -54,6 +54,9 @@ $(document).ready(function () {
                 async:false,
                 data:{
                     team_memmber_id:team_memmber_id
+                },
+                success:function(msg) {
+                    alert(msg);
                 }
             });
     }
