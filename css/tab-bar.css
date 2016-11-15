@@ -1,0 +1,39 @@
+.bottom{
+    width: 100%;
+    height: 3.5rem;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid #ddd;
+}
+
+.bottom div{
+    width: 25%;
+    float: left;
+    text-align: center;
+    margin-top: 0.3rem;
+}
+
+.bottom img{
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-bottom: 0.1rem;
+}
+
+.p-normal{
+    font-size: 0.6rem;
+    color: #c7c7c7;
+}
+
+.p-pressed{
+    font-size: 0.6rem;
+    color: #52dd5f;
+}
+
+.btn-normal{
+    background-color: #ddd;
+}
+
+.btn-pressed{
+    background-color: #52dd5f;
+}
