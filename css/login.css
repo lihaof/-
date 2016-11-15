@@ -31,11 +31,11 @@
 
 .box-input-title{ width: 250px; height: 20px; color: #c3c3c3; font-size: 16px; float: left; margin-bottom: 5px; }
 
-.box-input-content{ width: 250px; height: 30px; border-radius: 3px; border: 1px; float: left; }
+.box-input-content{ width: 250px; height: 30px; border-radius: 3px; border: 1px; float: left; padding: 2px 5px; box-sizing: border-box; font-size: 15px; }
 
 .verify{ width: 70px; height: 30px; float: right; background: url("../img/verify.png") no-repeat; background-size: 100%; }
 
-.login-btn{ width: 250px; height: 40px; background-color: #00AAEE; margin-top: 30px; border-radius: 4px; text-align: center; line-height: 40px; font-size: 18px; color: #fff; letter-spacing: 4px; cursor: pointer; }
+.login-btn{ width: 250px; height: 40px; background-color: #00AAEE; margin-top: 30px; border-radius: 4px; text-align: center; line-height: 40px; font-size: 18px; color: #fff; letter-spacing: 4px; cursor: pointer; border: none; }
 
 .login-btn:hover{ background-color: #008ac4; }
 
