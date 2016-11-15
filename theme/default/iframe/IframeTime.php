@@ -93,41 +93,41 @@
             }
         });
     });
-        //确认时段
-        $(document).delegate("button[id^='check']",'click',function () {
-            var checkId = $(this).attr('id');
-            var num = checkId.substring(5);
-            if($(this).text()=='确认') {
-                    var u = '{:site_url("Admin/OpenTime/change/yes/")}';
-            } else {
-                    var u = '{:site_url("Admin/OpenTime/add/yes/")}';
-            }
-            //提交修改后的表单信息
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: u,
-                data: {
-                    start: $('#form_datetime_s' + num).val(),
-                    end: $('#form_datetime_e' + num).val(),
-                    price: $('#price' + num).val(),
-                    court_num: $('#court_num' + num).val(),
-                    time_id: num,
-                    status: $('#state' + num).text()
-                },
-                success: function (data) {
-                    if(data.success) {
-                        alert(data.message);
-                        location.reload();
-                    } else {
-                        alert(data.message);
-                    }
-                },
-                error: function (data) {
-                    alert('error');
+    //确认时段
+    $(document).delegate("button[id^='check']",'click',function () {
+        var checkId = $(this).attr('id');
+        var num = checkId.substring(5);
+        if($(this).text()=='确认') {
+                var u = '{:site_url("Admin/OpenTime/change/yes/")}';
+        } else {
+                var u = '{:site_url("Admin/OpenTime/add/yes/")}';
+        }
+        //提交修改后的表单信息
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: u,
+            data: {
+                start: $('#form_datetime_s' + num).val(),
+                end: $('#form_datetime_e' + num).val(),
+                price: $('#price' + num).val(),
+                court_num: $('#court_num' + num).val(),
+                time_id: num,
+                status: $('#state' + num).text()
+            },
+            success: function (data) {
+                if(data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
                 }
-            });
+            },
+            error: function (data) {
+                alert('error');
+            }
         });
+    });
     //删除时段
     $(document).delegate("button[id^='delete']",'click',function () {
         var deleteId = $(this).attr('id');
@@ -165,10 +165,6 @@
         editId.text('确认');
         editId.attr('id','check' + editNum);
         editInput = editId.parent().siblings().children('input:lt(2)');
-        editInput.datetimepicker({
-            format: 'HH:ii',
-            autoclose: true
-        });
     });
 
     var id = {:$tabMaxId}+1;

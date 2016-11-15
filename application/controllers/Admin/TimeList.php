@@ -91,4 +91,25 @@ class TimeList extends CI_Controller {
         return true;
     }
 
+    public function change($submit = "no") {
+        if($submit == "yes") {
+            $data = array(
+                "price" => $this->input->post("price"),
+                "court_num" => $this->input->post("court_num"),
+                "surplus_num" => $this->input->post("surplus_num"),
+            );
+            $this->db->where("list_id", $this->input->post("list_id"));
+            $this->db->update("time_list", $data);
+            if($this->db->affected_rows() < 1){
+                $data = array('success'=>false,'message'=>'修改失败,请重新尝试');
+                echo json_encode($data);
+                exit;
+            } else {
+                $data = array('success'=>true,'message'=>'修改成功');
+                echo json_encode($data);
+                exit;
+            }
+        }
+    }
+
 }
