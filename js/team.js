@@ -276,6 +276,14 @@ $('#search').click(function () {
     else { search.fadeIn('fast').css('display','block');}
 });
 
+var team1 = $('.box-team-my');
+    team1.css('display','none');
+
+var team2 = $('.box-team-my2');
+    team2.css('display','none');
+
+
+
 // 我的球队隐藏显示
 $('#myTeam').click(function () {
     var team = $('.box-team-my');
