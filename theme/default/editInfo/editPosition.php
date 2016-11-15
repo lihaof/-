@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <title>预约</title>
+    <title>修改场位</title>
     <script type="text/javascript" src="{:base_url('js/jquery.js')}"></script>
     <link rel="stylesheet" type="text/css" href="{:base_url('css/top-bar.css')}">
     <link rel="stylesheet" type="text/css" href="{:base_url('css/tab-bar.css')}">
