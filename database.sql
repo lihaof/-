@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `bms_user_order` (
   `uid` int(8) unsigned NOT NULL COMMENT '用户uid',
   `list_id` int(10) unsigned NOT NULL COMMENT '时间表里面的id',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态,1:预约成功,2:预约取消',
+  `price` decimal(10,2) unsigned NOT NULL COMMENT '预约价格,价格格式: 123.00',
   `time` int(10) unsigned NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`order_id`),
   KEY `uid` (`uid`)

@@ -52,8 +52,7 @@ class Time_list_model extends CI_Model {
         for($i=0;$i<7;$i++) {
             $date = date('Y-m-d',time() + 60*60*24*$i);
             if($this->db->where('date',$date)->get('time_list')->num_rows() != 0) {
-                // 今天的数据已经存在代表此后一周的数据都已经生成
-                break;
+                continue;
             }
             $openTime = $this->db->where('status','1')->get('open_time')->result_array();
             $this->db->trans_start();

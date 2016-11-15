@@ -29,7 +29,7 @@ class Order extends CI_Controller {
         //更新剩余球场数量
         $this->db->set('`surplus_num`', '`surplus_num`-1', FALSE)->where(array("list_id"=>$listId, "status"=>1))->update("time_list");
         //添加至用户预定记录
-        $this->db->insert("user_order", array("uid"=>$uid, "list_id"=>$listId, "status"=>1, "time"=>time()));
+        $this->db->insert("user_order", array("uid"=>$uid, "list_id"=>$listId, "price"=>$listData['price'], "status"=>1, "time"=>time()));
         $this->db->trans_complete();
         if ($this->db->trans_status() === TRUE) {
             //TODO:调用微信通知
@@ -47,7 +47,7 @@ class Order extends CI_Controller {
         foreach ($list as $key => &$value) {
             $this->db->where('list_id', $value['list_id']);
             $queryResult = $this->db->get("time_list")->row_array();
-            unset($queryResult["status"]);
+            unset($queryResult["status"], $queryResult["price"]);
             $value = array_merge($value,$queryResult);
         }
         $data["list"] = $list;
