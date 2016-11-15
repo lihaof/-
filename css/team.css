@@ -184,6 +184,7 @@ body{
     background-color: #fff;
     box-shadow: 1px 1px 5px #bcbcbc;
     margin-bottom: 20px;
+    display: none;
 }
 
 .box-team-my2{
@@ -196,6 +197,13 @@ body{
 }
 
 .box-team-other{
+    width: 90%;
+    box-sizing: border-box;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #bcbcbc;
+    margin-bottom: 20px;
+    display: block;
 }
 
 .box-team-my-list1{

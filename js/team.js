@@ -278,7 +278,14 @@ $('#search').click(function () {
 
 // 我的球队隐藏显示
 $('#myTeam').click(function () {
-    var team = $('.box-team-my');
+    var team = $('.box-team-my:lt(1)');
+    if(team.css('display') == 'block'){ team.fadeOut('fast').css('display','none');}
+    else { team.fadeIn('fast').css('display','block');}
+});
+
+// 我加入的球队隐藏显示
+$('#myTeam2').click(function () {
+    var team = $('.box-team-my:gt(0)');
     if(team.css('display') == 'block'){ team.fadeOut('fast').css('display','none');}
     else { team.fadeIn('fast').css('display','block');}
 });
@@ -330,7 +337,7 @@ $("button#serchTeam").click(function(){
                 for(var i=0;i<steam.length;i++) {
                     teamurl = "./Team/joinTeam"+"?team_id="+steam[i]['team_id'];
                     teamInfo +=
-                        '<div class="box-team-my box-team-other">' +
+                        '<div class="box-team-other">' +
                             '<div class="img-style2"><img class="box-team-my-list-img" src="'+
                             '../image/team/'+
                             steam[i]["team_picture"] +

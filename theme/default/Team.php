@@ -72,7 +72,7 @@
         {/if}
 
         <!--我加入的球队-->
-        <span id="myTeam" class="box-team-my-title" style="background: linear-gradient(to right,#c64e54,#e25960);">加入球队</span>
+        <span id="myTeam2" class="box-team-my-title" style="background: linear-gradient(to right,#c64e54,#e25960);">加入球队</span>
         {if empty($team)}
         <span class="no-team">暂未加入球队</span>
         {else}
