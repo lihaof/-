@@ -12,42 +12,21 @@
 </head>
 <body>
 <!--预约项目-->
-
-<!--{foreach $list $val}-->
-    <!--{if $val["status"]==1}-->
-        <div class="box-reserve">
-            <div class="box-reserve-status1">已预约</div>
-            <span class="box-reserve-date">{:$val["date"]}</span>
-            <span class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</span>
-            <span class="box-reserve-cost">¥{:$val["price"]}</span>
-        </div>
-    <!--{elseif $val["status"]==2}-->
-        <div class="box-reserve">
-            <div class="box-reserve-status2">已取消</div>
-            <span class="box-reserve-date">{:$val["date"]}</span>
-            <span class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</span>
-            <span class="box-reserve-cost">¥{:$val["price"]}</span>
-        </div>
-    <!--{/if}-->
-<!--{/foreach}-->
-
-
-<div class="no-message">暂无预约信息</div>
 <!--{if !empty($list)}-->
     <!--{foreach $list $val}-->
         <!--{if $val["status"]==1}-->
             <div class="box-reserve">
-                <span class="box-reserve-date">{:$val["date"]}</span>
                 <div class="box-reserve-status1">已预约</div>
+                <span class="box-reserve-date">{:$val["date"]}</span>
+                <span class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</span>
                 <span class="box-reserve-cost">¥{:$val["price"]}</span>
-                <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
             </div>
         <!--{elseif $val["status"]==2}-->
             <div class="box-reserve">
-                <span class="box-reserve-date">{:$val["date"]}</span>
                 <div class="box-reserve-status2">已取消</div>
+                <span class="box-reserve-date">{:$val["date"]}</span>
+                <span class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</span>
                 <span class="box-reserve-cost">¥{:$val["price"]}</span>
-                <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
             </div>
         <!--{/if}-->
     <!--{/foreach}-->
