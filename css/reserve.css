@@ -61,13 +61,13 @@
 
 .box-reserve{
     width: 97%;
-    height: 5rem;
+    height: 6.7rem;
     background-color: #fff;
     margin: auto;
     margin-top: 0.5rem;
     border-radius: 0.3rem;
     box-sizing: border-box;
-    padding: 0.3rem;
+    padding: 0.6rem 0.3rem;
 }
 
 .box-reserve a{
@@ -79,28 +79,34 @@
 }
 
 .box-reserve-date{
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: #7f7f7f;
-    margin-left: 0.5rem;
+    margin-left: 0.7rem;
+    margin-top: 0.2rem;
+    display: block;
 }
 
 .box-reserve-time{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #72b1ea;
     margin-top: 0.2rem;
     margin-left: 0.5rem;
+    display: block;
 }
 
 .box-reserve-btn{
-    float: right;
-    height: 2rem;
-    width: 5rem;
+    height: 2.3rem;
+    width: 5.8rem;
     background-color: #41bf5e;
-    margin-top: 0.5rem;
     color: #fff;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     border: none;
     border-radius: 0.2rem;
+    float: right;
+    line-height: 2.3rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-right: 0.25rem;
 }
 
 .box-reserve-line{
@@ -108,26 +114,26 @@
     height: 0.05rem;
     background-color: #ededed;
     margin: auto;
-    margin-top: 0.3rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .box-reserve-court{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: #7f7f7f;
     margin-left: 0.5rem;
 }
 
 .box-reserve-court-num{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: #72b1ea;
     margin-right: 0.1rem;
+    font-weight: 400;
 }
 
 .box-reserve-cost{
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: #ef7e51;
     float: right;
-    margin-top: 0.4rem;
-    margin-right: 0.2rem;
+    margin-right: 0.4rem;
 }
