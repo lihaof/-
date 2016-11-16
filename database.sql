@@ -151,3 +151,12 @@ CREATE TABLE IF NOT EXISTS `bms_website_option` (
   `ovalue` varchar(100) NOT NULL COMMENT '各个选项的值，如果类型为单选，多选或者是下拉菜单时从0开始，按oselection字段中选择项的顺序存入',
   PRIMARY KEY (`oid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '站点信息设置表';
+
+--用户组数据表 `bms_group`--
+CREATE TABLE IF NOT EXISTS `bms_group` (
+  `group_id` int(40) NOT NULL auto_increment COMMENT '用户组id',
+  `group_name` varchar(40) NOT NULL COMMENT '用户组名称',
+  `min_point` int(8) NOT NULL COMMENT '积分下线，>=下线',
+  `max_point` int(8) NOT NULL COMMENT '积分上线，<上线',
+  PRIMARY KEY  (`group_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用户组表' ;

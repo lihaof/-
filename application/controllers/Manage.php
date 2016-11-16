@@ -19,6 +19,7 @@ class Manage extends CI_Controller {
         $this->load->library("ui");
         $this->load->database();
         $this->load->model("time_list_model");
+        $this->load->model("User_group_model");
     }
 
     public function index() {

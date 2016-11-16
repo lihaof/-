@@ -9,24 +9,62 @@
 class BackUserGroup extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model("AdministratorModel");
-        $this->load->model("TimeListModel");
-        $this->load->library("ui");
+        $this->load->model("User_group_model");
     }
 
     public function index() {
-
-        $data['group'] = $this->db->get('bms_group')->result_array();
-
-        $this->ui->load('BackUserGroup',$data);
        
     }
-
-    public function editgroup(){
-        
+    //修改
+    public function editgroup() {
+        $group_id   = $this->input->post("group_id");
+        $group_name = $this->input->post("group_name");
+        $min_point  = $this->input->post("min_point");
+        $max_point  = $this->input->post("max_point");
+        if($group_id && $group_name && $min_point && $max_point) {
+            $data = array(
+                'group_id'   => $group_id,
+                'group_name' => $group_name,
+                'min_point'  => $min_point,
+                'max_point'  => $max_point
+            );
+            echo $this->db->replace("group",$data);
+        } else {
+            echo "获取参数失败";
+        }
     }
-
-    public function addgroup(){
-        ;
+    //新增
+    public function addgroup() {
+        $group_name = $this->input->post("group_name");
+        $min_point  = $this->input->post("min_point");
+        $max_point  = $this->input->post("max_point");
+        if($group_name && $min_point && $max_point) {
+            $data = array(
+                'group_name' => $group_name,
+                'min_point'  => $min_point,
+                'max_point'  => $max_point
+            );
+            echo $this->db->insert("group",$data);
+        } else {
+            echo "获取参数失败";
+        }
+    }
+    //删除
+    public function deletegroup() {
+        $group_id   = $this->input->post("group_id");
+        $group_name = $this->input->post("group_name");
+        $min_point  = $this->input->post("min_point");
+        $max_point  = $this->input->post("max_point");
+        if($group_id && $group_name && $min_point && $max_point) {
+            $data = array(
+                'group_id'   => $group_id,
+                'group_name' => $group_name,
+                'min_point'  => $min_point,
+                'max_point'  => $max_point
+            );
+            echo $this->db->delete("group",$data);
+        } else {
+            echo "获取参数失败";
+        }
     }
 }
