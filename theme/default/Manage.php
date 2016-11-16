@@ -17,6 +17,7 @@
         <div class="title-big">篮球场智能管理系统</div>
         <div class="title-small">BASKETBALL MANAGEMENT SYSTEM</div>
     </div>
+    <a href="{:base_url('index.php/login')}"><img src="{:base_url('image/exit.png')}" class="exit"></a>
 </div>
 
 <!--选项卡-->
