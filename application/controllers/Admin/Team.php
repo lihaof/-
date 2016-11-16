@@ -31,7 +31,7 @@ class Team extends CI_Controller {
 		$resultData = $this->db->get()->result_array();
 		foreach($resultData as &$each) {
 			$uid = $this->getUserInfoById($each['team_leader']);
-			$each['team_leader']= $uid['0']['nickname'];
+			if($uid) $each['team_leader']= $uid['0']['nickname'];
 		}
 		return $resultData;
 	}
@@ -47,7 +47,7 @@ class Team extends CI_Controller {
 		$resultData = $this->db->get()->result_array();
 		foreach($resultData as &$each) {
 			$uid = $this->getUserInfoById($each['team_leader']);
-			$each['team_leader']= $uid['0']['nickname'];
+			if($uid) $each['team_leader']= $uid['0']['nickname'];
 		}
 		return $resultData;
 	}

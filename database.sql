@@ -99,17 +99,6 @@ CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块和权限的对应表';
 
 
--- 球队员请求加入球队 加入球队申请表  bms_join_info
-DROP TABLE IF EXISTS `bms_join_info`;
-CREATE TABLE IF NOT EXISTS `bms_join_info` (
-  `teamid` char(138) NOT NULL COMMENT '队伍id',
-  `member` int(8) NOT NULL COMMENT '想要加入该队伍的队员',
-  `status` int(1) NOT NULL COMMENT '0表等待队长审核，1表队长审核通过，2表队长审核失败',
-  PRIMARY KEY (`member`)
-) 
-ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT= '添加队伍信息表';
-
-
 
 -- 用户信息表 bms_user_info
 DROP TABLE IF EXISTS `bms_user_info`;
@@ -122,7 +111,6 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
   `position` int(1) NULL COMMENT '用户场位',
   `point` int(7) NULL COMMENT '用户积分',
   `user_level` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '用户权限等级',
-  `team_id` int(5) NULL COMMENT '队伍id',
   `is_compelete` int(1) NULL DEFAULT '0' COMMENT '是否完善用户个人信息',
   `picture` varchar(40) NULL  COMMENT '用户照片',
   PRIMARY KEY (`uid`)

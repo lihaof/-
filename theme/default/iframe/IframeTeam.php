@@ -46,7 +46,7 @@
             $this->db->select("nickname");
             $this->db->where("uid",$each['team_leader']);
             $uid = $this->db->get("user_info")->result_array();
-            $each['team_leader']= $uid['0']['nickname'];
+            if($uid) $each['team_leader']= $uid['0']['nickname'];
         }
         unset($each);
         $noauteam = $resultData;
@@ -59,7 +59,7 @@
             $this->db->select("nickname");
             $this->db->where("uid",$each['team_leader']);
             $uid = $this->db->get("user_info")->result_array();
-            $each['team_leader']= $uid['0']['nickname'];
+            if($uid) $each['team_leader']= $uid['0']['nickname'];
         }
         unset($each);
         $auteam = $resultData;
@@ -130,7 +130,6 @@
         {/foreach}
         </tbody>
     </table>
-
 
 
 </div>

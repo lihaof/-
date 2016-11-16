@@ -23,7 +23,7 @@
             <th width="30%" colspan="3">操作</th>
         </tr>
         <!--{execute}-->
-            $list = $this->time_list_model->fetchSevenDay();
+            $list = $this->Time_list_model->fetchSevenDay();
         <!--{/execute}-->
         <!--{foreach $list $key $val}-->
         <tr id="tab{:$val['list_id']}">
