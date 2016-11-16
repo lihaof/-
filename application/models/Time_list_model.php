@@ -11,7 +11,7 @@ class Time_list_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
-        $this->load->helper("common_helper");
+        $this->load->helper('common_helper');
     }
 
     public function fetchSevenDay() {
@@ -20,18 +20,18 @@ class Time_list_model extends CI_Model {
         for($i=0;$i<7;$i++) {
             $queryDate[] = date('Y-m-d',time()+60*60*24*$i);
         }
-        $query = $this->db->or_where_in('date',$queryDate)->order_by('date asc,list_id asc')->get("time_list");
+        $query = $this->db->or_where_in('date',$queryDate)->order_by('date asc,list_id asc')->get('time_list');
         $list = $query->result_array();
         return $list;
     }
 
-    public function fetchOneDay($year = "0", $month = "0", $day = "0") {
+    public function fetchOneDay($year = '0', $month = '0', $day = '0') {
         if(checkdate($month, $day, $year)) {
-            $date = $year."-".$month."-".$day;
-            $date2 = $day."-".$month."-".$year; 
+            $date = $year.'-'.$month.'-'.$day;
+            $date2 = $day.'-'.$month.'-'.$year; 
         } else {
-            $date = date("Y-m-d",time());
-            $date2 = date("d-m-Y",time());
+            $date = date('Y-m-d',time());
+            $date2 = date('d-m-Y',time());
         }
         $dateStrToTime = strtotime($date2);
         $todayStrToTime  = strtotime(date("d-m-Y",time()));
@@ -49,10 +49,11 @@ class Time_list_model extends CI_Model {
 
     private function createDateData() {
         //一次性生成7天的数据
-        for($i=0;$i<7;$i++) {
+        for($i=6;$i>=0;$i--) {
             $date = date('Y-m-d',time() + 60*60*24*$i);
             if($this->db->where('date',$date)->get('time_list')->num_rows() != 0) {
-                continue;
+                // 已存在第7天数据,无需继续往前查询
+                break;
             }
             $openTime = $this->db->where('status','1')->get('open_time')->result_array();
             $this->db->trans_start();
@@ -62,11 +63,12 @@ class Time_list_model extends CI_Model {
                     'start' => $value['start'],
                     'end' => $value['end'],
                     'price' => $value['price'],
-                    "court_num" => $value["court_num"],
-                    "surplus_num" => $value["court_num"],
-                    'status' => 1
+                    'court_num' => $value['court_num'],
+                    'surplus_num' => $value['court_num'],
+                    'status' => 1,
+                    'time' => time()
                 );
-                $this->db->insert("time_list",$data);
+                $this->db->insert('time_list',$data);
             }
             $this->db->trans_complete();
         }
@@ -76,7 +78,7 @@ class Time_list_model extends CI_Model {
     private function getTimeLimit() {
         $result = $this->db->where('time_limit_id','1')->get('time_limit')->row_array();
         if(isset($result)){
-            return $result["time"];
+            return $result['time'];
         } else {
             return 0;    //0为无限制
         }
@@ -84,7 +86,7 @@ class Time_list_model extends CI_Model {
 
     //不存在返回false,存在返回该条记录的指定内容
     public function listIdIsExist($listId = 0) {
-        $listData = $this->db->where("list_id",$listId)->get("time_list")->row_array();
+        $listData = $this->db->where('list_id',$listId)->get('time_list')->row_array();
         if(empty($listData)) {
             return false;
         }

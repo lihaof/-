@@ -23,7 +23,7 @@
             <th width="30%" colspan="3">操作</th>
         </tr>
         <!--{execute}-->
-            $list = $this->Time_list_model->fetchSevenDay();
+            $list = $this->time_list_model->fetchSevenDay();
         <!--{/execute}-->
         <!--{foreach $list $key $val}-->
         <tr id="tab{:$val['list_id']}">
@@ -107,6 +107,7 @@
         var editInput = editId.parent().siblings().children('input')
         editInput.removeAttr('disabled').css('border','1px solid #ddd').css('background-color','#fff');
         editId.text('确认');
+        $('#form_datetime_d' + editNum).attr('disabled','disabled').removeAttr('style');
         editId.attr('id','check' + editNum);
         editInput = editId.parent().siblings().children('input:lt(2)');
     });
@@ -125,6 +126,8 @@
             dataType: 'json',
             url: '{:site_url("Admin/TimeList/change/yes/")}',
             data: {
+                start: $('#form_datetime_s' + num).val(),
+                end: $('#form_datetime_e' + num).val(),
                 price: $('#price' + num).val(),
                 court_num: $('#court_num' + num).val(),
                 surplus_num: $('#surplus_num' + num).val(),

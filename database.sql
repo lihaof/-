@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `bms_time_list` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态,1:开放预约,2...,3:管理员锁定此时段不开放预约',
   `court_num` tinyint(3) unsigned NOT NULL COMMENT '开放球场数量',
   `surplus_num` tinyint(3) unsigned NOT NULL COMMENT '球场剩余数量',
+  `time` INT(10) UNSIGNED NOT NULL COMMENT '操作时间(生成或修改)',
   PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每一天自动生成的预订表,需要生成的时段从bms_open_time读取';
 
@@ -128,12 +129,13 @@ CREATE TABLE IF NOT EXISTS `bms_group` (
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户组 表';
 
--- 管理员信息表 bms_administrator
-CREATE TABLE IF NOT EXISTS `bms_administrator` (
-  `aid` int(10) NOT NULL AUTO_INCREMENT COMMENT '管理员自增id',
-  `user` varchar(40) NOT NULL COMMENT '管理员账号',
-  `password` varchar(50) NOT NULL COMMENT '管理员密码',
-  `level` tinyint(1) NOT NULL DEFAULT '4' COMMENT '权限等级，管理员从4至7，默认为4',
+-- 管理员信息表 bms_admin
+CREATE TABLE IF NOT EXISTS `bms_admin` (
+  `aid` INT(10) NOT NULL AUTO_INCREMENT COMMENT '管理员自增id',
+  `username` VARCHAR(40) NOT NULL COMMENT '管理员账号',
+  `password` CHAR(32) NOT NULL COMMENT '管理员密码',
+  `token` CHAR(32) NULL DEFAULT NULL COMMENT '登录凭据',
+  `level` TINYINT(1) NOT NULL DEFAULT '4' COMMENT '权限等级，管理员从4至7，默认为4',
   PRIMARY KEY (`aid`)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '管理员信息表';
