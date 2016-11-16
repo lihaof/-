@@ -1,23 +1,24 @@
 .box-reserve{
-    height: 3.5rem;
+    height: 6rem;
 }
 
 .box-reserve-cost{
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #ef7e51;
-    float: right;
-    margin-top: 0.7rem;
-    margin-right: 0.7rem;
+    float: left;
+    margin-top: 0.2rem;
+    margin-left: 0.7rem;
+    display: block;
 }
 
 .box-reserve-status1{
     float: right;
-    height: 1.6rem;
-    width: 4.3rem;
-    line-height: 1.6rem;
+    height: 2.2rem;
+    width: 5.5rem;
+    line-height: 2.2rem;
     text-align: center;
     background-color: #41bf5e;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     margin-right: 0.5rem;
     color: #fff;
     font-size: 0.7rem;
@@ -27,12 +28,12 @@
 
 .box-reserve-status2{
     float: right;
-    height: 1.6rem;
-    width: 4.3rem;
-    line-height: 1.6rem;
+    height: 2.2rem;
+    width: 5.5rem;
+    line-height: 2.2rem;
     text-align: center;
     background-color: #cecece;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     margin-right: 0.5rem;
     color: #fff;
     font-size: 0.7rem;
