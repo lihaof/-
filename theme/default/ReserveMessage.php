@@ -31,6 +31,8 @@
     <!--{/if}-->
 <!--{/foreach}-->
 
+<div class="no-message">暂无预约信息</div>
+
 <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script>
 </body>
 </html>
