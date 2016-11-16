@@ -97,6 +97,7 @@ class TimeList extends CI_Controller {
                 "price" => $this->input->post("price"),
                 "court_num" => $this->input->post("court_num"),
                 "surplus_num" => $this->input->post("surplus_num"),
+                "time" => time(),
             );
             $this->db->where("list_id", $this->input->post("list_id"));
             $this->db->update("time_list", $data);

@@ -207,7 +207,7 @@ class Team extends CI_Controller {
 		}
 		foreach($teamInfo as &$each) {
 			$leader = $this->getUserInfoById($each['team_leader']);
-			$each['team_leader']  = $leader['0']['nickname'];
+			if($leader) $each['team_leader']  = $leader['0']['nickname'];
 			$each['teammate_num'] = $this->getTeammateNum($each['team_id']);
 		}
 		unset($each);
@@ -226,7 +226,7 @@ class Team extends CI_Controller {
 		$teamInfo = $this->db->get("team")->result_array();
 		foreach($teamInfo as &$each) {
 			$leader = $this->getUserInfoById($each['team_leader']);
-			$each['team_leader']= $leader['0']['nickname'];
+			if($leader) $each['team_leader']= $leader['0']['nickname'];
 			$each['teammate_num'] = $this->getTeammateNum($each['team_id']);
 			$each['apply_Num']    = $this->getApplyNum($each['team_id']);
 		}
@@ -247,7 +247,7 @@ class Team extends CI_Controller {
 		$resultData = $this->db->get("team_memmber")->result_array();
 		foreach($resultData as &$each) {
 			$uid = $this->getUserInfoById($each['uid']);
-			$each['uid']= $uid['0']['nickname'];
+			if($uid) $each['uid']= $uid['0']['nickname'];
 			$each['position'] = $this->changeAsAccb($each['position']);
 		}
 		echo json_encode($resultData);
@@ -266,7 +266,7 @@ class Team extends CI_Controller {
 		$resultData = $this->db->get("team_memmber")->result_array();
 		foreach($resultData as &$each) {
 			$uid = $this->getUserInfoById($each['uid']);
-			$each['uid']= $uid['0']['nickname'];
+			if($uid) $each['uid']= $uid['0']['nickname'];
 			$each['position'] = $this->changeAsAccb($each['position']);
 		}
 		echo json_encode($resultData);
@@ -283,7 +283,7 @@ class Team extends CI_Controller {
 		$teamInfo = $this->db->get("team")->result_array();
 		foreach($teamInfo as &$each) {
 			$leader = $this->getUserInfoById($each['team_leader']);
-			$each['team_leader']= $leader['0']['nickname'];
+			if($leader) $each['team_leader']= $leader['0']['nickname'];
 		}
 		unset($each);
 		echo json_encode($teamInfo);

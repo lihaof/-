@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `bms_time_list` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '预约状态,1:开放预约,2...,3:管理员锁定此时段不开放预约',
   `court_num` tinyint(3) unsigned NOT NULL COMMENT '开放球场数量',
   `surplus_num` tinyint(3) unsigned NOT NULL COMMENT '球场剩余数量',
+  `time` INT(10) UNSIGNED NOT NULL COMMENT '操作时间(生成或修改)',
   PRIMARY KEY (`list_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每一天自动生成的预订表,需要生成的时段从bms_open_time读取';
 
@@ -99,17 +100,6 @@ CREATE TABLE IF NOT EXISTS `bms_module_permissions`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块和权限的对应表';
 
 
--- 球队员请求加入球队 加入球队申请表  bms_join_info
-DROP TABLE IF EXISTS `bms_join_info`;
-CREATE TABLE IF NOT EXISTS `bms_join_info` (
-  `teamid` char(138) NOT NULL COMMENT '队伍id',
-  `member` int(8) NOT NULL COMMENT '想要加入该队伍的队员',
-  `status` int(1) NOT NULL COMMENT '0表等待队长审核，1表队长审核通过，2表队长审核失败',
-  PRIMARY KEY (`member`)
-) 
-ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT= '添加队伍信息表';
-
-
 
 -- 用户信息表 bms_user_info
 DROP TABLE IF EXISTS `bms_user_info`;
@@ -122,7 +112,6 @@ CREATE TABLE IF NOT EXISTS `bms_user_info` (
   `position` int(1) NULL COMMENT '用户场位',
   `point` int(7) NULL COMMENT '用户积分',
   `user_level` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '用户权限等级',
-  `team_id` int(5) NULL COMMENT '队伍id',
   `is_compelete` int(1) NULL DEFAULT '0' COMMENT '是否完善用户个人信息',
   `picture` varchar(40) NULL  COMMENT '用户照片',
   PRIMARY KEY (`uid`)
@@ -140,12 +129,13 @@ CREATE TABLE IF NOT EXISTS `bms_group` (
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '用户组 表';
 
--- 管理员信息表 bms_administrator
-CREATE TABLE IF NOT EXISTS `bms_administrator` (
-  `aid` int(10) NOT NULL AUTO_INCREMENT COMMENT '管理员自增id',
-  `user` varchar(40) NOT NULL COMMENT '管理员账号',
-  `password` varchar(50) NOT NULL COMMENT '管理员密码',
-  `level` tinyint(1) NOT NULL DEFAULT '4' COMMENT '权限等级，管理员从4至7，默认为4',
+-- 管理员信息表 bms_admin
+CREATE TABLE IF NOT EXISTS `bms_admin` (
+  `aid` INT(10) NOT NULL AUTO_INCREMENT COMMENT '管理员自增id',
+  `username` VARCHAR(40) NOT NULL COMMENT '管理员账号',
+  `password` CHAR(32) NOT NULL COMMENT '管理员密码',
+  `token` CHAR(32) NULL DEFAULT NULL COMMENT '登录凭据',
+  `level` TINYINT(1) NOT NULL DEFAULT '4' COMMENT '权限等级，管理员从4至7，默认为4',
   PRIMARY KEY (`aid`)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT = '管理员信息表';

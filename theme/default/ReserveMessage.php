@@ -33,7 +33,27 @@
 
 
 <div class="no-message">暂无预约信息</div>
-
+<!--{if !empty($list)}-->
+    <!--{foreach $list $val}-->
+        <!--{if $val["status"]==1}-->
+            <div class="box-reserve">
+                <span class="box-reserve-date">{:$val["date"]}</span>
+                <div class="box-reserve-status1">已预约</div>
+                <span class="box-reserve-cost">¥{:$val["price"]}</span>
+                <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
+            </div>
+        <!--{elseif $val["status"]==2}-->
+            <div class="box-reserve">
+                <span class="box-reserve-date">{:$val["date"]}</span>
+                <div class="box-reserve-status2">已取消</div>
+                <span class="box-reserve-cost">¥{:$val["price"]}</span>
+                <p class="box-reserve-time">{:$val["start"]}-{:$val["end"]}</p>
+            </div>
+        <!--{/if}-->
+    <!--{/foreach}-->
+<!--{else}-->
+    <div class="no-message">暂无预约信息</div>
+<!--{/if}-->
 <script type="text/javascript" src="{:base_url('js/reserve.js')}"></script>
 </body>
 </html>
