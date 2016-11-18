@@ -328,44 +328,50 @@ $("button#serchTeam").click(function(){
     document.getElementById("serchTeam").innerHTML = "搜索中…";
     var teamInfo='';
     var teamurl='';
-    $.ajax({
-        url:"./Team/serchTeam",
-        cache:false,
-        type:"POST",
-        async:false,
-        data:{
-            team_name:$("#team_name").val()
-        },
-        success:function(msg) {
-            steam = $.parseJSON(msg);
-            if(steam=="") {
-                alert("没有找到匹配结果");
+    if($("#team_name").val()==""){
+        $("#team_name").css("border","1px red solid");
+        document.getElementById("serchTeam").innerHTML = "搜索";
+    } else {
+        $("#team_name").css("border","1px #fff solid");
+        $.ajax({
+            url:"./Team/serchTeam",
+            cache:false,
+            type:"POST",
+            async:false,
+            data:{
+                team_name:$("#team_name").val()
+            },
+            success:function(msg) {
+                steam = $.parseJSON(msg);
+                if(steam=="") {
+                    alert("没有找到匹配结果");
+                    document.getElementById("serchTeam").innerHTML = "搜索";
+                } else {
+                    for(var i=0;i<steam.length;i++) {
+                        teamurl = "./Team/joinTeam"+"?team_id="+steam[i]['team_id'];
+                        teamInfo +=
+                            '<div class="box-team-other">' +
+                                '<div class="img-style2"><img class="box-team-my-list-img" src="'+
+                                '../image/team/'+
+                                steam[i]["team_picture"] +
+                                '"></div>' +
+                                '<div class="box-team-my-list2">' +
+                                    '<span class="box-team-my-list-content">' + steam[i]["team_name"] + '</span>' +
+                                    '<a class="btn-join" href= '+teamurl+'>申请加入</a>' + '<br>' +
+                                '</div>' +
+                                '<div class="box-team-my-list1">' +
+                                    '<span class="box-team-my-list-title">队长: </span>' +
+                                    '<span class="box-team-my-list-content">' + steam[i]["team_leader"] + '</span>' +
+                                '</div>' +
+                            '</div>' +
+                            '</div>';
+                        document.getElementById("sTeam").innerHTML= teamInfo;
+                }
                 document.getElementById("serchTeam").innerHTML = "搜索";
-            } else {
-                for(var i=0;i<steam.length;i++) {
-                    teamurl = "./Team/joinTeam"+"?team_id="+steam[i]['team_id'];
-                    teamInfo +=
-                        '<div class="box-team-other">' +
-                            '<div class="img-style2"><img class="box-team-my-list-img" src="'+
-                            '../image/team/'+
-                            steam[i]["team_picture"] +
-                            '"></div>' +
-                            '<div class="box-team-my-list2">' +
-                                '<span class="box-team-my-list-content">' + steam[i]["team_name"] + '</span>' +
-                                '<a class="btn-join" href= '+teamurl+'>申请加入</a>' + '<br>' +
-                            '</div>' +
-                            '<div class="box-team-my-list1">' +
-                                '<span class="box-team-my-list-title">队长: </span>' +
-                                '<span class="box-team-my-list-content">' + steam[i]["team_leader"] + '</span>' +
-                            '</div>' +
-                        '</div>' +
-                        '</div>';
-                    document.getElementById("sTeam").innerHTML= teamInfo;
+                }
             }
-            document.getElementById("serchTeam").innerHTML = "搜索";
-            }
-        }
-    });
+        });
+    }
 });
 
 });

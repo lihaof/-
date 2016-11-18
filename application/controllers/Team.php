@@ -278,6 +278,7 @@ class Team extends CI_Controller {
 	 */
 	public function serchTeam() {
 		$team_name = $this->input->post("team_name");
+		if(!$team_name) return;
 		$this->db->where("team_status",1);
 		$this->db->like("team_name",$team_name);
 		$teamInfo = $this->db->get("team")->result_array();
